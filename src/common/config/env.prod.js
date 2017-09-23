@@ -2,9 +2,9 @@ import { Platform } from 'react-native';
 
 export default {
   firebase: {
-    apiKey: 'AIzaSyBViHgCwYjD9F8fv7Acz3DTVX4vmW_-j9k',
-    databaseURL: 'https://pixiv-9bc42.firebaseio.com',
-    projectId: 'pixiv-9bc42',
+    apiKey: 'AIzaSyBarMbWzvr_L8zOSUKMcinHlrjGaRQaKss',
+    databaseURL: 'https://itjesse54.firebaseio.com',
+    projectId: 'itjesse54',
   },
   navigation: {
     tab: Platform.OS === 'ios',

@@ -29,6 +29,7 @@ import * as browsingHistoryActionCreators from '../../common/actions/browsingHis
 import * as muteUsersActionCreators from '../../common/actions/muteUsers';
 import { makeGetDetailItem } from '../../common/selectors';
 import { SCREENS } from '../../common/constants';
+import firebase from '../../common/helpers/firebase';
 
 const THUMBNAIL_SIZE = 30;
 
@@ -85,10 +86,12 @@ class Detail extends Component {
       'masterListUpdate',
       this.handleOnMasterListUpdate,
     );
+    this.ref = firebase.database().ref('report');
   }
 
   componentWillUnmount() {
     this.masterListUpdateListener.remove();
+    this.ref.off();
   }
 
   handleOnScrollDetailImageList = e => {
@@ -185,6 +188,24 @@ class Detail extends Component {
       addMuteUser(item.user.id);
     }
     this.handleOnCancelMenuBottomSheet();
+  };
+
+  handleOnPressReportUser = () => {
+    const { item, i18n } = this.props;
+    this.ref
+      .push()
+      .set({
+        userId: item.user.id,
+        name: item.user.name,
+        title: item.title,
+      })
+      .then(() => {
+        DeviceEventEmitter.emit('showToast', i18n.feedbackSuccess);
+        this.handleOnCancelMenuBottomSheet();
+      })
+      .catch(() => {
+        this.handleOnCancelMenuBottomSheet();
+      });
   };
 
   handleOnPressShareIllust = () => {
@@ -309,6 +330,15 @@ class Detail extends Component {
               marginLeft: 28,
             }}
             text={isMuteUser ? i18n.userMuteRemove : i18n.userMuteAdd}
+          />
+          <PXBottomSheetButton
+            onPress={this.handleOnPressReportUser}
+            iconName="ban"
+            iconType="font-awesome"
+            textStyle={{
+              marginLeft: 34,
+            }}
+            text={i18n.reportUser}
           />
           <PXBottomSheetCancelButton
             onPress={this.handleOnCancelMenuBottomSheet}

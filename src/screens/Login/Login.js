@@ -5,6 +5,7 @@ import {
   View,
   Keyboard,
   KeyboardAvoidingView,
+  Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -99,6 +100,12 @@ class Login extends Component {
     openModal(MODAL_TYPES.SIGNUP);
   };
 
+  handleOpenEula = () => {
+    Linking.openURL('https://www.pixiv.net/terms/')
+      .then()
+      .catch(err => console.error('An error occurred', err));
+  };
+
   render() {
     const { auth: { loading }, modal, i18n, handleSubmit } = this.props;
     return (
@@ -153,6 +160,16 @@ class Login extends Component {
                   backgroundColor="transparent"
                   color={globalStyleVariables.PRIMARY_COLOR}
                   onPress={this.handleOnPressSignUp}
+                />
+                <Button
+                  title={i18n.eula}
+                  containerViewStyle={[
+                    styles.buttonContainer,
+                    styles.outlineButtonContainer,
+                  ]}
+                  backgroundColor="transparent"
+                  color={globalStyleVariables.PRIMARY_COLOR}
+                  onPress={this.handleOpenEula}
                 />
               </View>
             </KeyboardAvoidingView>
