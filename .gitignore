@@ -21,7 +21,6 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-Pods/
 
 # Android/IntelliJ
 #
@@ -52,8 +51,3 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
-
-coverage
-
-.vscode
-flow-typed

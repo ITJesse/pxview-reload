@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: 'io.fabric'
 
 import com.android.build.OutputFile
 
@@ -88,30 +87,20 @@ def enableSeparateBuildPerCPUArchitecture = false
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
  */
-def enableProguardInReleaseBuilds = true
+def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "com.utopia.pxview"
+        applicationId "com.pxview"
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 8
-        versionName "1.7"
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
-        }
-        renderscriptTargetApi 23
-        renderscriptSupportModeEnabled true
-    }
-    signingConfigs {
-        release {
-            storeFile file(PXVIEW_RELEASE_STORE_FILE)
-            storePassword PXVIEW_RELEASE_STORE_PASSWORD
-            keyAlias PXVIEW_RELEASE_KEY_ALIAS
-            keyPassword PXVIEW_RELEASE_KEY_PASSWORD
         }
     }
     splits {
@@ -126,7 +115,6 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -144,44 +132,24 @@ android {
     }
 }
 
-repositories {
-    maven { url 'https://maven.fabric.io/public' }
-}
-
 dependencies {
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-blur')
+    compile project(':react-native-vector-icons')
     compile project(':react-native-splash-screen')
+    compile project(':react-native-spinkit')
+    compile project(':react-native-share')
+    compile project(':react-native-photo-view')
     compile project(':react-native-open-settings')
+    compile project(':react-native-material-kit')
+    compile project(':react-native-localization')
+    compile project(':react-native-linear-gradient')
+    compile project(':react-native-fetch-blob')
+    compile project(':react-native-fabric')
     compile project(':react-native-device-info')
     compile project(':react-native-cookies')
-    compile project(':react-native-localization')
-    compile project(':react-native-share')
-    compile project(':react-native-material-kit')
-    compile project(':react-native-vector-icons')
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
-    compile project(':react-native-fabric')
-    compile project(':react-native-photo-view')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-fetch-blob')
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
-        transitive = true;
-    }
+    compile project(':react-native-blur')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
-}
-
-buildscript {
-    repositories {
-        maven { url 'https://maven.fabric.io/public' }
-    }
-    dependencies {
-        classpath 'io.fabric.tools:gradle:1.+'
-    }
 }
 
 // Run this once to be able to run the application with BUCK
