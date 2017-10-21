@@ -85,7 +85,21 @@ class IllustList extends Component {
       onScroll,
       showsVerticalScrollIndicator,
       maxItems,
+      muteTags,
+      muteUsers,
     } = this.props;
+
+    const muteFilter = () => {
+      const data =
+        maxItems && (items && items.length) ? items.slice(0, maxItems) : items;
+      return data.filter(e => {
+        const isMute =
+          e.tags.some(t => muteTags.items.includes(t.name)) ||
+          muteUsers.items.some(m => m === e.user.id);
+        return !isMute;
+      });
+    };
+
     return (
       <View style={globalStyles.container}>
         {(!items || (!loaded && loading)) && <Loader />}
@@ -93,11 +107,7 @@ class IllustList extends Component {
           ? <FlatList
               onLayout={this.handleOnLayout}
               ref={ref => (this.illustList = ref)}
-              data={
-                maxItems && (items && items.length)
-                  ? items.slice(0, maxItems)
-                  : items
-              }
+              data={muteFilter()}
               numColumns={ILLUST_COLUMNS}
               keyExtractor={item => item.id}
               renderItem={this.renderItem}
@@ -129,5 +139,11 @@ class IllustList extends Component {
 }
 
 export default withNavigation(
-  connect(null, bookmarkIllustActionCreators)(IllustList),
+  connect(state => {
+    const { muteTags, muteUsers } = state;
+    return {
+      muteTags,
+      muteUsers,
+    };
+  }, bookmarkIllustActionCreators)(IllustList),
 );

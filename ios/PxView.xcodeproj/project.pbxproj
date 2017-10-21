@@ -43,6 +43,12 @@
 		2DCD954D1E0B4F2C00145EB5 /* PxViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PxViewTests.m */; };
 		446E0B352F97483AAE7E3AD7 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AE16D35ADA845C09F04B1B8 /* SimpleLineIcons.ttf */; };
 		47C62E99B6E449269D908972 /* libRNShare.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EBB4C58A6924B6596C28AA5 /* libRNShare.a */; };
+		484A1AA41F9C132500100004 /* libRCTCameraRoll.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 484A1A7A1F9C130000100004 /* libRCTCameraRoll.a */; };
+		484A1AA81F9C13F200100004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 484A1AA61F9C13F200100004 /* InfoPlist.strings */; };
+		484A1AB51F9C142200100004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 484A1AAA1F9C142100100004 /* InfoPlist.strings */; };
+		484A1AB61F9C142200100004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 484A1AAD1F9C142100100004 /* InfoPlist.strings */; };
+		484A1AB71F9C142200100004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 484A1AB01F9C142200100004 /* InfoPlist.strings */; };
+		484A1AB81F9C142200100004 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 484A1AB31F9C142200100004 /* InfoPlist.strings */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		738C5CC36D9740C88C6C7319 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A4A3C29DCAA46B9A6AD223F /* MaterialCommunityIcons.ttf */; };
 		7A110BE71F714CC69C1A07D7 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4A7390AFF6B4346A94468CC /* Foundation.ttf */; };
@@ -224,6 +230,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
+		};
+		484A1A791F9C130000100004 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 484A1A6E1F9C130000100004 /* RCTCameraRoll.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 58B5115D1A9E6B3D00147676;
+			remoteInfo = RCTCameraRoll;
 		};
 		48E5D57C1F8FA53C00DFE46F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -448,6 +461,12 @@
 		2D02E4901E0B4A5D006451C7 /* PxView-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PxView-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D508C5C72414A3A93A2A0DA /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		41699071345A4AA895E8F2A6 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
+		484A1A6E1F9C130000100004 /* RCTCameraRoll.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTCameraRoll.xcodeproj; path = "../node_modules/react-native/Libraries/CameraRoll/RCTCameraRoll.xcodeproj"; sourceTree = "<group>"; };
+		484A1AA71F9C13F200100004 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = InfoPlist.strings; sourceTree = "<group>"; };
+		484A1AAB1F9C142100100004 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		484A1AAE1F9C142100100004 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = InfoPlist.strings; sourceTree = "<group>"; };
+		484A1AB11F9C142200100004 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		484A1AB41F9C142200100004 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		501E2B808F074243940D3C86 /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeLocalization.xcodeproj; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; };
 		51B1DC5457ED450C98DD91FF /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		57BE01D16E9F8288BAB7823A /* Pods-PxView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PxView.release.xcconfig"; path = "Pods/Target Support Files/Pods-PxView/Pods-PxView.release.xcconfig"; sourceTree = "<group>"; };
@@ -498,6 +517,7 @@
 			files = (
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
+				484A1AA41F9C132500100004 /* libRCTCameraRoll.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
@@ -634,6 +654,7 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				484A1AA51F9C13F200100004 /* Base.lproj */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
@@ -668,6 +689,58 @@
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
+		};
+		484A1A6F1F9C130000100004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				484A1A7A1F9C130000100004 /* libRCTCameraRoll.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		484A1AA51F9C13F200100004 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				484A1AB21F9C142200100004 /* en.lproj */,
+				484A1AAC1F9C142100100004 /* ja.lproj */,
+				484A1AAF1F9C142200100004 /* zh-Hans.lproj */,
+				484A1AA91F9C142100100004 /* zh-Hant.lproj */,
+				484A1AA61F9C13F200100004 /* InfoPlist.strings */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		484A1AA91F9C142100100004 /* zh-Hant.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				484A1AAA1F9C142100100004 /* InfoPlist.strings */,
+			);
+			path = "zh-Hant.lproj";
+			sourceTree = SOURCE_ROOT;
+		};
+		484A1AAC1F9C142100100004 /* ja.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				484A1AAD1F9C142100100004 /* InfoPlist.strings */,
+			);
+			path = ja.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		484A1AAF1F9C142200100004 /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				484A1AB01F9C142200100004 /* InfoPlist.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = SOURCE_ROOT;
+		};
+		484A1AB21F9C142200100004 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				484A1AB31F9C142200100004 /* InfoPlist.strings */,
+			);
+			path = en.lproj;
+			sourceTree = SOURCE_ROOT;
 		};
 		48E5D55F1F8FA53900DFE46F /* Recovered References */ = {
 			isa = PBXGroup;
@@ -818,6 +891,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				484A1A6E1F9C130000100004 /* RCTCameraRoll.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -1031,6 +1105,9 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
+				ja,
+				"zh-Hans",
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -1051,6 +1128,10 @@
 				{
 					ProductGroup = ADBDB9201DFEBF0600ED6528 /* Products */;
 					ProjectRef = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
+				},
+				{
+					ProductGroup = 484A1A6F1F9C130000100004 /* Products */;
+					ProjectRef = 484A1A6E1F9C130000100004 /* RCTCameraRoll.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -1295,6 +1376,13 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		484A1A7A1F9C130000100004 /* libRCTCameraRoll.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTCameraRoll.a;
+			remoteRef = 484A1A791F9C130000100004 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		48E5D57D1F8FA53C00DFE46F /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1499,8 +1587,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				484A1AB71F9C142200100004 /* InfoPlist.strings in Resources */,
+				484A1AB51F9C142200100004 /* InfoPlist.strings in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				E023CAB5BBF04ED2BCDD685B /* Entypo.ttf in Resources */,
+				484A1AB81F9C142200100004 /* InfoPlist.strings in Resources */,
+				484A1AB61F9C142200100004 /* InfoPlist.strings in Resources */,
+				484A1AA81F9C13F200100004 /* InfoPlist.strings in Resources */,
 				25477C3C5DD84C91BA8BAE9C /* EvilIcons.ttf in Resources */,
 				E5FD712CED06428DBB96A31B /* FontAwesome.ttf in Resources */,
 				7A110BE71F714CC69C1A07D7 /* Foundation.ttf in Resources */,
@@ -1667,6 +1760,46 @@
 			);
 			name = LaunchScreen.xib;
 			path = PxView;
+			sourceTree = "<group>";
+		};
+		484A1AA61F9C13F200100004 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484A1AA71F9C13F200100004 /* Base */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		484A1AAA1F9C142100100004 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484A1AAB1F9C142100100004 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		484A1AAD1F9C142100100004 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484A1AAE1F9C142100100004 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		484A1AB01F9C142200100004 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484A1AB11F9C142200100004 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		484A1AB31F9C142200100004 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				484A1AB41F9C142200100004 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
