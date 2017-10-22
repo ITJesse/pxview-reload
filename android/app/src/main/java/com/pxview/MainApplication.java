@@ -4,6 +4,10 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.smixx.fabric.FabricPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.psykar.cookiemanager.CookieManagerPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import cl.json.RNSharePackage;
@@ -37,6 +41,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
+            new FabricPackage(),
+            new RNDeviceInfo(),
+            new CookieManagerPackage(),
             new VectorIconsPackage(),
             new SplashScreenReactPackage(),
             new RNSpinkitPackage(),
