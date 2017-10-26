@@ -6,11 +6,11 @@ import { globalStyleVariables } from '../styles';
 
 const styles = StyleSheet.create({
   avatarContainer: {
-    height: globalStyleVariables.DRAWER_WIDTH * 9 / 16,
+    height: 172,
     backgroundColor: globalStyleVariables.PRIMARY_COLOR,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 16,
+    paddingLeft: 0,
   },
   usernameContainer: {
     marginTop: 10,
