@@ -1024,6 +1024,7 @@
 				4F4998E6155CD712725FCAEF /* [CP] Embed Pods Frameworks */,
 				DDA294C4601BBFA19EC38BBA /* [CP] Copy Pods Resources */,
 				DEFCAAE01E2FB8E700E61FEA /* ShellScript */,
+				489C31481FA23E2000908050 /* Add Build Number */,
 			);
 			buildRules = (
 			);
@@ -1677,6 +1678,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		489C31481FA23E2000908050 /* Add Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Add Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
 		};
 		4F4998E6155CD712725FCAEF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
