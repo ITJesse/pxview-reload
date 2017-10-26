@@ -60,7 +60,6 @@ class WalkthroughIllustList extends Component {
           this.tmpFps += 1;
           if (offset >= 1000) {
             this.fps = this.tmpFps / offset * 1000;
-            console.log(this.fps);
             this.last = Date.now();
             this.tmpFps = 0;
           }

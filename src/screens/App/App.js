@@ -29,7 +29,7 @@ class App extends Component {
     const { rehydrated } = this.props;
     if (rehydrated) {
       // call when reopen app after exit by back button on android
-      SplashScreen.hide();
+      setTimeout(SplashScreen.hide, 1000);
     }
   }
 

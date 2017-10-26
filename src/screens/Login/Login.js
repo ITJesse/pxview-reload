@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-native-elements';
 import OverlaySpinner from 'react-native-loading-spinner-overlay';
+import OnePassword from 'react-native-onepassword';
 import { connectLocalization } from '../../components/Localization';
 import PXFormInput from '../../components/PXFormInput';
 import WalkthroughIllustList from '../../containers/WalkthroughIllustList';
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     paddingHorizontal: 5,
-    paddingTop: 30,
+    paddingTop: 0,
     backgroundColor: 'rgba(0,0,0,0.4)',
     position: 'absolute',
     top: 0,

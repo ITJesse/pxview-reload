@@ -5,6 +5,7 @@ import {
   FormInput,
   FormValidationMessage,
 } from 'react-native-elements';
+import OverlayKeychainButton from '../components/OverlayKeychainButton';
 
 const PXFormInput = props => {
   const {
@@ -22,6 +23,7 @@ const PXFormInput = props => {
         {label}
       </FormLabel>
       <FormInput inputStyle={inputStyle} {...input} {...restProps} />
+      {false && restProps.secureTextEntry && <OverlayKeychainButton />}
       {touched &&
         error &&
         <FormValidationMessage>
