@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
   },
+  listItem: {
+    height: 49,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const settingsList = [
@@ -119,6 +124,7 @@ class Settings extends Component {
             title={i18n[item.title]}
             onPress={() => this.handleOnPressListItem(item)}
             hideChevron={item.hideChevron}
+            containerStyle={styles.listItem}
           />,
         )}
       </List>

@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   actionContainer: {
-    padding: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

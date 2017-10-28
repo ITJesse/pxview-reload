@@ -21,6 +21,9 @@ const styles = StyleSheet.create({
   username: {
     color: '#fff',
   },
+  avatar: {
+    marginTop: 16,
+  },
 });
 
 const UserCover = ({ user, avatarSize, onPressAvatar }) =>

@@ -4,6 +4,7 @@ import DeviceInfo from 'react-native-device-info';
 import { List, ListItem } from 'react-native-elements';
 import { connectLocalization } from '../../components/Localization';
 import { globalStyles } from '../../styles';
+import { SCREENS } from '../../common/constants';
 
 const appStoreUrl = '';
 const googlePlayUrl =
@@ -47,10 +48,17 @@ const list = [
     icon: 'github',
     type: 'font-awesome',
   },
+  {
+    id: 'openSourceLicenses',
+    title: 'openSourceLicenses',
+    icon: 'legal',
+    type: 'font-awesome',
+  },
 ];
 
 class About extends Component {
   handleOnPressListItem = item => {
+    const { navigation: { navigate } } = this.props;
     switch (item.id) {
       case 'contactUs': {
         this.openUrl('mailto:gmerudotcom@gmail.com?subject=About PxView');
@@ -65,6 +73,10 @@ class About extends Component {
       }
       case 'sourceCode': {
         this.openUrl(sourceUrl);
+        break;
+      }
+      case 'openSourceLicenses': {
+        navigate(SCREENS.OpenSourceLicenses);
         break;
       }
       default:

@@ -65,15 +65,6 @@ const menuList2 = [
   },
 ];
 
-const menuList3 = [
-  {
-    id: 'openSourceLicenses',
-    title: 'openSourceLicenses',
-    icon: 'legal',
-    type: 'font-awesome',
-  },
-];
-
 class MyPage extends Component {
   handleOnPressListItem = item => {
     const { user, navigation: { navigate } } = this.props;
@@ -100,10 +91,6 @@ class MyPage extends Component {
       }
       case 'logout': {
         this.handleOnPressLogout();
-        break;
-      }
-      case 'openSourceLicenses': {
-        navigate(SCREENS.OpenSourceLicenses);
         break;
       }
       case 'about': {
@@ -193,7 +180,7 @@ class MyPage extends Component {
       list = list.filter(l => l.id !== 'logout');
     }
     return (
-      <List>
+      <List containerStyle={styles.list}>
         {list.map(item =>
           <ListItem
             key={item.id}
@@ -218,7 +205,6 @@ class MyPage extends Component {
             {this.renderCover()}
             {this.renderList(menuList)}
             {this.renderList(menuList2)}
-            {this.renderList(menuList3)}
           </ScrollView>
         }
       </View>

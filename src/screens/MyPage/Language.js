@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
   },
+  listItem: {
+    height: 49,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const languageList = [
@@ -61,6 +66,7 @@ class Settings extends Component {
                 : item.id !== lang
             }
             onPress={() => this.handleOnPressListItem(item.id)}
+            containerStyle={styles.listItem}
           />,
         )}
       </List>
