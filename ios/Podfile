@@ -8,5 +8,6 @@ target 'PxView' do
   # Pods for PxView
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'HappyDNS'
 
 end

@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface PXURLProtocol : NSURLProtocol
-  @property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, copy) NSString *hostname;
+@property(nonatomic) NSInteger retryCount;
 @end
