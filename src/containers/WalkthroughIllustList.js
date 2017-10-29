@@ -49,10 +49,10 @@ class WalkthroughIllustList extends Component {
     } else if (listRef) {
       try {
         // listRef may not have reference of FlatList in certain situation
-        if (this.fps > 30) {
+        if (this.fps > 0) {
           listRef.scrollToOffset({
             animated: false,
-            offset: (this.scrollOffset += 30 / this.fps),
+            offset: (this.scrollOffset += 20 / this.fps),
           });
         }
         this.autoScrollTimer = requestAnimationFrame(() => {
@@ -60,7 +60,7 @@ class WalkthroughIllustList extends Component {
           this.tmpFps += 1;
           if (offset >= 1000) {
             this.fps = this.tmpFps / offset * 1000;
-            this.last = Date.now();
+            this.last = this.last + offset;
             this.tmpFps = 0;
           }
           this.autoScroll(listRef, maxScrollableHeight);
