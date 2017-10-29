@@ -44,6 +44,7 @@ class IllustItem extends Component {
       imageStyle,
       isHighlight,
       isMute,
+      auth,
     } = this.props;
     const imageWidthOffset = isHighlight ? HIGHLIGHT_BORDER_WIDTH * 2 + 1 : 1;
     return (
@@ -80,21 +81,22 @@ class IllustItem extends Component {
                   imageStyle,
                 ]}
               />
-              <OverlayBookmarkButton item={item} />
+              {auth.user && <OverlayBookmarkButton item={item} />}
             </View>}
         {item.meta_pages && item.meta_pages.length
           ? <OverlayImagePages total={item.meta_pages.length} />
           : null}
-        {item.type === 'ugoira' && <OverlayUgoiraIndicator />}
+        {auth.user && item.type === 'ugoira' && <OverlayUgoiraIndicator />}
       </PXTouchable>
     );
   }
 }
 
 export default connect((state, props) => {
-  const { highlightTags, muteTags, muteUsers } = state;
+  const { highlightTags, muteTags, muteUsers, auth } = state;
   const { tags, user } = props.item;
   return {
+    auth,
     isHighlight: tags.some(t => highlightTags.items.includes(t.name)),
     isMute:
       tags.some(t => muteTags.items.includes(t.name)) ||
