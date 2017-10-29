@@ -18,9 +18,11 @@ const PXThumbnail = props => {
         style={[
           {
             resizeMode: 'cover',
-            width: size,
+            width: size + 4,
             height: size,
             borderRadius: size / 2,
+            marginLeft: -2,
+            marginTop: -2,
           },
           style,
         ]}
