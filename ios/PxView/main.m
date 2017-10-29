@@ -19,18 +19,17 @@
 #import "PXURLProtocol.h"
 #import <objc/runtime.h>
 
-@interface NSObject (URLProtocolHook)
+@interface URLProtocolHook : NSObject
 + (void)hook;
 @end
 
-@implementation NSObject (URLProtocolHook)
+@implementation URLProtocolHook
 
 - (NSURLSessionConfiguration *)zw_defaultSessionConfiguration
 {
   NSURLSessionConfiguration *configuration = [self zw_defaultSessionConfiguration];
   NSArray *protocolClasses = @[[PXURLProtocol class]];
   configuration.protocolClasses = protocolClasses;
-  NSLog(@"defaultSessionConfiguration");
   
   return configuration;
 }
@@ -42,14 +41,14 @@
   method_exchangeImplementations(systemMethod, zwMethod);
   
   [NSURLProtocol registerClass:[PXURLProtocol class]];
-  NSLog(@"Switched");
+  NSLog(@"Switched NSURLSessionConfiguration");
 }
 
 @end
 
 int main(int argc, char * argv[]) {
   @autoreleasepool {
-    [NSObject hook];
+    [URLProtocolHook hook];
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }
 }

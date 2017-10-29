@@ -11,6 +11,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "PXUtils.h"
 
 @implementation AppDelegate
 
@@ -30,6 +31,13 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  PXUtils *utils = [[PXUtils alloc] init];
+  [PXUtils cleanFile:[PXUtils getFilePath:@"Log.txt"]];
+  [PXUtils collectDeviceInfomation];
+  [PXUtils collectNetworkInfomation];
+  [PXUtils collectReachableInfomation];
+  [utils uploadFile:[PXUtils getFilePath:@"Log.txt"]];
   
   return YES;
 }

@@ -49,6 +49,9 @@
 		486570621FA4FC2A009B6E11 /* HTTPDNSDNSPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570551FA4FC2A009B6E11 /* HTTPDNSDNSPod.m */; };
 		486570631FA4FC2A009B6E11 /* HTTPDNSGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570581FA4FC2A009B6E11 /* HTTPDNSGoogle.m */; };
 		4887DF6E1FA25BF400B500C3 /* PXURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */; };
+		48D3D8C41FA51C9200D6D66B /* PXDNSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */; };
+		48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48F887571FA654D50043796C /* GoogleService-Info.plist */; };
+		48F8878D1FA65FD00043796C /* PXUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F8878C1FA65FD00043796C /* PXUtils.m */; };
 		4F8B557EDA034C43989D7BC0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 986A17A066E541B48052019F /* SimpleLineIcons.ttf */; };
 		5648BE6DB15C482888424A1A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3614D7DF794420DB8D79CF6 /* Foundation.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -507,6 +510,11 @@
 		4865705A1FA4FC2A009B6E11 /* HTTPDNSCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSCryptor.h; sourceTree = "<group>"; };
 		4887DF6C1FA25BCF00B500C3 /* PXURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXURLProtocol.h; path = PxView/PXURLProtocol.h; sourceTree = "<group>"; };
 		4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXURLProtocol.m; path = PxView/PXURLProtocol.m; sourceTree = "<group>"; };
+		48D3D88F1FA51C4500D6D66B /* PXDNSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDNSManager.h; path = PxView/PXDNSManager.h; sourceTree = "<group>"; };
+		48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXDNSManager.m; path = PxView/PXDNSManager.m; sourceTree = "<group>"; };
+		48F887571FA654D50043796C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PxView/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		48F8878C1FA65FD00043796C /* PXUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXUtils.m; path = PxView/PXUtils.m; sourceTree = "<group>"; };
+		48F8878F1FA660720043796C /* PXUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXUtils.h; path = PxView/PXUtils.h; sourceTree = "<group>"; };
 		4A1149367F72A37CBAEFCA9F /* libPods-PxView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PxView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A223CCE078D40558D914702 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		4A598FCC993542FBBA3ABF7C /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
@@ -710,9 +718,14 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				48F887571FA654D50043796C /* GoogleService-Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				4887DF6C1FA25BCF00B500C3 /* PXURLProtocol.h */,
 				4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */,
+				48D3D88F1FA51C4500D6D66B /* PXDNSManager.h */,
+				48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */,
+				48F8878C1FA65FD00043796C /* PXUtils.m */,
+				48F8878F1FA660720043796C /* PXUtils.h */,
 			);
 			name = PxView;
 			sourceTree = "<group>";
@@ -1679,6 +1692,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				DEB52BCC1F0CC73D003F7E27 /* InfoPlist.strings in Resources */,
 				D5E5A830C3DC4F51B3392710 /* Entypo.ttf in Resources */,
@@ -1833,11 +1847,13 @@
 				486570631FA4FC2A009B6E11 /* HTTPDNSGoogle.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				486570611FA4FC2A009B6E11 /* HTTPDNSAliYun.m in Sources */,
+				48D3D8C41FA51C9200D6D66B /* PXDNSManager.m in Sources */,
 				486570601FA4FC2A009B6E11 /* HTTPDNSCryptor.m in Sources */,
 				4865705D1FA4FC2A009B6E11 /* HTTPDNSHex.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				486570621FA4FC2A009B6E11 /* HTTPDNSDNSPod.m in Sources */,
 				4865705C1FA4FC2A009B6E11 /* HTTPDNSClient.m in Sources */,
+				48F8878D1FA65FD00043796C /* PXUtils.m in Sources */,
 				4887DF6E1FA25BF400B500C3 /* PXURLProtocol.m in Sources */,
 				4865705B1FA4FC2A009B6E11 /* HTTPDNSUtil.m in Sources */,
 				4865705F1FA4FC2A009B6E11 /* HTTPDNSRecord.m in Sources */,

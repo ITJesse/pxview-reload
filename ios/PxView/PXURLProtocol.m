@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PXURLProtocol.h"
-#import "HappyDNS.h"
-#import "HTTPDNS.h"
+#import "PXDNSManager.h"
 
 
 @implementation PXURLProtocol{
@@ -25,7 +24,7 @@
   } else if ([[[request URL] host] containsString:@"dns.google.com"]) {
     return NO;
   }
-//  NSLog(@"URL: %@", [request URL]);
+//  NSLog(@"URL: %@", [[request URL] absoluteString]);
   return YES;
 }
 
@@ -63,43 +62,9 @@
     return request;
   }
   
-  QNDnsManager *dns;
-//  NSLog(@"NeedHttpDns %@", [QNDnsManager needHttpDns] ? @"True" : @"False");
-  if ([QNDnsManager needHttpDns]){
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObject:[[QNResolver alloc] initWithAddress:@"114.114.114.114" timeout:3]];
-    [array addObject:[QNResolver systemResolver]];
-    dns = [[QNDnsManager alloc] init:array networkInfo:[QNNetworkInfo normal]];
-  } else {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    [array addObject:[QNResolver systemResolver]];
-    [array addObject:[[QNResolver alloc] initWithAddress:@"8.8.8.8" timeout:3]];
-    dns = [[QNDnsManager alloc] init:array networkInfo:[QNNetworkInfo normal]];
-  }
- 
-  __block NSString *ip = nil;
+  PXDNSManager *dns = [PXDNSManager sharedManager];
   
-  if ([QNDnsManager needHttpDns]) {
-    [[HTTPDNSClient sharedInstance] useGoogle];
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
-    
-    
-    [[HTTPDNSClient sharedInstance] getRecord:originHostString callback:^(HTTPDNSRecord *record) {
-      NSLog(@"IP : %@", record.ip);
-      ip = record.ip;
-      dispatch_semaphore_signal(sem);
-    }];
-    
-    dispatch_time_t  t = dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC);
-    dispatch_semaphore_wait(sem, t);
-  }
-  
-  if (!ip) {
-    NSArray *queryArray = [dns query:originHostString];
-    if (queryArray && queryArray.count > 0) {
-      ip = queryArray[0];
-    }
-  }
+  NSString *ip = [dns query:originHostString];
   
   if (ip && ip.length) {
     NSString *urlString = [originUrlString stringByReplacingCharactersInRange:hostRange withString:ip];
