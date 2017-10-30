@@ -1,4 +1,4 @@
-# PxView
+# PxView Reload
 ![logo](./src/images/logo.png)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
@@ -83,6 +83,7 @@ $ npm test
 ```
 
 ## Related Projects
+[pxview](https://github.com/alphasp/pxview) - An unofficial Pixiv app client
 [pixiv-api-client](https://github.com/alphasp/pixiv-api-client) - Api client for Pixiv
 
 ## Contribute
