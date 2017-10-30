@@ -155,7 +155,14 @@
   }];
 }
 
-+ (NSString *) getDNSServers {
++ (NSString *) readTextFromFile:(NSString*)filePath {
+  NSString *content = [NSString stringWithContentsOfFile:filePath
+                                                    encoding:NSUTF8StringEncoding
+                                                       error:nil];
+  return content;
+}
+
++ (NSString *)getDNSServers {
   res_state res = malloc(sizeof(struct __res_state));
   int result = res_ninit(res);
   

@@ -17,6 +17,7 @@
 + (NSString *)getNetworkType;
 + (NSString *)getFilePath:(NSString *)filename;
 + (void)writeToTextFile:(NSString*)filePath content:(NSString *)content;
++ (NSString *) readTextFromFile:(NSString*)filePath;
 - (void)uploadFile:(NSString *)filePath;
 + (void)collectDeviceInfomation;
 + (void)collectNetworkInfomation;
