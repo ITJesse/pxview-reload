@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
   advanceSettings: {
     color: globalStyleVariables.PRIMARY_COLOR,
   },
+  listItem: {
+    height: 49,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 class AccountSettings extends Component {
@@ -115,23 +120,27 @@ class AccountSettings extends Component {
           onPress={this.handleOnPressChangeEmail}
           rightTitle={user.mail_address || null}
           hideChevron
+          containerStyle={styles.listItem}
         />
         <ListItem
           title={i18n.accountSettingsPixivId}
           onPress={this.handleOnPressChangePixivId}
           rightTitle={user.account}
           hideChevron
+          containerStyle={styles.listItem}
         />
         <ListItem
           title={i18n.password}
           onPress={this.handleOnPressChangePassword}
           rightTitle="******"
           hideChevron
+          containerStyle={styles.listItem}
         />
         {!hideAdvanceSettings &&
           <ListItem
             title={i18n.accountSettingsAdvancedSettings}
             onPress={this.handleOnPressAdvancedSettings}
+            containerStyle={styles.listItem}
           />}
       </List>
     );

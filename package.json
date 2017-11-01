@@ -1,5 +1,5 @@
 {
-  "name": "PxView",
+  "name": "PxView-Reload",
   "version": "1.11.0",
   "description": "Unofficial Pixiv app client for Android and iOS, built in React Native",
   "private": true,

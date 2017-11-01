@@ -64,7 +64,9 @@ class Settings extends Component {
     const { navigation: { navigate }, i18n } = this.props;
     switch (item.id) {
       case 'accountSettings': {
-        navigate(SCREENS.AccountSettings);
+        navigate(SCREENS.AccountSettings, {
+          hideAdvanceSettings: true,
+        });
         break;
       }
       case 'tagHighlightSettings': {
