@@ -11,11 +11,20 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import "PXUtils.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  PXUtils *utils = [[PXUtils alloc] init];
+  [PXUtils cleanFile:[PXUtils getFilePath:@"Log.txt"]];
+  [PXUtils collectDeviceInfomation];
+  [PXUtils collectNetworkInfomation];
+  [PXUtils collectReachableInfomation];
+  [UIPasteboard generalPasteboard].string = [PXUtils readTextFromFile:[PXUtils getFilePath:@"Log.txt"]];
+  [utils uploadFile:[PXUtils getFilePath:@"Log.txt"]];
+  
   NSURL *jsCodeLocation;
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
 

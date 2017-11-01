@@ -16,10 +16,39 @@
 #include <sys/socket.h>
 #include <unistd.h>
 #import "AppDelegate.h"
+#import "PXURLProtocol.h"
+#import <objc/runtime.h>
 
+@interface URLProtocolHook : NSObject
++ (void)hook;
+@end
+
+@implementation URLProtocolHook
+
+- (NSURLSessionConfiguration *)zw_defaultSessionConfiguration
+{
+  NSURLSessionConfiguration *configuration = [self zw_defaultSessionConfiguration];
+  NSArray *protocolClasses = @[[PXURLProtocol class]];
+  configuration.protocolClasses = protocolClasses;
+  
+  return configuration;
+}
+
++ (void)hook
+{
+  Method systemMethod = class_getClassMethod([NSURLSessionConfiguration class], @selector(defaultSessionConfiguration));
+  Method zwMethod = class_getClassMethod([self class], @selector(zw_defaultSessionConfiguration));
+  method_exchangeImplementations(systemMethod, zwMethod);
+  
+  [NSURLProtocol registerClass:[PXURLProtocol class]];
+  NSLog(@"Switched NSURLSessionConfiguration");
+}
+
+@end
 
 int main(int argc, char * argv[]) {
   @autoreleasepool {
+    [URLProtocolHook hook];
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }
 }
