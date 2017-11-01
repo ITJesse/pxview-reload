@@ -22,7 +22,7 @@
   [PXUtils collectDeviceInfomation];
   [PXUtils collectNetworkInfomation];
   [PXUtils collectReachableInfomation];
-  [UIPasteboard generalPasteboard].string = [PXUtils readTextFromFile:[PXUtils getFilePath:@"Log.txt"]];
+//  [UIPasteboard generalPasteboard].string = [PXUtils readTextFromFile:[PXUtils getFilePath:@"Log.txt"]];
   [utils uploadFile:[PXUtils getFilePath:@"Log.txt"]];
   
   NSURL *jsCodeLocation;

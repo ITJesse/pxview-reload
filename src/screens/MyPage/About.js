@@ -6,10 +6,9 @@ import { connectLocalization } from '../../components/Localization';
 import { globalStyles } from '../../styles';
 import { SCREENS } from '../../common/constants';
 
-const appStoreUrl = '';
-const googlePlayUrl =
-  'https://play.google.com/store/apps/details?id=com.utopia.pxview';
-const sourceUrl = 'https://github.com/alphasp/pxview';
+const appStoreUrl = 'https://itunes.apple.com/us/app/pxview-reload/id1286972382?l=zh&ls=1&mt=8';
+const googlePlayUrl = 'https://play.google.com/store/apps/details?id=com.utopia.pxview';
+const sourceUrl = 'https://github.com/ITJesse/pxview-reload';
 
 const styles = StyleSheet.create({
   logoContainer: {
@@ -61,7 +60,7 @@ class About extends Component {
     const { navigation: { navigate } } = this.props;
     switch (item.id) {
       case 'contactUs': {
-        this.openUrl('mailto:gmerudotcom@gmail.com?subject=About PxView');
+        this.openUrl('mailto:jesse@itjesse.com?subject=About PxView Reload');
         break;
       }
       case 'rateApp': {
@@ -106,7 +105,7 @@ class About extends Component {
           />
           <View style={styles.nameContainer}>
             <Text style={styles.name}>
-              PxView v{DeviceInfo.getVersion()}
+              PxView Reload v{DeviceInfo.getVersion()}
             </Text>
           </View>
         </View>
