@@ -11,7 +11,8 @@ import MuteUsersSettings from '../../screens/MyPage/MuteUsersSettings';
 import Language from '../../screens/MyPage/Language';
 import Feedback from '../../screens/MyPage/Feedback';
 import About from '../../screens/MyPage/About';
-import OpenSourceLicenses from '../../screens/MyPage/OpenSourceLicenses';
+import OpenSourceLicenseList from '../../screens/MyPage/OpenSourceLicenses/OpenSourceLicenseList';
+import OpenSourceLicense from '../../screens/MyPage/OpenSourceLicenses/OpenSourceLicense';
 import { globalStyles } from '../../styles';
 import { SCREENS } from '../../common/constants';
 
@@ -97,10 +98,16 @@ const config = {
       title: i18n.about,
     }),
   },
-  [SCREENS.OpenSourceLicenses]: {
-    screen: OpenSourceLicenses,
+  [SCREENS.OpenSourceLicenseList]: {
+    screen: OpenSourceLicenseList,
     navigationOptions: ({ screenProps: { i18n } }) => ({
       title: i18n.openSourceLicenses,
+    }),
+  },
+  [SCREENS.OpenSourceLicense]: {
+    screen: OpenSourceLicense,
+    navigationOptions: (navigation) => ({
+      title: navigation.navigation.state.params.title,
     }),
   },
 };

@@ -33,12 +33,14 @@ const list = [
     title: 'contactUs',
     icon: 'envelope',
     type: 'font-awesome',
+    hideChevron: true,
   },
   {
     id: 'rateApp',
     title: 'rateApp',
     icon: 'star',
     type: 'font-awesome',
+    hideChevron: true,
   },
   {
     id: 'sourceCode',
@@ -46,12 +48,14 @@ const list = [
     subtitle: sourceUrl,
     icon: 'github',
     type: 'font-awesome',
+    hideChevron: true,
   },
   {
     id: 'openSourceLicenses',
     title: 'openSourceLicenses',
     icon: 'legal',
     type: 'font-awesome',
+    hideChevron: false,
   },
 ];
 
@@ -75,7 +79,7 @@ class About extends Component {
         break;
       }
       case 'openSourceLicenses': {
-        navigate(SCREENS.OpenSourceLicenses);
+        navigate(SCREENS.OpenSourceLicenseList);
         break;
       }
       default:
@@ -124,7 +128,7 @@ class About extends Component {
               }}
               onPress={() => this.handleOnPressListItem(item)}
               subtitle={item.subtitle}
-              hideChevron
+              hideChevron={item.hideChevron}
             />,
           )}
         </List>

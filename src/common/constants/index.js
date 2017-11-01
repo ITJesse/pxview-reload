@@ -102,5 +102,6 @@ export const SCREENS = {
   Language: 'Language',
   Feedback: 'Feedback',
   About: 'About',
-  OpenSourceLicenses: 'OpenSourceLicenses',
+  OpenSourceLicenseList: 'OpenSourceLicenseList',
+  OpenSourceLicense: 'OpenSourceLicense',
 };
