@@ -122,7 +122,7 @@ class BookmarkButton extends Component {
   render() {
     const { size } = this.props;
     const { isBookmark, scaleAnim } = this.state;
-    const color = isBookmark ? 'rgb(255,102,102)' : 'rgb(210, 212, 216)';
+    const color = isBookmark ? 'rgb(255,102,102)' : 'rgb(160, 160, 160)';
     const scale = scaleAnim.interpolate({
       inputRange: [0, 0.5, 1],
       outputRange: [1, 0.8, 1],
@@ -133,7 +133,7 @@ class BookmarkButton extends Component {
     // })
     return (
       <AnimatableIcon
-        name="favorite"
+        name={isBookmark ? 'favorite' : 'favorite-border'}
         style={{
           color,
           transform: [
