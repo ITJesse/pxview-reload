@@ -15,25 +15,19 @@
 }
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request {
+  
   if ([NSURLProtocol propertyForKey:@"PXHooked" inRequest:request]) {
     return NO;
-  } else if ([[[request URL] host] containsString:@"localhost"]) {
-    return NO;
-  } else if ([[[request URL] host] containsString:@"dns.xu1s.com"]) {
-    return NO;
-  } else if ([[[request URL] host] containsString:@"dns.google.com"]) {
-    return NO;
-  } else if ([[[request URL] host] containsString:@"cs.gssprt.jp"]) {
-    return NO;
-  } else if ([[[request URL] host] containsString:@"touch.pixiv.net"]) {
-    return NO;
-  } else if ([[[request URL] host] containsString:@"accounts.pixiv.net"]) {
-    return NO;
-  } else if ([[[request URL] host] containsString:@"source.pixiv.net"]) {
-    return NO;
   }
-//  NSLog(@"URL: %@", [[request URL] absoluteString]);
-  return YES;
+  
+  NSLog(@"URL: %@", [[request URL] absoluteString]);
+  
+  if ([[[request URL] host] containsString:@"app-api.pixiv.net"]) {
+    return YES;
+  } else if ([[[request URL] host] containsString:@"pximg.net"]) {
+    return YES;
+  }
+  return NO;
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request {
@@ -79,7 +73,6 @@
     
     NSURL *url = [NSURL URLWithString:urlString];
     request.URL = url;
-    NSLog(@"URL: %@", originHostString);
 //    request.URL = [NSURL URLWithString:originUrlString];
     
     [request setValue:originHostString forHTTPHeaderField:@"Host"];
