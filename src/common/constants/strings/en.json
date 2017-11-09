@@ -157,12 +157,18 @@
   "tagMuteRemove": "Show works with this tag",
   "tagMuteSettings": "Mute Tags Settings",
   "tagsMaxLimit": "Maximum number of tags is {0}",
+  "touchIDHasLocked": "Your Touch ID has been locked",
+  "touchIDNotAvailable": "Touch ID is not available now",
+  "touchIDNotEnrolled": "Touch ID has no enrolled fingers",
+  "touchIDUnknownError": "Touch ID is not available now",
+  "touchIDLogin": "Use Touch ID to Login",
   "user": "User",
   "userIllusts": "Illust Works",
   "userMangas": "Manga Works",
   "userMuteAdd": "Mute works from this user",
   "userMuteRemove": "Unmute works from this user",
   "userMuteSettings": "Mute Users Settings",
+  "useTouchID": "Touch ID",
   "viewMore": "View More",
   "worksCount": "Works"
 }

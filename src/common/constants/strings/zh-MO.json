@@ -157,12 +157,18 @@
   "tagMuteRemove": "取消屏蔽此標籤",
   "tagMuteSettings": "屏蔽標籤設置",
   "tagsMaxLimit": "最多只能輸入{0}個標籤",
+  "touchIDHasLocked": "Touch ID 被鎖定",
+  "touchIDNotAvailable": "Touch ID 暫時不可用",
+  "touchIDNotEnrolled": "Touch ID 沒有錄入指紋",
+  "touchIDUnknownError": "Touch ID 暫時不可用",
+  "touchIDLogin": "使用 Touch ID 登陸",
   "user": "用户",
   "userIllusts": "插畫",
   "userMangas": "漫畫",
   "userMuteAdd": "屏蔽此用戶",
   "userMuteRemove": "取消屏蔽此用戶",
   "userMuteSettings": "屏蔽用戶設置",
+  "useTouchID": "指紋鎖定",
   "viewMore": "查看更多",
   "worksCount": "件作品"
 }

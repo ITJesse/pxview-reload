@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import PrivacySnapshot from 'react-native-privacy-snapshot';
 import AppNavigator from '../../navigations/AppNavigator';
 import LoginNavigator from '../../navigations/LoginNavigator';
+import TouchIDNavigator from '../../navigations/TouchIDNavigator';
 import { connectLocalization } from '../../components/Localization';
 import Loader from '../../components/Loader';
 import ModalRoot from '../../containers/ModalRoot';
@@ -41,16 +43,29 @@ class App extends Component {
     }
   }
 
+  componentWillMount() {
+    PrivacySnapshot.enabled(true);
+  }
+
   componentWillUnmount() {
     MessageBarManager.unregisterMessageBar();
     this.showToastListener.remove();
+    PrivacySnapshot.enabled(false);
   }
 
   render() {
-    const { rehydrated, user, i18n } = this.props;
+    const {
+      rehydrated,
+      user,
+      i18n,
+      useTouchID,
+      shouldCheckTouchID,
+    } = this.props;
     let renderComponent;
     if (!rehydrated) {
       renderComponent = <Loader />;
+    } else if (useTouchID && shouldCheckTouchID) {
+      renderComponent = <TouchIDNavigator screenProps={{ i18n }} />;
     } else if (user) {
       renderComponent = (
         <AppNavigator
@@ -78,6 +93,8 @@ export default connectLocalization(
       error: state.error,
       rehydrated: state.auth.rehydrated,
       user: state.auth.user,
+      useTouchID: state.touchid.useTouchID,
+      shouldCheckTouchID: state.touchid.shouldCheckTouchID,
     }),
     routeActionCreators,
   )(App),

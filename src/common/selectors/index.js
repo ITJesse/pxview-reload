@@ -64,7 +64,7 @@ const selectUserDetail = state => state.userDetail;
 
 const selectIllustComments = state => state.illustComments;
 
-const selectBrowsingHistory = state => state.browsingHistory;
+export const selectBrowsingHistory = state => state.browsingHistory;
 
 const selectHighlightTags = state => state.highlightTags.items;
 const selectMuteTags = state => state.muteTags.items;

@@ -8,9 +8,13 @@ import {
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import RNFetchBlob from 'react-native-fetch-blob';
+import TouchID from 'react-native-touch-id';
+import { connect } from 'react-redux';
+
 import { connectLocalization } from '../../components/Localization';
 import { globalStyleVariables } from '../../styles';
 import { SCREENS } from '../../common/constants';
+import * as touchIDActions from '../../common/actions/touchid';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,6 +64,24 @@ const otherList = [
 ];
 
 class Settings extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTouchIDUsable: false,
+    };
+  }
+
+  componentWillMount() {
+    TouchID.isSupported()
+      .then(() => {
+        console.log('TouchID usable');
+        this.setState({ isTouchIDUsable: true });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
   handleOnPressListItem = item => {
     const { navigation: { navigate }, i18n } = this.props;
     switch (item.id) {
@@ -106,6 +128,44 @@ class Settings extends Component {
     }
   };
 
+  handleOnSwitchListItem = () => {
+    const { useTouchID, setUseTouchID, i18n } = this.props;
+    if (useTouchID) {
+      setUseTouchID(false);
+      return;
+    }
+    TouchID.authenticate(i18n.useTouchIDLoginDescription)
+      .then(() => {
+        // Success code
+        console.log('User authenticated with TouchID');
+        setUseTouchID(true);
+      })
+      .catch(error => {
+        // Failure code
+        switch (error.name) {
+          case 'LAErrorTouchIDNotAvailable':
+            DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
+            break;
+          case 'LAErrorTouchIDNotEnrolled':
+            DeviceEventEmitter.emit('showToast', i18n.touchIDNotEnrolled);
+            break;
+          case 'RCTTouchIDUnknownError':
+            DeviceEventEmitter.emit('showToast', i18n.touchIDUnknownError);
+            break;
+          case 'RCTTouchIDNotSupported':
+            DeviceEventEmitter.emit('showToast', i18n.touchIDHasLocked);
+            break;
+          case 'LAErrorUserCancel':
+          case 'LAErrorUserFallback':
+            break;
+          default:
+            DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
+            break;
+        }
+        setUseTouchID(false);
+      });
+  };
+
   handleOnPressConfirmClearCache = () => {
     const { i18n } = this.props;
     RNFetchBlob.fs
@@ -133,12 +193,37 @@ class Settings extends Component {
     );
   };
 
+  renderSwitch = () => {
+    const { i18n } = this.props;
+    return (
+      <List>
+        <ListItem
+          key="touchIdToggle"
+          title={i18n.useTouchID}
+          containerStyle={styles.listItem}
+          switched={this.props.useTouchID}
+          onSwitch={() => this.handleOnSwitchListItem()}
+          switchDisabled={!this.state.isTouchIDUsable}
+          switchButton
+          hideChevron
+        />
+        {/* <ListItem
+          key="touchIdAutoLockTime"
+          title={i18n.touchIdAutoLockTime}
+          onPress={() => this.handleOnPressListItem('touchIdAutoLockTime')}
+          containerStyle={styles.listItem}
+        /> */}
+      </List>
+    );
+  };
+
   render() {
     return (
       <View style={styles.container}>
         {
           <ScrollView style={styles.container}>
             {this.renderList(settingsList)}
+            {this.renderSwitch()}
             {this.renderList(otherList)}
           </ScrollView>
         }
@@ -147,4 +232,13 @@ class Settings extends Component {
   }
 }
 
-export default connectLocalization(Settings);
+export default connectLocalization(
+  connect(
+    state => ({
+      useTouchID: state.touchid.useTouchID,
+    }),
+    {
+      ...touchIDActions,
+    },
+  )(Settings),
+);

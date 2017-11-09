@@ -13,6 +13,7 @@ import {
   OPEN,
   CLOSE,
   STOP,
+  SET,
 } from './stateConstants';
 
 const appNamespace = defineAction('PIXIV');
@@ -296,6 +297,18 @@ export const HIGHLIGHT_TAGS = defineAction(
 export const MUTE_USERS = defineAction(
   'MUTE_USERS',
   [ADD, REMOVE, CLEAR],
+  appNamespace,
+);
+
+export const USE_TOUCHID = defineAction(
+  'USE_TOUCHID',
+  [SET, CLEAR, CLEAR_ALL],
+  appNamespace,
+);
+
+export const SHOULD_CHECK_TOUCHID = defineAction(
+  'SHOULD_CHECK_TOUCH_ID',
+  [SET, CLEAR],
   appNamespace,
 );
 

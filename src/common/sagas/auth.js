@@ -18,12 +18,12 @@ import {
   loginFailure,
   signUpSuccess,
   signUpFailure,
-  logout,
   refreshAccessToken,
   refreshAccessTokenSuccess,
   refreshAccessTokenFailure,
   rehydrateSuccess,
 } from '../actions/auth';
+import { clearTouchIDSettings } from '../actions/touchid';
 import { setLanguage } from '../actions/i18n';
 import { addError } from '../actions/error';
 import pixiv from '../helpers/apiClient';
@@ -37,7 +37,7 @@ import {
 
 const setProvisionalAccountOptions = (isProvisionalAccount, password) => ({
   isProvisionalAccount,
-  password: isProvisionalAccount ? password : null,
+  password,
 });
 
 export function* authorize(email, password, isProvisionalAccount) {
@@ -67,7 +67,7 @@ export function* handleRefreshAccessToken(refreshToken) {
     return response;
   } catch (err) {
     yield put(refreshAccessTokenFailure());
-    yield put(logout());
+    // yield put(logout());
   }
   return null;
 }
@@ -112,6 +112,7 @@ export function* refreshAccessTokenOnExpiry(authResponse) {
 
 export function* handleLogout() {
   yield apply(pixiv, pixiv.logout);
+  yield put(clearTouchIDSettings());
 }
 
 export function* watchLoginRequestTask() {

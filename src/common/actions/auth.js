@@ -25,6 +25,7 @@ export function loginSuccess(json, options) {
       accessToken: json.access_token,
       refreshToken: json.refresh_token,
       expiresIn: json.expires_in,
+      password: options.password,
     },
     timestamp: Date.now(),
   };

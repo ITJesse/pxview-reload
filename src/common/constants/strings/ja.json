@@ -156,12 +156,18 @@
   "tagMuteRemove": "ミュートタグから削除",
   "tagMuteSettings": "ミュートタグ設定",
   "tagsMaxLimit": "登録できるタグは{0}個までです",
+  "touchIDHasLocked": "Touch ID はロックされています",
+  "touchIDNotAvailable": "Touch ID は現在利用できません",
+  "touchIDNotEnrolled": "Touch ID に指が登録されていません",
+  "touchIDUnknownError": "Touch ID は現在利用できません",
+  "touchIDLogin": "Touch ID でログイン",
   "user": "ユーザー",
   "userIllusts": "イラスト作品",
   "userMangas": "マンガ作品",
   "userMuteAdd": "ミュートユーザーに追加",
   "userMuteRemove": "ミュートユーザーから削除",
   "userMuteSettings": "ミュートユーザー設定",
+  "useTouchID": "Touch ID",
   "viewMore": "もっと見る",
   "worksCount": "件の作品"
 }

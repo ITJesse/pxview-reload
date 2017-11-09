@@ -139,6 +139,7 @@ repositories {
 }
 
 dependencies {
+    compile project(':react-native-keychain')
     compile project(':react-native-vector-icons')
     compile project(':react-native-fabric')
     compile project(':react-native-device-info')

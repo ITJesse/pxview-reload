@@ -86,6 +86,7 @@ export default function configureStore() {
       'searchHistory',
       'browsingHistory',
       'highlightTags',
+      'touchid',
       'muteTags',
       'muteUsers',
       'entities',

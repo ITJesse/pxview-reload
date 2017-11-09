@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import PXTabView from '../../components/PXTabView';
 import RecommendedIllusts from './RecommendedIllusts';
 import RecommendedMangas from './RecommendedMangas';
@@ -58,4 +60,8 @@ class Home extends Component {
   }
 }
 
-export default connectLocalization(Home);
+export default connectLocalization(
+  connect(state => ({
+    settings: state.settings,
+  }))(Home),
+);

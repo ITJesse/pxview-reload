@@ -44,8 +44,8 @@ export default function auth(
     case AUTH_REFRESH_ACCESS_TOKEN.FAILURE:
       return {
         ...state,
-        loading: false,
-        loaded: true,
+        loading: true,
+        loaded: false,
       };
     case REHYDRATE:
       return {

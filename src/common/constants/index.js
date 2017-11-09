@@ -104,4 +104,5 @@ export const SCREENS = {
   About: 'About',
   OpenSourceLicenseList: 'OpenSourceLicenseList',
   OpenSourceLicense: 'OpenSourceLicense',
+  TouchIDLogin: 'TouchIDLogin',
 };

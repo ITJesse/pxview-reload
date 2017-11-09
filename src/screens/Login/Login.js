@@ -6,12 +6,13 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Linking,
+  DeviceEventEmitter,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-native-elements';
 import OverlaySpinner from 'react-native-loading-spinner-overlay';
-import OnePassword from 'react-native-onepassword';
+import TouchID from 'react-native-touch-id';
 import { connectLocalization } from '../../components/Localization';
 import PXFormInput from '../../components/PXFormInput';
 import WalkthroughIllustList from '../../containers/WalkthroughIllustList';
@@ -39,7 +40,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     margin: 15,
-    paddingBottom: 20,
+    paddingBottom: 15,
   },
   buttonContainer: {
     marginTop: 15,
@@ -86,6 +87,13 @@ class Login extends Component {
   //     }
   //   }
   // }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      fallbackLogin: false,
+    };
+  }
 
   submit = data => {
     const { login } = this.props;
@@ -186,36 +194,6 @@ const LoginForm = reduxForm({
   // destroyOnUnmount: false,
   validate,
 })(Login);
-
-// export default connectLocalization(
-//   connect(
-//     () => {
-//       const getRankingItems = makeGetRankingItems();
-//       return (state, props) => {
-//         const { ranking } = state;
-//         const rankingItems = getRankingItems(state, {
-//           ...props,
-//           rankingMode: RANKING_FOR_UI.DAILY,
-//         });
-//         const backgroundImage =
-//           rankingItems && rankingItems.length
-//             ? rankingItems[0].image_urls.medium
-//             : '';
-//         return {
-//           auth: state.auth,
-//           backgroundImage,
-//           loaded: ranking[RANKING_FOR_UI.DAILY].loaded,
-//           onLoginSuccess:
-//             props.onLoginSuccess ||
-//             (props.navigation.state &&
-//               props.navigation.state.params &&
-//               props.navigation.state.params.onLoginSuccess),
-//         };
-//       };
-//     },
-//     { ...authActionCreators, ...rankingActionCreators },
-//   )(LoginForm),
-// );
 
 export default connectLocalization(
   connect(

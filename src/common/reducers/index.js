@@ -37,6 +37,7 @@ import browsingHistory from './browsingHistory';
 import highlightTags from './highlightTags';
 import muteTags from './muteTags';
 import muteUsers from './muteUsers';
+import touchid from './touchid';
 import auth from './auth';
 import myAccountState from './myAccountState';
 import editAccount from './editAccount';
@@ -85,6 +86,7 @@ const rootReducer = combineReducers({
   highlightTags,
   muteTags,
   muteUsers,
+  touchid,
   auth,
   myAccountState,
   editAccount,

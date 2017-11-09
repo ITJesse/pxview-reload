@@ -41,6 +41,7 @@ import { watchFetchUgoiraMeta } from './ugoiraMeta';
 import { watchFetchMyAccountState } from './myAccountState';
 import { watchEditAccount } from './editAccount';
 import { watchSendVerificationEmail } from './verificationEmail';
+import { watchBackgroundForTouchID } from './touchid';
 
 export default function* rootSaga() {
   yield all([
@@ -86,5 +87,6 @@ export default function* rootSaga() {
     watchFetchMyAccountState(),
     watchEditAccount(),
     watchSendVerificationEmail(),
+    watchBackgroundForTouchID(),
   ]);
 }
