@@ -12,6 +12,7 @@ import { connectLocalization } from '../../components/Localization';
 import Loader from '../../components/Loader';
 import ModalRoot from '../../containers/ModalRoot';
 import * as routeActionCreators from '../../common/actions/route';
+import * as touchIDActions from '../../common/actions/touchid';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,10 +29,12 @@ class App extends Component {
         this.toast.show(text, DURATION.LENGTH_LONG);
       },
     );
-    const { rehydrated } = this.props;
+    const { rehydrated, setShouldCheckTouchID } = this.props;
     if (rehydrated) {
       // call when reopen app after exit by back button on android
       setTimeout(SplashScreen.hide, 1000);
+    } else {
+      setShouldCheckTouchID(true);
     }
   }
 
@@ -96,6 +99,9 @@ export default connectLocalization(
       useTouchID: state.touchid.useTouchID,
       shouldCheckTouchID: state.touchid.shouldCheckTouchID,
     }),
-    routeActionCreators,
+    {
+      ...routeActionCreators,
+      ...touchIDActions,
+    },
   )(App),
 );

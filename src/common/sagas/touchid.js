@@ -9,7 +9,7 @@ export function* watchBackgroundForTouchID() {
     yield take(BACKGROUND);
     yield put(setShouldCheckTouchID(true));
     const { foreground } = yield race({
-      delay: call(delay, 1000),
+      delay: call(delay, 30000),
       foreground: take(FOREGROUND),
     });
     if (foreground && foreground.type === FOREGROUND) {
