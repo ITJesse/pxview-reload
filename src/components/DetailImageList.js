@@ -8,6 +8,8 @@ import {
   Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Orientation from 'react-native-orientation';
+
 import DetailFooter from './DetailFooter';
 import PXCacheImageTouchable from './PXCacheImageTouchable';
 import UgoiraViewTouchable from './UgoiraViewTouchable';
@@ -22,41 +24,42 @@ import { makeGetTagsWithStatus } from '../common/selectors';
 import { SEARCH_TYPES, SCREENS } from '../common/constants';
 import { globalStyleVariables } from '../styles';
 
-const styles = StyleSheet.create({
-  container: {
-    width: globalStyleVariables.WINDOW_WIDTH,
-  },
-  imagePageNumberContainer: {
-    top: 10,
-    right: 10,
-    position: 'absolute',
-    justifyContent: 'center',
-    backgroundColor: 'grey',
-    borderRadius: 10,
-    paddingHorizontal: 8,
-    // height: 32,
-  },
-  imagePageNumber: {
-    color: '#fff',
-    padding: 2,
-  },
-  multiImageContainer: {
-    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'gray',
-  },
-  imageContainer: {
-    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-  },
-  image: {
-    resizeMode: 'contain',
-  },
-  mutedImageContainer: {
-    flex: 1,
-    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-    height: 200,
-  },
-});
+const styles = () =>
+  StyleSheet.create({
+    container: {
+      width: globalStyleVariables.WINDOW_WIDTH(),
+    },
+    imagePageNumberContainer: {
+      top: 10,
+      right: 10,
+      position: 'absolute',
+      justifyContent: 'center',
+      backgroundColor: 'grey',
+      borderRadius: 10,
+      paddingHorizontal: 8,
+      // height: 32,
+    },
+    imagePageNumber: {
+      color: '#fff',
+      padding: 2,
+    },
+    multiImageContainer: {
+      backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: 'gray',
+    },
+    imageContainer: {
+      backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+    },
+    image: {
+      resizeMode: 'contain',
+    },
+    mutedImageContainer: {
+      flex: 1,
+      backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+      height: 200,
+    },
+  });
 
 class DetailImageList extends Component {
   constructor(props) {
@@ -67,7 +70,9 @@ class DetailImageList extends Component {
       imagePageNumber: null,
       isOpenTagBottomSheet: false,
       selectedTag: null,
+      rotate: false,
     };
+    this.onRotate = this.onRotate.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -83,6 +88,7 @@ class DetailImageList extends Component {
       imagePageNumber: prevImagePageNumber,
       isOpenTagBottomSheet: prevIsOpenTagBottomSheet,
       selectedTag: prevSelectedTag,
+      rotate: prevRotate,
     } = this.state;
     const {
       isInitState,
@@ -90,6 +96,7 @@ class DetailImageList extends Component {
       imagePageNumber,
       isOpenTagBottomSheet,
       selectedTag,
+      rotate,
     } = nextState;
     if (item.user.is_followed !== prevItem.user.is_followed) {
       return true;
@@ -101,15 +108,26 @@ class DetailImageList extends Component {
       isOpenTagBottomSheet !== prevIsOpenTagBottomSheet ||
       selectedTag !== prevSelectedTag ||
       tags !== prevTags ||
-      isMuteUser !== prevIsMuteUser
+      isMuteUser !== prevIsMuteUser ||
+      rotate !== prevRotate
     ) {
       return true;
     }
     return false;
   }
 
+  onRotate() {
+    this.setState({ rotate: !this.state.rotate });
+  }
+
+  componentWillMount() {
+    Orientation.addOrientationListener(this.onRotate);
+  }
+
   componentWillUnmount() {
     clearTimeout(this.timer);
+    clearTimeout(this.rotateTimer);
+    Orientation.removeOrientationListener(this.onRotate);
   }
 
   handleOnPressTag = tag => {
@@ -246,10 +264,10 @@ class DetailImageList extends Component {
       <PXCacheImageTouchable
         key={item.image_urls.medium}
         uri={item.image_urls.medium}
-        initWidth={globalStyleVariables.WINDOW_HEIGHT}
+        initWidth={globalStyleVariables.WINDOW_HEIGHT()}
         initHeight={200}
-        style={styles.multiImageContainer}
-        imageStyle={styles.image}
+        style={styles().multiImageContainer}
+        imageStyle={styles().image}
         pageNumber={index + 1}
         index={index}
         onPress={onPressImage}
@@ -262,7 +280,7 @@ class DetailImageList extends Component {
     const { item, onPressImage, onLongPressImage } = this.props;
     if (isMute) {
       return (
-        <View style={styles.mutedImageContainer}>
+        <View style={styles().mutedImageContainer}>
           <OverlayMutedIndicator />
         </View>
       );
@@ -273,15 +291,15 @@ class DetailImageList extends Component {
       <PXCacheImageTouchable
         uri={item.image_urls.medium}
         initWidth={
-          item.width > globalStyleVariables.WINDOW_WIDTH
-            ? globalStyleVariables.WINDOW_WIDTH
+          item.width > globalStyleVariables.WINDOW_WIDTH()
+            ? globalStyleVariables.WINDOW_WIDTH()
             : item.width
         }
         initHeight={
-          globalStyleVariables.WINDOW_WIDTH * item.height / item.width
+          globalStyleVariables.WINDOW_WIDTH() * item.height / item.width
         }
-        style={styles.imageContainer}
-        imageStyle={styles.image}
+        style={styles().imageContainer}
+        imageStyle={styles().image}
         onPress={onPressImage}
         onLongPress={onLongPressImage}
         index={0}
@@ -326,7 +344,7 @@ class DetailImageList extends Component {
     } = this.state;
     const isMute = tags.some(t => t.isMute) || isMuteUser;
     return (
-      <View key={item.id} style={styles.container}>
+      <View key={item.id} style={styles().container}>
         {!isMute && item.page_count > 1
           ? <View>
               <FlatList
@@ -342,8 +360,8 @@ class DetailImageList extends Component {
               />
               {(isInitState || isScrolling) &&
                 imagePageNumber &&
-                <View style={styles.imagePageNumberContainer}>
-                  <Text style={styles.imagePageNumber}>
+                <View style={styles().imagePageNumberContainer}>
+                  <Text style={styles().imagePageNumber}>
                     {imagePageNumber}
                   </Text>
                 </View>}

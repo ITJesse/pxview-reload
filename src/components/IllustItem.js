@@ -54,8 +54,8 @@ class IllustItem extends Component {
             marginRight: index % numColumns < numColumns - 1 ? 1 : 0,
             marginBottom: 1,
             backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-            width: globalStyleVariables.WINDOW_WIDTH / numColumns - 1,
-            height: globalStyleVariables.WINDOW_WIDTH / numColumns - 1,
+            width: globalStyleVariables.WINDOW_WIDTH() / numColumns - 1,
+            height: globalStyleVariables.WINDOW_WIDTH() / numColumns - 1,
           },
           containerStyle,
           isHighlight && styles.highlight,
@@ -72,10 +72,10 @@ class IllustItem extends Component {
                   {
                     resizeMode: 'cover',
                     width:
-                      globalStyleVariables.WINDOW_WIDTH / numColumns -
+                      globalStyleVariables.WINDOW_WIDTH() / numColumns -
                       imageWidthOffset,
                     height:
-                      globalStyleVariables.WINDOW_WIDTH / numColumns -
+                      globalStyleVariables.WINDOW_WIDTH() / numColumns -
                       imageWidthOffset,
                   },
                   imageStyle,

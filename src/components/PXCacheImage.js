@@ -59,7 +59,7 @@ class PXCacheImage extends Component {
     return width && height
       ? <View
           style={{
-            width: globalStyleVariables.WINDOW_WIDTH,
+            width: globalStyleVariables.WINDOW_WIDTH(),
             flex: 1,
             justifyContent: 'center',
             alignItems: 'center',
@@ -76,10 +76,10 @@ class PXCacheImage extends Component {
             style={[
               {
                 width:
-                  width > globalStyleVariables.WINDOW_WIDTH
-                    ? globalStyleVariables.WINDOW_WIDTH
+                  width > globalStyleVariables.WINDOW_WIDTH()
+                    ? globalStyleVariables.WINDOW_WIDTH()
                     : width,
-                height: globalStyleVariables.WINDOW_WIDTH * height / width,
+                height: globalStyleVariables.WINDOW_WIDTH() * height / width,
               },
               style,
             ]}

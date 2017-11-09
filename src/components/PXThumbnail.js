@@ -8,6 +8,8 @@ const PXThumbnail = props => {
   return (
     <View
       style={{
+        width: size,
+        height: size,
         backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
         borderRadius: size / 2,
         overflow: 'hidden',
@@ -19,7 +21,7 @@ const PXThumbnail = props => {
           {
             resizeMode: 'cover',
             width: size + 4,
-            height: size,
+            height: size + 4,
             borderRadius: size / 2,
             marginLeft: -2,
             marginTop: -2,

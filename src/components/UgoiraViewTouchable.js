@@ -144,11 +144,11 @@ class UgoiraViewTouchable extends Component {
     const { item, ugoiraMeta } = this.props;
     const { ugoiraPath, isDownloadingZip, isStartPlaying, paused } = this.state;
     const width =
-      item.width > globalStyleVariables.WINDOW_WIDTH
-        ? globalStyleVariables.WINDOW_WIDTH
+      item.width > globalStyleVariables.WINDOW_WIDTH()
+        ? globalStyleVariables.WINDOW_WIDTH()
         : item.width;
     const height = Math.floor(
-      globalStyleVariables.WINDOW_WIDTH * item.height / item.width,
+      globalStyleVariables.WINDOW_WIDTH() * item.height / item.width,
     );
     return (
       <TouchableWithoutFeedback
@@ -159,7 +159,7 @@ class UgoiraViewTouchable extends Component {
           style={[
             styles.imageContainer,
             {
-              width: globalStyleVariables.WINDOW_WIDTH,
+              width: globalStyleVariables.WINDOW_WIDTH(),
               height,
             },
           ]}

@@ -49,6 +49,7 @@
     "react-native-message-bar": "^1.6.0",
     "react-native-onepassword": "^1.0.6",
     "react-native-open-settings": "github:alphasp/react-native-open-settings#rn-047-fix",
+    "react-native-orientation": "^3.1.0",
     "react-native-photo-view": "github:alphasp/react-native-photo-view",
     "react-native-privacy-snapshot": "^1.0.0",
     "react-native-progress": "^3.3.0",

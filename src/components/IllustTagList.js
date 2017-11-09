@@ -53,8 +53,9 @@ class IllustTagList extends Component {
     let imageStyle = {};
     let tagContainerStyle = {};
     if (index === 0) {
-      const width = globalStyleVariables.WINDOW_WIDTH;
-      const height = globalStyleVariables.WINDOW_WIDTH / ILLUST_COLUMNS * 2 - 1;
+      const width = globalStyleVariables.WINDOW_WIDTH();
+      const height =
+        globalStyleVariables.WINDOW_WIDTH() / ILLUST_COLUMNS * 2 - 1;
       imageContainerStyle = {
         width,
         height,
@@ -68,8 +69,8 @@ class IllustTagList extends Component {
         height,
       };
     } else {
-      const width = globalStyleVariables.WINDOW_WIDTH / ILLUST_COLUMNS - 1;
-      const height = globalStyleVariables.WINDOW_WIDTH / ILLUST_COLUMNS - 1;
+      const width = globalStyleVariables.WINDOW_WIDTH() / ILLUST_COLUMNS - 1;
+      const height = globalStyleVariables.WINDOW_WIDTH() / ILLUST_COLUMNS - 1;
       imageContainerStyle = {
         marginRight: index % ILLUST_COLUMNS < ILLUST_COLUMNS - 1 ? 1 : 0,
         width,
@@ -80,8 +81,8 @@ class IllustTagList extends Component {
         height,
       };
       tagContainerStyle = {
-        height: globalStyleVariables.WINDOW_WIDTH / 3 - 1,
-        width: globalStyleVariables.WINDOW_WIDTH / 3 - 1,
+        height: globalStyleVariables.WINDOW_WIDTH() / 3 - 1,
+        width: globalStyleVariables.WINDOW_WIDTH() / 3 - 1,
       };
     }
     return (

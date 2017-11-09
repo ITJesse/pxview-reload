@@ -106,7 +106,7 @@ const config = {
   },
   [SCREENS.OpenSourceLicense]: {
     screen: OpenSourceLicense,
-    navigationOptions: (navigation) => ({
+    navigationOptions: navigation => ({
       title: navigation.navigation.state.params.title,
     }),
   },

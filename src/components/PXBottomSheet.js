@@ -25,7 +25,7 @@ class PXBottomSheet extends Component {
   static defaultProps = {
     duration: 300,
     height:
-      globalStyleVariables.WINDOW_HEIGHT -
+      globalStyleVariables.WINDOW_HEIGHT() -
       globalStyleVariables.APPBAR_HEIGHT -
       globalStyleVariables.STATUSBAR_HEIGHT,
   };

@@ -83,21 +83,21 @@ const IllustCollection = props => {
                 navigate(SCREENS.Detail, { items: illusts, index })}
               containerStyle={{
                 width:
-                  (globalStyleVariables.WINDOW_WIDTH - CONTAINER_MARGIN * 2) /
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
                     ILLUST_COLUMNS -
                   1,
                 height:
-                  (globalStyleVariables.WINDOW_WIDTH - CONTAINER_MARGIN * 2) /
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
                     ILLUST_COLUMNS -
                   1,
               }}
               imageStyle={{
                 width:
-                  (globalStyleVariables.WINDOW_WIDTH - CONTAINER_MARGIN * 2) /
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
                     ILLUST_COLUMNS -
                   1,
                 height:
-                  (globalStyleVariables.WINDOW_WIDTH - CONTAINER_MARGIN * 2) /
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
                     ILLUST_COLUMNS -
                   1,
               }}

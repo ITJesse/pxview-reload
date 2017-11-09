@@ -9,13 +9,13 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
+import Orientation from 'react-native-orientation';
+
 import IllustItem from './IllustItem';
 import Loader from './Loader';
 import * as bookmarkIllustActionCreators from '../common/actions/bookmarkIllust';
 import { globalStyles, globalStyleVariables } from '../styles';
 import { SCREENS } from '../common/constants';
-
-const ILLUST_COLUMNS = 3;
 
 const styles = StyleSheet.create({
   footer: {
@@ -24,6 +24,15 @@ const styles = StyleSheet.create({
 });
 
 class IllustList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      orientation: '',
+      ILLUST_COLUMNS: 3,
+    };
+    this.orientationDidChange = this.orientationDidChange.bind(this);
+  }
+
   componentDidUpdate(prevProps) {
     const { data: { items: prevItems } } = prevProps;
     const { data: { items }, listKey, maxItems } = this.props;
@@ -35,12 +44,46 @@ class IllustList extends Component {
     }
   }
 
+  orientationDidChange(orientation) {
+    if (orientation === 'PORTRAIT') {
+      this.setState({
+        orientation,
+        ILLUST_COLUMNS: 3,
+      });
+    } else if (orientation === 'LANDSCAPE') {
+      this.setState({
+        orientation,
+        ILLUST_COLUMNS: 5,
+      });
+    }
+  }
+
+  componentWillMount() {
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT') {
+      this.setState({
+        orientation: initial,
+        ILLUST_COLUMNS: 3,
+      });
+    } else if (initial === 'LANDSCAPE') {
+      this.setState({
+        orientation: initial,
+        ILLUST_COLUMNS: 5,
+      });
+    }
+    Orientation.addOrientationListener(this.orientationDidChange);
+  }
+
+  componentWillUnmount() {
+    Orientation.removeOrientationListener(this.orientationDidChange);
+  }
+
   renderItem = ({ item, index }) =>
     <IllustItem
       key={item.id}
       item={item}
       index={index}
-      numColumns={ILLUST_COLUMNS}
+      numColumns={this.state.ILLUST_COLUMNS}
       onPressItem={() => this.handleOnPressItem(item)}
     />;
 
@@ -108,13 +151,17 @@ class IllustList extends Component {
               onLayout={this.handleOnLayout}
               ref={ref => (this.illustList = ref)}
               data={muteFilter()}
-              numColumns={ILLUST_COLUMNS}
+              numColumns={this.state.ILLUST_COLUMNS}
               keyExtractor={item => item.id}
               renderItem={this.renderItem}
+              key={this.state.orientation}
               getItemLayout={(data, index) => ({
-                length: globalStyleVariables.WINDOW_WIDTH / ILLUST_COLUMNS,
+                length:
+                  globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS,
                 offset:
-                  globalStyleVariables.WINDOW_WIDTH / ILLUST_COLUMNS * index,
+                  globalStyleVariables.WINDOW_WIDTH() /
+                  this.state.ILLUST_COLUMNS *
+                  index,
                 index,
               })}
               removeClippedSubviews={Platform.OS === 'android'}

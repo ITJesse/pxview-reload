@@ -76,8 +76,8 @@ class PXViewPager extends Component {
         debug={false}
         maxToRenderPerBatch={LIST_WINDOW_SIZE}
         getItemLayout={(data, i) => ({
-          length: globalStyleVariables.WINDOW_WIDTH,
-          offset: globalStyleVariables.WINDOW_WIDTH * i,
+          length: globalStyleVariables.WINDOW_WIDTH(),
+          offset: globalStyleVariables.WINDOW_WIDTH() * i,
           index: i,
         })}
       />

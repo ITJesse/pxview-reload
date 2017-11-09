@@ -1,20 +1,20 @@
 import React, { PureComponent } from 'react';
 import { StyleSheet } from 'react-native';
 import PhotoView from 'react-native-photo-view';
-import { globalStyleVariables } from '../styles';
 
-const styles = StyleSheet.create({
-  photo: {
-    width: globalStyleVariables.WINDOW_WIDTH,
-    height: globalStyleVariables.WINDOW_HEIGHT,
-  },
-});
+import { globalStyleVariables } from '../styles';
 
 class PXPhotoView extends PureComponent {
   handleOnLoad = () => {
     const { onLoad, uri } = this.props;
     onLoad(uri);
   };
+
+  photoStyle = () =>
+    StyleSheet.create({
+      width: globalStyleVariables.WINDOW_WIDTH(),
+      height: globalStyleVariables.WINDOW_HEIGHT(),
+    });
 
   render() {
     const { uri, style, onLoad, ...restProps } = this.props;
@@ -30,7 +30,7 @@ class PXPhotoView extends PureComponent {
         androidScaleType="fitCenter"
         minimumZoomScale={1}
         maximumZoomScale={3}
-        style={[styles.photo, style]}
+        style={[this.photoStyle(), style]}
         onLoad={this.handleOnLoad}
         {...restProps}
       />

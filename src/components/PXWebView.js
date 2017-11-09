@@ -42,7 +42,7 @@ class PXWebView extends Component {
           <ProgressBar
             indeterminate
             borderRadius={0}
-            width={globalStyleVariables.WINDOW_WIDTH}
+            width={globalStyleVariables.WINDOW_WIDTH()}
             height={3}
           />}
         <WebView
