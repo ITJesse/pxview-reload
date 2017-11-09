@@ -8,14 +8,14 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
+import Orientation from 'react-native-orientation';
+
 import Loader from './Loader';
 import PXTouchable from './PXTouchable';
 import PXImage from './PXImage';
 import { SEARCH_TYPES, SCREENS } from '../common/constants';
 import * as searchHistoryActionCreators from '../common/actions/searchHistory';
 import { globalStyles, globalStyleVariables } from '../styles';
-
-const ILLUST_COLUMNS = 3;
 
 const styles = StyleSheet.create({
   contentContainer: {
@@ -48,14 +48,65 @@ const styles = StyleSheet.create({
 });
 
 class IllustTagList extends Component {
-  renderItem = (item, index) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      orientation: '',
+      ILLUST_COLUMNS: 3,
+    };
+    this.orientationDidChange = this.orientationDidChange.bind(this);
+  }
+  componentWillMount() {
+    const initial = Orientation.getInitialOrientation();
+    if (initial === 'PORTRAIT' || initial === 'LANDSCAPE') {
+      this.setState({
+        orientation: initial,
+        ILLUST_COLUMNS: initial === 'PORTRAIT' ? 3 : 5,
+      });
+    }
+    Orientation.addOrientationListener(this.orientationDidChange);
+  }
+
+  componentWillUnmount() {
+    Orientation.removeOrientationListener(this.orientationDidChange);
+  }
+
+  orientationDidChange(orientation) {
+    if (orientation === 'PORTRAIT' || orientation === 'LANDSCAPE') {
+      this.setState({
+        orientation,
+        ILLUST_COLUMNS: orientation === 'PORTRAIT' ? 3 : 5,
+      });
+    }
+  }
+
+  renderItem = (item, itemStyles) =>
+    <PXTouchable
+      style={[styles.imageContainer, itemStyles.imageContainerStyle]}
+      key={item.tag}
+      onPress={() => this.handleOnPressItem(item)}
+    >
+      <View>
+        <PXImage
+          uri={item.illust.image_urls.square_medium}
+          style={[styles.image, itemStyles.imageStyle]}
+        />
+        <View style={[styles.tagContainer, itemStyles.tagContainerStyle]}>
+          <Text style={styles.tag}>
+            {item.tag}
+          </Text>
+        </View>
+      </View>
+    </PXTouchable>;
+
+  renderItemPortrait = (item, index) => {
     let imageContainerStyle = {};
     let imageStyle = {};
     let tagContainerStyle = {};
     if (index === 0) {
       const width = globalStyleVariables.WINDOW_WIDTH();
       const height =
-        globalStyleVariables.WINDOW_WIDTH() / ILLUST_COLUMNS * 2 - 1;
+        globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS * 2 - 1;
       imageContainerStyle = {
         width,
         height,
@@ -69,10 +120,15 @@ class IllustTagList extends Component {
         height,
       };
     } else {
-      const width = globalStyleVariables.WINDOW_WIDTH() / ILLUST_COLUMNS - 1;
-      const height = globalStyleVariables.WINDOW_WIDTH() / ILLUST_COLUMNS - 1;
+      const width =
+        globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1;
+      const height =
+        globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1;
       imageContainerStyle = {
-        marginRight: index % ILLUST_COLUMNS < ILLUST_COLUMNS - 1 ? 1 : 0,
+        marginRight:
+          index % this.state.ILLUST_COLUMNS < this.state.ILLUST_COLUMNS - 1
+            ? 1
+            : 0,
         width,
         height,
       };
@@ -81,29 +137,73 @@ class IllustTagList extends Component {
         height,
       };
       tagContainerStyle = {
-        height: globalStyleVariables.WINDOW_WIDTH() / 3 - 1,
-        width: globalStyleVariables.WINDOW_WIDTH() / 3 - 1,
+        height:
+          globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1,
+        width:
+          globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1,
       };
     }
-    return (
-      <PXTouchable
-        style={[styles.imageContainer, imageContainerStyle]}
-        key={item.tag}
-        onPress={() => this.handleOnPressItem(item)}
-      >
-        <View>
-          <PXImage
-            uri={item.illust.image_urls.square_medium}
-            style={[styles.image, imageStyle]}
-          />
-          <View style={[styles.tagContainer, tagContainerStyle]}>
-            <Text style={styles.tag}>
-              {item.tag}
-            </Text>
-          </View>
-        </View>
-      </PXTouchable>
-    );
+    return this.renderItem(item, {
+      imageContainerStyle,
+      imageStyle,
+      tagContainerStyle,
+    });
+  };
+
+  renderItemLandscape = (item, index) => {
+    let imageContainerStyle = {};
+    let imageStyle = {};
+    let tagContainerStyle = {};
+    if (index <= 2) {
+      const width = globalStyleVariables.WINDOW_WIDTH() / 3 - 1;
+      const height =
+        globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS * 1.5;
+      imageContainerStyle = {
+        width,
+        height,
+        marginRight:
+          index % this.state.ILLUST_COLUMNS < this.state.ILLUST_COLUMNS - 1
+            ? 1
+            : 0,
+      };
+      imageStyle = {
+        width,
+        height,
+      };
+      tagContainerStyle = {
+        width,
+        height,
+      };
+    } else {
+      const width =
+        globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1;
+      const height =
+        globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1;
+      imageContainerStyle = {
+        marginRight:
+          (index - 3) % this.state.ILLUST_COLUMNS <
+          this.state.ILLUST_COLUMNS - 1
+            ? 1
+            : 0,
+        width,
+        height,
+      };
+      imageStyle = {
+        width,
+        height,
+      };
+      tagContainerStyle = {
+        height:
+          globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1,
+        width:
+          globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1,
+      };
+    }
+    return this.renderItem(item, {
+      imageContainerStyle,
+      imageStyle,
+      tagContainerStyle,
+    });
   };
 
   handleOnPressItem = item => {
@@ -120,6 +220,7 @@ class IllustTagList extends Component {
       data: { items, loading, loaded, refreshing },
       onRefresh,
     } = this.props;
+    const { orientation } = this.state;
     return (
       <View style={globalStyles.container}>
         {(!items || (!loaded && loading)) && <Loader />}
@@ -130,7 +231,9 @@ class IllustTagList extends Component {
                 <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
               }
             >
-              {items.map(this.renderItem)}
+              {orientation === 'PORTRAIT'
+                ? items.map(this.renderItemPortrait)
+                : items.map(this.renderItemLandscape)}
             </ScrollView>
           : null}
       </View>
