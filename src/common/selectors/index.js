@@ -71,6 +71,8 @@ const selectMuteTags = state => state.muteTags.items;
 
 const selectMuteUsers = state => state.muteUsers;
 
+export const selectShouldCheckTouchID = state => state.touchid.shouldCheckTouchID;
+
 const defaultArray = [];
 const defaultObject = {};
 

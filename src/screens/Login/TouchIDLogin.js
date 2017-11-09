@@ -68,7 +68,7 @@ class TouchIDLogin extends Component {
   componentDidMount() {
     this.timer = setTimeout(() => {
       this.setState({ timeout: true });
-    }, 1000);
+    }, 1500);
   }
 
   componentWillUnmount() {
