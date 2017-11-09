@@ -33,14 +33,7 @@ class WalkthroughIllustList extends Component {
       0,
     );
     this.last = Date.now();
-    this.autoScroll(listRef, maxScrollableHeight);
-    // console.log({
-    //   maxScrollableHeight,
-    //   totalRowHeight,
-    //   totalRow,
-    //   heightPerRow,
-    //   itemsLength: items.length,
-    // });
+    // this.autoScroll(listRef, maxScrollableHeight);
   };
 
   autoScroll = (listRef, maxScrollableHeight) => {

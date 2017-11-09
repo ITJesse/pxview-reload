@@ -67,7 +67,7 @@
     "redux-define": "^1.1.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-enhancer-react-native-appstate": "^0.2.0",
-    "redux-form": "^6.8.0",
+    "redux-form": "^7.1.2",
     "redux-persist": "^4.8.2",
     "redux-saga": "^0.15.4",
     "reselect": "^3.0.1",

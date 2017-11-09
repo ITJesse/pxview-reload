@@ -6,13 +6,11 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Linking,
-  DeviceEventEmitter,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-native-elements';
 import OverlaySpinner from 'react-native-loading-spinner-overlay';
-import TouchID from 'react-native-touch-id';
 import { connectLocalization } from '../../components/Localization';
 import PXFormInput from '../../components/PXFormInput';
 import WalkthroughIllustList from '../../containers/WalkthroughIllustList';
