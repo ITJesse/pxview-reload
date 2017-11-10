@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, DeviceEventEmitter } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  DeviceEventEmitter,
+  findNodeHandle,
+} from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
@@ -68,8 +73,6 @@ class App extends Component {
     let renderComponent;
     if (!rehydrated) {
       renderComponent = <Loader />;
-    } else if (useTouchID && shouldCheckTouchID) {
-      renderComponent = <TouchIDNavigator screenProps={{ i18n }} />;
     } else if (user) {
       renderComponent = (
         <AppNavigator
@@ -82,6 +85,9 @@ class App extends Component {
     }
     return (
       <View style={styles.container}>
+        {useTouchID &&
+          shouldCheckTouchID &&
+          <TouchIDNavigator screenProps={{ i18n }} />}
         {renderComponent}
         <MessageBar ref={ref => (this.messageBarAlert = ref)} />
         <Toast ref={ref => (this.toast = ref)} opacity={0.7} />

@@ -3,7 +3,7 @@ import {
   Image,
   StyleSheet,
   View,
-  KeyboardAvoidingView,
+  Modal,
   DeviceEventEmitter,
   Alert,
 } from 'react-native';
@@ -23,15 +23,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   innerContainer: {
+    flex: 1,
     paddingHorizontal: 5,
     paddingTop: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
     justifyContent: 'center',
+    marginTop: 32,
   },
   formContainer: {
     backgroundColor: '#fff',
@@ -41,10 +37,6 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 15,
-  },
-  outlineButtonContainer: {
-    borderColor: globalStyleVariables.PRIMARY_COLOR,
-    borderWidth: 1,
   },
   logoContainer: {
     alignItems: 'center',
@@ -62,7 +54,6 @@ class TouchIDLogin extends Component {
     this.state = {
       timeout: false,
     };
-    this.timer = null;
   }
 
   componentDidMount() {
@@ -157,35 +148,33 @@ class TouchIDLogin extends Component {
   render() {
     const { i18n } = this.props;
     return (
-      <View style={styles.container}>
+      <Modal style={styles.container}>
         {this.state.timeout &&
           <View style={styles.innerContainer}>
-            <KeyboardAvoidingView behavior="padding">
-              <View style={styles.logoContainer}>
-                <Image
-                  source={require('../../images/logo.png')} // eslint-disable-line global-require
-                  style={styles.logo}
-                />
-              </View>
-              <View style={styles.formContainer}>
-                <Button
-                  title={i18n.touchIDLogin}
-                  containerViewStyle={styles.buttonContainer}
-                  backgroundColor={globalStyleVariables.PRIMARY_COLOR}
-                  raised
-                  onPress={this.handleTouchIDLogin}
-                />
-                <Button
-                  title={i18n.logout}
-                  containerViewStyle={styles.buttonContainer}
-                  backgroundColor={globalStyleVariables.PRIMARY_COLOR}
-                  raised
-                  onPress={this.handleOnPressLogout}
-                />
-              </View>
-            </KeyboardAvoidingView>
+            <View style={styles.logoContainer}>
+              <Image
+                source={require('../../images/logo.png')} // eslint-disable-line global-require
+                style={styles.logo}
+              />
+            </View>
+            <View style={styles.formContainer}>
+              <Button
+                title={i18n.touchIDLogin}
+                containerViewStyle={styles.buttonContainer}
+                backgroundColor={globalStyleVariables.PRIMARY_COLOR}
+                raised
+                onPress={this.handleTouchIDLogin}
+              />
+              <Button
+                title={i18n.logout}
+                containerViewStyle={styles.buttonContainer}
+                backgroundColor={globalStyleVariables.PRIMARY_COLOR}
+                raised
+                onPress={this.handleOnPressLogout}
+              />
+            </View>
           </View>}
-      </View>
+      </Modal>
     );
   }
 }

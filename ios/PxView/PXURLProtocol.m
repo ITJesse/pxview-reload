@@ -26,6 +26,8 @@
     return YES;
   } else if ([[[request URL] host] containsString:@"pximg.net"]) {
     return YES;
+  } else if ([[[request URL] host] containsString:@"source.pixiv.net"]) {
+    return YES;
   }
   return NO;
 }

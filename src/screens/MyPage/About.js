@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Platform, Linking } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { List, ListItem } from 'react-native-elements';
+import AppStoreReview from 'react-native-app-store-review';
+
 import { connectLocalization } from '../../components/Localization';
 import { globalStyles } from '../../styles';
 import { SCREENS } from '../../common/constants';
 
 const appStoreUrl =
-  'https://itunes.apple.com/us/app/pxview-reload/id1286972382?l=zh&ls=1&mt=8';
-const googlePlayUrl =
-  'https://play.google.com/store/apps/details?id=com.utopia.pxview';
+  'itms-apps://itunes.apple.com/us/app/pxview-reload/id1286972382?l=zh&ls=1&mt=8';
 const sourceUrl = 'https://github.com/ITJesse/pxview-reload';
 
 const styles = StyleSheet.create({
@@ -75,10 +75,7 @@ class About extends Component {
         break;
       }
       case 'rateApp': {
-        const url = Platform.OS === 'ios' ? appStoreUrl : googlePlayUrl;
-        if (Platform.OS === 'android') {
-          this.openUrl(url);
-        }
+        this.openUrl(appStoreUrl);
         break;
       }
       case 'sourceCode': {
