@@ -58,12 +58,7 @@ class IllustTagList extends Component {
   }
   componentWillMount() {
     const initial = Orientation.getInitialOrientation();
-    if (initial === 'PORTRAIT' || initial === 'LANDSCAPE') {
-      this.setState({
-        orientation: initial,
-        ILLUST_COLUMNS: initial === 'PORTRAIT' ? 3 : 5,
-      });
-    }
+    this.orientationDidChange(initial);
     Orientation.addOrientationListener(this.orientationDidChange);
   }
 
@@ -72,12 +67,22 @@ class IllustTagList extends Component {
   }
 
   orientationDidChange(orientation) {
-    if (orientation === 'PORTRAIT' || orientation === 'LANDSCAPE') {
-      this.setState({
-        orientation,
-        ILLUST_COLUMNS: orientation === 'PORTRAIT' ? 3 : 5,
-      });
+    let ILLUST_COLUMNS;
+    if (orientation === 'PORTRAIT') {
+      const width = globalStyleVariables.WINDOW_WIDTH();
+      const height = globalStyleVariables.WINDOW_HEIGHT();
+      if (height / width > 1.6) {
+        ILLUST_COLUMNS = 3;
+      } else {
+        ILLUST_COLUMNS = 4;
+      }
+    } else if (orientation === 'LANDSCAPE') {
+      ILLUST_COLUMNS = 5;
     }
+    this.setState({
+      orientation,
+      ILLUST_COLUMNS,
+    });
   }
 
   renderItem = (item, itemStyles) =>
@@ -126,7 +131,8 @@ class IllustTagList extends Component {
         globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS - 1;
       imageContainerStyle = {
         marginRight:
-          index % this.state.ILLUST_COLUMNS < this.state.ILLUST_COLUMNS - 1
+          (index - 1) % this.state.ILLUST_COLUMNS <
+          this.state.ILLUST_COLUMNS - 1
             ? 1
             : 0,
         width,

@@ -45,32 +45,27 @@ class IllustList extends Component {
   }
 
   orientationDidChange(orientation) {
+    let ILLUST_COLUMNS;
     if (orientation === 'PORTRAIT') {
-      this.setState({
-        orientation,
-        ILLUST_COLUMNS: 3,
-      });
+      const width = globalStyleVariables.WINDOW_WIDTH();
+      const height = globalStyleVariables.WINDOW_HEIGHT();
+      if (height / width > 1.6) {
+        ILLUST_COLUMNS = 3;
+      } else {
+        ILLUST_COLUMNS = 4;
+      }
     } else if (orientation === 'LANDSCAPE') {
-      this.setState({
-        orientation,
-        ILLUST_COLUMNS: 5,
-      });
+      ILLUST_COLUMNS = 5;
     }
+    this.setState({
+      orientation,
+      ILLUST_COLUMNS,
+    });
   }
 
   componentWillMount() {
     const initial = Orientation.getInitialOrientation();
-    if (initial === 'PORTRAIT') {
-      this.setState({
-        orientation: initial,
-        ILLUST_COLUMNS: 3,
-      });
-    } else if (initial === 'LANDSCAPE') {
-      this.setState({
-        orientation: initial,
-        ILLUST_COLUMNS: 5,
-      });
-    }
+    this.orientationDidChange(initial);
     Orientation.addOrientationListener(this.orientationDidChange);
   }
 
