@@ -46,16 +46,20 @@ class IllustList extends Component {
 
   orientationDidChange(orientation) {
     let ILLUST_COLUMNS;
+    const width = globalStyleVariables.WINDOW_WIDTH();
+    const height = globalStyleVariables.WINDOW_HEIGHT();
     if (orientation === 'PORTRAIT') {
-      const width = globalStyleVariables.WINDOW_WIDTH();
-      const height = globalStyleVariables.WINDOW_HEIGHT();
       if (height / width > 1.6) {
-        ILLUST_COLUMNS = 3;
+        ILLUST_COLUMNS = 3; // iPhone
       } else {
-        ILLUST_COLUMNS = 4;
+        ILLUST_COLUMNS = 4; // iPad
       }
     } else if (orientation === 'LANDSCAPE') {
-      ILLUST_COLUMNS = 5;
+      if (height / width > 1.6) {
+        ILLUST_COLUMNS = 3; // iPhone
+      } else {
+        ILLUST_COLUMNS = 5; // iPad
+      }
     }
     this.setState({
       orientation,
@@ -66,7 +70,12 @@ class IllustList extends Component {
   componentWillMount() {
     const initial = Orientation.getInitialOrientation();
     this.orientationDidChange(initial);
-    Orientation.addOrientationListener(this.orientationDidChange);
+    const width = globalStyleVariables.WINDOW_WIDTH();
+    const height = globalStyleVariables.WINDOW_HEIGHT();
+    if (height / width < 1.6) {
+      // iPad
+      Orientation.addOrientationListener(this.orientationDidChange);
+    }
   }
 
   componentWillUnmount() {
