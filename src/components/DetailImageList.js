@@ -24,42 +24,42 @@ import { makeGetTagsWithStatus } from '../common/selectors';
 import { SEARCH_TYPES, SCREENS } from '../common/constants';
 import { globalStyleVariables } from '../styles';
 
-const styles = () =>
-  StyleSheet.create({
-    container: {
-      width: globalStyleVariables.WINDOW_WIDTH(),
-    },
-    imagePageNumberContainer: {
-      top: 10,
-      right: 10,
-      position: 'absolute',
-      justifyContent: 'center',
-      backgroundColor: 'grey',
-      borderRadius: 10,
-      paddingHorizontal: 8,
-      // height: 32,
-    },
-    imagePageNumber: {
-      color: '#fff',
-      padding: 2,
-    },
-    multiImageContainer: {
-      backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      borderBottomColor: 'gray',
-    },
-    imageContainer: {
-      backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-    },
-    image: {
-      resizeMode: 'contain',
-    },
-    mutedImageContainer: {
-      flex: 1,
-      backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
-      height: 200,
-    },
-  });
+const containerStyle = () => ({
+  width: globalStyleVariables.WINDOW_WIDTH(),
+});
+
+const styles = StyleSheet.create({
+  imagePageNumberContainer: {
+    top: 10,
+    right: 10,
+    position: 'absolute',
+    justifyContent: 'center',
+    backgroundColor: 'grey',
+    borderRadius: 10,
+    paddingHorizontal: 8,
+    // height: 32,
+  },
+  imagePageNumber: {
+    color: '#fff',
+    padding: 2,
+  },
+  multiImageContainer: {
+    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'gray',
+  },
+  imageContainer: {
+    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+  },
+  image: {
+    resizeMode: 'contain',
+  },
+  mutedImageContainer: {
+    flex: 1,
+    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+    height: 200,
+  },
+});
 
 class DetailImageList extends Component {
   constructor(props) {
@@ -266,8 +266,8 @@ class DetailImageList extends Component {
         uri={item.image_urls.medium}
         initWidth={globalStyleVariables.WINDOW_HEIGHT()}
         initHeight={200}
-        style={styles().multiImageContainer}
-        imageStyle={styles().image}
+        style={styles.multiImageContainer}
+        imageStyle={styles.image}
         pageNumber={index + 1}
         index={index}
         onPress={onPressImage}
@@ -280,7 +280,7 @@ class DetailImageList extends Component {
     const { item, onPressImage, onLongPressImage } = this.props;
     if (isMute) {
       return (
-        <View style={styles().mutedImageContainer}>
+        <View style={styles.mutedImageContainer}>
           <OverlayMutedIndicator />
         </View>
       );
@@ -298,8 +298,8 @@ class DetailImageList extends Component {
         initHeight={
           globalStyleVariables.WINDOW_WIDTH() * item.height / item.width
         }
-        style={styles().imageContainer}
-        imageStyle={styles().image}
+        style={styles.imageContainer}
+        imageStyle={styles.image}
         onPress={onPressImage}
         onLongPress={onLongPressImage}
         index={0}
@@ -344,7 +344,7 @@ class DetailImageList extends Component {
     } = this.state;
     const isMute = tags.some(t => t.isMute) || isMuteUser;
     return (
-      <View key={item.id} style={styles().container}>
+      <View key={item.id} style={containerStyle()}>
         {!isMute && item.page_count > 1
           ? <View>
               <FlatList
@@ -360,8 +360,8 @@ class DetailImageList extends Component {
               />
               {(isInitState || isScrolling) &&
                 imagePageNumber &&
-                <View style={styles().imagePageNumberContainer}>
-                  <Text style={styles().imagePageNumber}>
+                <View style={styles.imagePageNumberContainer}>
+                  <Text style={styles.imagePageNumber}>
                     {imagePageNumber}
                   </Text>
                 </View>}

@@ -6,34 +6,34 @@ import PXTouchable from './PXTouchable';
 import Separator from './Separator';
 import { globalStyles, globalStyleVariables } from '../styles';
 
-const styles = () =>
-  StyleSheet.create({
-    listItemContainer: {
-      padding: 10,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    searchHistoryContainer: {
-      padding: 10,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-    },
-    searchHistoryTitle: {
-      fontWeight: 'bold',
-    },
-    searchHistoryText: {
-      width: globalStyleVariables.WINDOW_WIDTH() - 45,
-    },
-  });
+const styles = StyleSheet.create({
+  listItemContainer: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  searchHistoryContainer: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  searchHistoryTitle: {
+    fontWeight: 'bold',
+  },
+});
+
+const searchHistoryTextStyle = () => ({
+  width: globalStyleVariables.WINDOW_WIDTH() - 45,
+});
 
 class SearchHistory extends Component {
   renderItem = ({ item }) => {
     const { onPressItem, onPressRemoveSearchHistoryItem } = this.props;
     return (
-      <View style={styles().listItemContainer} key={item}>
+      <View style={styles.listItemContainer} key={item}>
         <PXTouchable
           onPress={() => onPressItem(item)}
-          style={styles().searchHistoryText}
+          style={searchHistoryTextStyle()}
         >
           <Text>
             {item}
@@ -53,12 +53,12 @@ class SearchHistory extends Component {
     const { items, onPressClearSearchHistory, i18n } = this.props;
     return (
       <View style={globalStyles.container}>
-        <View style={styles().searchHistoryContainer}>
-          <Text style={styles().searchHistoryTitle}>
+        <View style={styles.searchHistoryContainer}>
+          <Text style={styles.searchHistoryTitle}>
             {i18n.searchHistory}
           </Text>
           <PXTouchable onPress={onPressClearSearchHistory}>
-            <Text style={styles().searchHistoryTitle}>
+            <Text style={styles.searchHistoryTitle}>
               {i18n.searchHistoryClear}
             </Text>
           </PXTouchable>
