@@ -16,6 +16,7 @@ import { connectLocalization } from '../../components/Localization';
 import * as authActionCreators from '../../common/actions/auth';
 import * as modalActionCreators from '../../common/actions/modal';
 import * as touchIDActions from '../../common/actions/touchid';
+import * as browsingHistoryActionCreators from '../../common/actions/browsingHistory';
 import { globalStyleVariables } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -195,6 +196,7 @@ export default connectLocalization(
       ...authActionCreators,
       ...modalActionCreators,
       ...touchIDActions,
+      ...browsingHistoryActionCreators,
     },
   )(TouchIDLogin),
 );
