@@ -23,14 +23,16 @@ class IllustItem extends Component {
       item: prevItem,
       isHighlight: prevIsHighlight,
       isMute: prevIsMute,
+      numColumns: prevNumColumns,
     } = this.props;
-    const { item, isHighlight, isMute } = nextProps;
+    const { item, isHighlight, isMute, numColumns } = nextProps;
     // console.log(item.id, (prevItem.is_bookmarked !== item.is_bookmarked) || (prevItem.user.is_followed !== item.user.is_followed));
     return (
       prevItem.is_bookmarked !== item.is_bookmarked ||
       prevItem.user.is_followed !== item.user.is_followed ||
       prevIsHighlight !== isHighlight ||
-      prevIsMute !== isMute
+      prevIsMute !== isMute ||
+      prevNumColumns !== numColumns
     );
   }
 
