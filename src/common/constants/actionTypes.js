@@ -14,6 +14,8 @@ import {
   CLOSE,
   STOP,
   SET,
+  PORTRAIT,
+  LANDSCAPE,
 } from './stateConstants';
 
 const appNamespace = defineAction('PIXIV');
@@ -309,6 +311,14 @@ export const USE_TOUCHID = defineAction(
 export const SHOULD_CHECK_TOUCHID = defineAction(
   'SHOULD_CHECK_TOUCH_ID',
   [SET, CLEAR],
+  appNamespace,
+);
+
+export const ORIENTATION = defineAction('ORIENTATION', [SET], appNamespace);
+
+export const ILLUST_COLUMNS = defineAction(
+  'ILLUST_COLUMNS',
+  [SET],
   appNamespace,
 );
 

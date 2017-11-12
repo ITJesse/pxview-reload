@@ -7,65 +7,13 @@ import IllustList from '../components/IllustList';
 import * as walkthroughIllustsActionCreators from '../common/actions/walkthroughIllusts';
 import { getWalkthroughIllustsItems } from '../common/selectors';
 
-const ILLUST_COLUMNS = 3;
-
 class WalkthroughIllustList extends Component {
-  scrollOffset = 0;
-  tmpFps = 0;
-  fps = 0;
-  last = 0;
-
   componentDidMount() {
     const { fetchWalkthroughIllusts, clearWalkthroughIllusts } = this.props;
     InteractionManager.runAfterInteractions(() => {
       clearWalkthroughIllusts();
       fetchWalkthroughIllusts();
     });
-  }
-
-  handleOnListLayout = (e, listRef) => {
-    const { items } = this.props;
-    const heightPerRow = e.nativeEvent.layout.width / ILLUST_COLUMNS;
-    const totalRow = Math.floor((items.length - 1) / ILLUST_COLUMNS) + 1;
-    const totalRowHeight = heightPerRow * totalRow;
-    const maxScrollableHeight = Math.max(
-      totalRowHeight - e.nativeEvent.layout.height,
-      0,
-    );
-    this.last = Date.now();
-    // this.autoScroll(listRef, maxScrollableHeight);
-  };
-
-  autoScroll = (listRef, maxScrollableHeight) => {
-    if (this.scrollOffset >= maxScrollableHeight) {
-      cancelAnimationFrame(this.autoScrollTimer);
-    } else if (listRef) {
-      try {
-        // listRef may not have reference of FlatList in certain situation
-        if (this.fps > 0) {
-          listRef.scrollToOffset({
-            animated: false,
-            offset: (this.scrollOffset += 20 / this.fps),
-          });
-        }
-        this.autoScrollTimer = requestAnimationFrame(() => {
-          const offset = Date.now() - this.last;
-          this.tmpFps += 1;
-          if (offset >= 1000) {
-            this.fps = this.tmpFps / offset * 1000;
-            this.last = this.last + offset;
-            this.tmpFps = 0;
-          }
-          this.autoScroll(listRef, maxScrollableHeight);
-        });
-      } catch (e) {}
-    }
-  };
-
-  componentWillUnmount() {
-    if (this.autoScrollTimer) {
-      cancelAnimationFrame(this.autoScrollTimer);
-    }
   }
 
   render() {

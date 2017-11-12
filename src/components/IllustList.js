@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
-import Orientation from 'react-native-orientation';
 
 import IllustItem from './IllustItem';
 import Loader from './Loader';
@@ -26,11 +25,7 @@ const styles = StyleSheet.create({
 class IllustList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      orientation: '',
-      ILLUST_COLUMNS: 3,
-    };
-    this.orientationDidChange = this.orientationDidChange.bind(this);
+    this.renderItem = this.renderItem.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -44,52 +39,18 @@ class IllustList extends Component {
     }
   }
 
-  orientationDidChange(orientation) {
-    let ILLUST_COLUMNS;
-    const width = globalStyleVariables.WINDOW_WIDTH();
-    const height = globalStyleVariables.WINDOW_HEIGHT();
-    if (orientation === 'PORTRAIT') {
-      if (height / width > 1.6) {
-        ILLUST_COLUMNS = 3; // iPhone
-      } else {
-        ILLUST_COLUMNS = 4; // iPad
-      }
-    } else if (orientation === 'LANDSCAPE') {
-      if (height / width > 1.6) {
-        ILLUST_COLUMNS = 3; // iPhone
-      } else {
-        ILLUST_COLUMNS = 5; // iPad
-      }
-    }
-    this.setState({
-      orientation,
-      ILLUST_COLUMNS,
-    });
+  renderItem({ item, index }) {
+    const { orientation: { illustColumns } } = this.props;
+    return (
+      <IllustItem
+        key={item.id}
+        item={item}
+        index={index}
+        numColumns={illustColumns}
+        onPressItem={() => this.handleOnPressItem(item)}
+      />
+    );
   }
-
-  componentWillMount() {
-    const initial = Orientation.getInitialOrientation();
-    this.orientationDidChange(initial);
-    const width = globalStyleVariables.WINDOW_WIDTH();
-    const height = globalStyleVariables.WINDOW_HEIGHT();
-    if (height / width < 1.6) {
-      // iPad
-      Orientation.addOrientationListener(this.orientationDidChange);
-    }
-  }
-
-  componentWillUnmount() {
-    Orientation.removeOrientationListener(this.orientationDidChange);
-  }
-
-  renderItem = ({ item, index }) =>
-    <IllustItem
-      key={item.id}
-      item={item}
-      index={index}
-      numColumns={this.state.ILLUST_COLUMNS}
-      onPressItem={() => this.handleOnPressItem(item)}
-    />;
 
   renderFooter = () => {
     const { data: { nextUrl, loading } } = this.props;
@@ -134,6 +95,7 @@ class IllustList extends Component {
       maxItems,
       muteTags,
       muteUsers,
+      orientation: { illustColumns },
     } = this.props;
 
     const muteFilter = () => {
@@ -155,17 +117,14 @@ class IllustList extends Component {
               onLayout={this.handleOnLayout}
               ref={ref => (this.illustList = ref)}
               data={muteFilter()}
-              numColumns={this.state.ILLUST_COLUMNS}
+              numColumns={illustColumns}
               keyExtractor={item => item.id}
               renderItem={this.renderItem}
-              key={this.state.orientation}
+              key={illustColumns}
               getItemLayout={(data, index) => ({
-                length:
-                  globalStyleVariables.WINDOW_WIDTH() / this.state.ILLUST_COLUMNS,
+                length: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
                 offset:
-                  globalStyleVariables.WINDOW_WIDTH() /
-                  this.state.ILLUST_COLUMNS *
-                  index,
+                  globalStyleVariables.WINDOW_WIDTH() / illustColumns * index,
                 index,
               })}
               removeClippedSubviews={Platform.OS === 'android'}
@@ -191,10 +150,11 @@ class IllustList extends Component {
 
 export default withNavigation(
   connect(state => {
-    const { muteTags, muteUsers } = state;
+    const { muteTags, muteUsers, orientation } = state;
     return {
       muteTags,
       muteUsers,
+      orientation,
     };
   }, bookmarkIllustActionCreators)(IllustList),
 );

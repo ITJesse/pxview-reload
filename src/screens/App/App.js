@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import {
-  View,
-  StyleSheet,
-  DeviceEventEmitter,
-  findNodeHandle,
-} from 'react-native';
+import { View, StyleSheet, DeviceEventEmitter } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import PrivacySnapshot from 'react-native-privacy-snapshot';
+import Orientation from 'react-native-orientation';
 
 import AppNavigator from '../../navigations/AppNavigator';
 import LoginNavigator from '../../navigations/LoginNavigator';
@@ -19,6 +15,8 @@ import Loader from '../../components/Loader';
 import ModalRoot from '../../containers/ModalRoot';
 import * as routeActionCreators from '../../common/actions/route';
 import * as touchIDActions from '../../common/actions/touchid';
+import * as orientationActions from '../../common/actions/orientation';
+import { globalStyleVariables } from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,6 +25,11 @@ const styles = StyleSheet.create({
 });
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.orientationDidChange = this.orientationDidChange.bind(this);
+  }
+
   componentDidMount() {
     MessageBarManager.registerMessageBar(this.messageBarAlert);
     this.showToastListener = DeviceEventEmitter.addListener(
@@ -54,12 +57,25 @@ class App extends Component {
 
   componentWillMount() {
     PrivacySnapshot.enabled(true);
+    const initial = Orientation.getInitialOrientation();
+    this.orientationDidChange(initial);
+    const width = globalStyleVariables.WINDOW_WIDTH();
+    const height = globalStyleVariables.WINDOW_HEIGHT();
+    if (height / width < 1.6) {
+      // iPad
+      Orientation.addOrientationListener(this.orientationDidChange);
+    }
   }
 
   componentWillUnmount() {
     MessageBarManager.unregisterMessageBar();
     this.showToastListener.remove();
     PrivacySnapshot.enabled(false);
+  }
+
+  orientationDidChange(orientation) {
+    const { setOrientation } = this.props;
+    setOrientation(orientation);
   }
 
   render() {
@@ -109,6 +125,7 @@ export default connectLocalization(
     {
       ...routeActionCreators,
       ...touchIDActions,
+      ...orientationActions,
     },
   )(App),
 );

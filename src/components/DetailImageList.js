@@ -8,7 +8,6 @@ import {
   Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
-import Orientation from 'react-native-orientation';
 
 import DetailFooter from './DetailFooter';
 import PXCacheImageTouchable from './PXCacheImageTouchable';
@@ -72,7 +71,6 @@ class DetailImageList extends Component {
       selectedTag: null,
       rotate: false,
     };
-    this.onRotate = this.onRotate.bind(this);
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -80,15 +78,15 @@ class DetailImageList extends Component {
       item: prevItem,
       tags: prevTags,
       isMuteUser: prevIsMuteUser,
+      orientation: prevOrientation,
     } = this.props;
-    const { item, tags, isMuteUser } = nextProps;
+    const { item, tags, isMuteUser, orientation } = nextProps;
     const {
       isInitState: prevIsInitState,
       isScrolling: prevIsScrolling,
       imagePageNumber: prevImagePageNumber,
       isOpenTagBottomSheet: prevIsOpenTagBottomSheet,
       selectedTag: prevSelectedTag,
-      rotate: prevRotate,
     } = this.state;
     const {
       isInitState,
@@ -96,7 +94,6 @@ class DetailImageList extends Component {
       imagePageNumber,
       isOpenTagBottomSheet,
       selectedTag,
-      rotate,
     } = nextState;
     if (item.user.is_followed !== prevItem.user.is_followed) {
       return true;
@@ -109,25 +106,15 @@ class DetailImageList extends Component {
       selectedTag !== prevSelectedTag ||
       tags !== prevTags ||
       isMuteUser !== prevIsMuteUser ||
-      rotate !== prevRotate
+      orientation !== prevOrientation
     ) {
       return true;
     }
     return false;
   }
 
-  onRotate() {
-    this.setState({ rotate: !this.state.rotate });
-  }
-
-  componentWillMount() {
-    Orientation.addOrientationListener(this.onRotate);
-  }
-
   componentWillUnmount() {
     clearTimeout(this.timer);
-    clearTimeout(this.rotateTimer);
-    Orientation.removeOrientationListener(this.onRotate);
   }
 
   handleOnPressTag = tag => {
@@ -422,6 +409,7 @@ export default connect(
       muteTags: state.muteTags.items,
       isMuteUser: state.muteUsers.items.some(m => m === props.item.user.id),
       tags: getTagsWithStatus(state, props),
+      orientation: state.orientation.orientation,
     });
   },
   {
