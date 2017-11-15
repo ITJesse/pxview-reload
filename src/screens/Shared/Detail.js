@@ -453,7 +453,6 @@ export default enhanceSaveImage(
     () => {
       const getDetailItem = makeGetDetailItem();
       return (state, props) => {
-        console.log(props);
         const item = getDetailItem(state, props);
         const isMuteUser = item
           ? state.muteUsers.items.some(m => m === item.user.id)
