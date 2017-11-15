@@ -12,6 +12,8 @@ import {
 import { connect } from 'react-redux';
 import Share from 'react-native-share';
 import ActionButton from 'react-native-action-button';
+import { Answers } from 'react-native-fabric';
+
 import enhanceSaveImage from '../../components/HOC/enhanceSaveImage';
 import DetailImageList from '../../components/DetailImageList';
 import PXHeader from '../../components/PXHeader';
@@ -90,6 +92,9 @@ class Detail extends Component {
       addBrowsingHistory,
       fetchIllustDetail,
     } = this.props;
+    Answers.logContentView('Detail', 'Illust', `${illustId}`, {
+      title: item.title,
+    });
     InteractionManager.runAfterInteractions(() => {
       if (this.detailView) {
         this.setState({ mounting: false });

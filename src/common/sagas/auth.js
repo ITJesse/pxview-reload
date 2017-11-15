@@ -1,6 +1,7 @@
 import { delay } from 'redux-saga';
 import {
   take,
+  takeEvery,
   call,
   apply,
   put,
@@ -12,6 +13,8 @@ import {
 import moment from 'moment';
 import { REHYDRATE } from 'redux-persist/constants';
 import { FOREGROUND, BACKGROUND } from 'redux-enhancer-react-native-appstate';
+import { Answers } from 'react-native-fabric';
+
 import {
   login,
   loginSuccess,
@@ -237,4 +240,28 @@ export function* watchRehydrate() {
       yield put(rehydrateSuccess());
     }
   }
+}
+
+export function* watchLoginSuccess() {
+  yield takeEvery(AUTH_LOGIN.SUCCESS, function*() {
+    yield call(Answers.logLogin, 'Account', true);
+  });
+}
+
+export function* watchLoginFailure() {
+  yield takeEvery(AUTH_LOGIN.FAILURE, function*() {
+    yield call(Answers.logLogin, 'Account', false);
+  });
+}
+
+export function* watchSignUpSuccess() {
+  yield takeEvery(AUTH_SIGNUP.SUCCESS, function*() {
+    yield call(Answers.logSignUp, 'Provisional', true);
+  });
+}
+
+export function* watchSignUpFailure() {
+  yield takeEvery(AUTH_SIGNUP.FAILURE, function*() {
+    yield call(Answers.logSignUp, 'Provisional', false);
+  });
 }

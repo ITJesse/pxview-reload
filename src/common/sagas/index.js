@@ -4,6 +4,10 @@ import {
   watchSignUpRequest,
   watchRefreshAccessTokenRequest,
   watchRehydrate,
+  watchLoginSuccess,
+  watchLoginFailure,
+  watchSignUpSuccess,
+  watchSignUpFailure,
 } from './auth';
 import { watchError } from './error';
 import { watchFetchWalkthroughIllusts } from './walkthroughIllusts';
@@ -90,5 +94,9 @@ export default function* rootSaga() {
     watchSendVerificationEmail(),
     watchBackgroundForTouchID(),
     watchOrientationChange(),
+    watchLoginSuccess(),
+    watchLoginFailure(),
+    watchSignUpSuccess(),
+    watchSignUpFailure(),
   ]);
 }

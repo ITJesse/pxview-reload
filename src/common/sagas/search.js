@@ -1,5 +1,7 @@
 import { normalize } from 'normalizr';
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, call } from 'redux-saga/effects';
+import { Answers } from 'react-native-fabric';
+
 import { fetchSearchSuccess, fetchSearchFailure } from '../actions/search';
 import { addError } from '../actions/error';
 import pixiv from '../helpers/apiClient';
@@ -8,6 +10,7 @@ import Schemas from '../constants/schemas';
 
 export function* handleFetchSearch(action) {
   const { navigationStateKey, word, options, nextUrl } = action.payload;
+  yield call(Answers.logSearch, word);
   try {
     let response;
     if (nextUrl) {

@@ -14,8 +14,6 @@ import {
   CLOSE,
   STOP,
   SET,
-  PORTRAIT,
-  LANDSCAPE,
 } from './stateConstants';
 
 const appNamespace = defineAction('PIXIV');

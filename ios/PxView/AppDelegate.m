@@ -16,6 +16,7 @@
 #import <React/RCTLog.h>
 #import <asl.h>
 @import Firebase;
+#import "SplashScreen.h"
 //#import "PXUtils.h"
 
 
@@ -52,6 +53,7 @@
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   
+  [SplashScreen show];
   return YES;
 }
 

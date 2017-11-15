@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Button } from 'react-native-elements';
 import OverlaySpinner from 'react-native-loading-spinner-overlay';
+
 import { connectLocalization } from '../../components/Localization';
 import PXFormInput from '../../components/PXFormInput';
 import WalkthroughIllustList from '../../containers/WalkthroughIllustList';

@@ -49,8 +49,8 @@ class App extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { rehydrated: prevRehydrated } = this.props;
-    const { rehydrated } = nextProps;
-    if (!prevRehydrated && rehydrated) {
+    const { rehydrated, useTouchID, shouldCheckTouchID } = nextProps;
+    if (!prevRehydrated && rehydrated && !(useTouchID && shouldCheckTouchID)) {
       SplashScreen.hide();
     }
   }

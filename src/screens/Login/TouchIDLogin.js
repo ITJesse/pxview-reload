@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import TouchID from 'react-native-touch-id';
 import CookieManager from 'react-native-cookies';
+import { Answers } from 'react-native-fabric';
+import SplashScreen from 'react-native-splash-screen';
 
 import { connectLocalization } from '../../components/Localization';
 import * as authActionCreators from '../../common/actions/auth';
@@ -60,6 +62,7 @@ class TouchIDLogin extends Component {
   componentDidMount() {
     this.timer = setTimeout(() => {
       this.setState({ timeout: true });
+      SplashScreen.hide();
     }, 1500);
   }
 
@@ -72,10 +75,12 @@ class TouchIDLogin extends Component {
     TouchID.authenticate(i18n.useTouchIDLoginDescription)
       .then(() => {
         // Success code
+        Answers.logLogin('Touch ID', true);
         setShouldCheckTouchID(false);
       })
       .catch(error => {
         // Failure code
+        Answers.logLogin('Touch ID', false, { error: error.name });
         switch (error.name) {
           case 'LAErrorTouchIDNotAvailable':
             DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
