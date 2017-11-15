@@ -31,6 +31,7 @@ import * as illustDetailActionCreators from '../../common/actions/illustDetail';
 import { makeGetDetailItem } from '../../common/selectors';
 import { SCREENS } from '../../common/constants';
 import firebase from '../../common/helpers/firebase';
+import { globalStyleVariables } from '../../styles';
 
 const THUMBNAIL_SIZE = 30;
 
@@ -41,6 +42,11 @@ const styles = StyleSheet.create({
   headerTitleContainer: {
     flex: 1,
     alignItems: Platform.OS === 'android' ? 'flex-start' : 'center',
+    ...Platform.select({
+      ios: {
+        maxWidth: globalStyleVariables.WINDOW_WIDTH - 150,
+      },
+    }),
   },
   headerThumnailNameContainer: {
     flexDirection: 'row',
@@ -447,6 +453,7 @@ export default enhanceSaveImage(
     () => {
       const getDetailItem = makeGetDetailItem();
       return (state, props) => {
+        console.log(props);
         const item = getDetailItem(state, props);
         const isMuteUser = item
           ? state.muteUsers.items.some(m => m === item.user.id)
