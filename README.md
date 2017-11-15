@@ -42,7 +42,10 @@ Unofficial Pixiv app client for Android and iOS, built in React Native.
 
 
 ## Download 
-<a href='https://play.google.com/store/apps/details?id=com.utopia.pxview&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="175" /></a>
+<a href='https://play.google.com/store/apps/details?id=com.utopia.pxview&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&utm_source=github&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="175" /></a>
+
+
+<a href="https://itunes.apple.com/us/app/pxview-reload/id1286972382?l=zh&ls=1&mt=8"><img alt='Get it on App Store' src='./screenshots/appstore.svg' width="155" /></a>
 
 
 ## Getting Started
