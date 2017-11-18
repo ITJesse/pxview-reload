@@ -46,8 +46,8 @@ class Root extends Component {
   constructor(props) {
     super(props);
     if (Platform.OS === 'ios') {
-      // StatusBar.setBarStyle('light-content', true)
-      StatusBar.setBarStyle('default');
+      StatusBar.setBarStyle('light-content', true);
+      // StatusBar.setBarStyle('default');
     }
   }
 

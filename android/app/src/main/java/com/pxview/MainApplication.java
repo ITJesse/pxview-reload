@@ -3,8 +3,8 @@ package com.pxview;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.cmcewen.blurview.BlurViewPackage;
 import com.github.yamill.orientation.OrientationPackage;
-import com.oblador.keychain.KeychainPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.smixx.fabric.FabricPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -22,7 +22,6 @@ import com.RNFetchBlob.RNFetchBlobPackage;
 import com.smixx.fabric.FabricPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.psykar.cookiemanager.CookieManagerPackage;
-import com.cmcewen.blurview.BlurViewPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -43,8 +42,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new BlurViewPackage(),
             new OrientationPackage(),
-            new KeychainPackage(),
             new VectorIconsPackage(),
             new FabricPackage(),
             new RNDeviceInfo(),
@@ -61,9 +60,13 @@ public class MainApplication extends Application implements ReactApplication {
             new RNFetchBlobPackage(),
             new FabricPackage(),
             new RNDeviceInfo(),
-            new CookieManagerPackage(),
-            new BlurViewPackage()
+            new CookieManagerPackage()
       );
+    }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
     }
   };
 

@@ -312,6 +312,12 @@ export const SHOULD_CHECK_TOUCHID = defineAction(
   appNamespace,
 );
 
+export const SHOW_TOUCHID_UI = defineAction(
+  'SHOW_TOUCHID_UI',
+  [SET, CLEAR],
+  appNamespace,
+);
+
 export const ORIENTATION = defineAction('ORIENTATION', [SET], appNamespace);
 
 export const ILLUST_COLUMNS = defineAction(

@@ -87,13 +87,6 @@ class Login extends Component {
   //   }
   // }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      fallbackLogin: false,
-    };
-  }
-
   submit = data => {
     const { login } = this.props;
     const { email, password } = data;

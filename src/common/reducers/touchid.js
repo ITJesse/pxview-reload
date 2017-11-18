@@ -1,9 +1,14 @@
-import { USE_TOUCHID, SHOULD_CHECK_TOUCHID } from '../constants/actionTypes';
+import {
+  USE_TOUCHID,
+  SHOULD_CHECK_TOUCHID,
+  SHOW_TOUCHID_UI,
+} from '../constants/actionTypes';
 
 export default function touchid(
   state = {
     useTouchID: false,
     shouldCheckTouchID: false,
+    showTouchIDUI: true,
   },
   action = {},
 ) {
@@ -39,6 +44,18 @@ export default function touchid(
       return {
         ...state,
         shouldCheckTouchID: false,
+      };
+    }
+    case SHOW_TOUCHID_UI.SET: {
+      return {
+        ...state,
+        showTouchIDUI: true,
+      };
+    }
+    case SHOW_TOUCHID_UI.CLEAR: {
+      return {
+        ...state,
+        showTouchIDUI: false,
       };
     }
     default:

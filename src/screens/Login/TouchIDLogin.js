@@ -52,22 +52,8 @@ const styles = StyleSheet.create({
 });
 
 class TouchIDLogin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeout: false,
-    };
-  }
-
   componentDidMount() {
-    this.timer = setTimeout(() => {
-      this.setState({ timeout: true });
-      SplashScreen.hide();
-    }, 1500);
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
+    SplashScreen.hide();
   }
 
   handleTouchIDLogin = () => {
@@ -152,10 +138,11 @@ class TouchIDLogin extends Component {
   };
 
   render() {
-    const { i18n } = this.props;
+    const { i18n, showTouchIDUI } = this.props;
+    console.log(showTouchIDUI);
     return (
       <Modal style={styles.container}>
-        {this.state.timeout &&
+        {showTouchIDUI &&
           <View style={styles.innerContainer}>
             <View style={styles.logoContainer}>
               <Image
@@ -191,6 +178,7 @@ export default connectLocalization(
       auth: state.auth,
       modal: state.modal,
       useTouchID: state.touchid.useTouchID,
+      showTouchIDUI: state.touchid.showTouchIDUI,
       onLoginSuccess:
         props.onLoginSuccess ||
         (props.navigation.state &&
