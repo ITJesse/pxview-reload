@@ -52,7 +52,7 @@ int main(int argc, char * argv[]) {
   @autoreleasepool {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      [NSObject hook];
+//      [NSObject hook];
     });
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }
