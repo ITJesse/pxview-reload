@@ -69,8 +69,8 @@ const AppTabNavigator = TabNavigator(
   {
     headerMode: 'none',
     swipeEnabled: false,
-    animationEnabled: false,
-    lazy: true,
+    animationEnabled: true,
+    lazy: false,
     tabBarPosition: 'bottom',
     tabBarComponent:
       Platform.OS === 'android' ? NavigationComponent : TabBarBottom,
@@ -79,6 +79,10 @@ const AppTabNavigator = TabNavigator(
       inactiveTintColor: 'rgb(204,204,204)',
       showIcon: true,
       showLabel: true,
+      style: {
+        height: 48,
+        paddingBottom: 4,
+      },
       bottomNavigationOptions: {
         style: {
           borderTopWidth: 0,

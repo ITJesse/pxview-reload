@@ -56,6 +56,7 @@ const stackConfig = {
   navigationOptions: {
     headerStyle: {
       backgroundColor: globalStyleVariables.HEADER_BACKGROUND_COLOR,
+      height: 48,
     },
     headerTintColor: globalStyleVariables.HEADER_TINT_COLOR,
     headerBackTitle: null,
