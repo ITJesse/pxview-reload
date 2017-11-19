@@ -139,7 +139,6 @@ class TouchIDLogin extends Component {
 
   render() {
     const { i18n, showTouchIDUI } = this.props;
-    console.log(showTouchIDUI);
     return (
       <Modal style={styles.container}>
         {showTouchIDUI &&

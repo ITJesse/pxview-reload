@@ -38,12 +38,13 @@ class App extends Component {
         this.toast.show(text, DURATION.LENGTH_LONG);
       },
     );
-    const { rehydrated, setShouldCheckTouchID } = this.props;
+    const { rehydrated, setShouldCheckTouchID, setShowTouchIDUI } = this.props;
     if (rehydrated) {
       // call when reopen app after exit by back button on android
       setTimeout(SplashScreen.hide, 1000);
     } else {
       setShouldCheckTouchID(true);
+      setShowTouchIDUI(true);
     }
   }
 
