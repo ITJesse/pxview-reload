@@ -51,7 +51,8 @@
 		486570621FA4FC2A009B6E11 /* HTTPDNSDNSPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570551FA4FC2A009B6E11 /* HTTPDNSDNSPod.m */; };
 		486570631FA4FC2A009B6E11 /* HTTPDNSGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570581FA4FC2A009B6E11 /* HTTPDNSGoogle.m */; };
 		4887DF6E1FA25BF400B500C3 /* PXURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */; };
-		48D0DC821FC0F2A70045174C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DC811FC0F2A70045174C /* LaunchScreen.storyboard */; };
+		48D0DD201FC10BB60045174C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD1F1FC10BB60045174C /* Assets.xcassets */; };
+		48D0DD221FC10DA50045174C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD211FC10DA50045174C /* Launch Screen.storyboard */; };
 		48D3D8C41FA51C9200D6D66B /* PXDNSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */; };
 		48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48F887571FA654D50043796C /* GoogleService-Info.plist */; };
 		48F8878D1FA65FD00043796C /* PXUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F8878C1FA65FD00043796C /* PXUtils.m */; };
@@ -580,7 +581,8 @@
 		4865705A1FA4FC2A009B6E11 /* HTTPDNSCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSCryptor.h; sourceTree = "<group>"; };
 		4887DF6C1FA25BCF00B500C3 /* PXURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXURLProtocol.h; path = PxView/PXURLProtocol.h; sourceTree = "<group>"; };
 		4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXURLProtocol.m; path = PxView/PXURLProtocol.m; sourceTree = "<group>"; };
-		48D0DC811FC0F2A70045174C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = PxView/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		48D0DD1F1FC10BB60045174C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = PxView/Assets.xcassets; sourceTree = "<group>"; };
+		48D0DD211FC10DA50045174C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "PxView/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		48D3D88F1FA51C4500D6D66B /* PXDNSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDNSManager.h; path = PxView/PXDNSManager.h; sourceTree = "<group>"; };
 		48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXDNSManager.m; path = PxView/PXDNSManager.m; sourceTree = "<group>"; };
 		48F887571FA654D50043796C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PxView/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -808,7 +810,8 @@
 				48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */,
 				48F8878C1FA65FD00043796C /* PXUtils.m */,
 				48F8878F1FA660720043796C /* PXUtils.h */,
-				48D0DC811FC0F2A70045174C /* LaunchScreen.storyboard */,
+				48D0DD1F1FC10BB60045174C /* Assets.xcassets */,
+				48D0DD211FC10DA50045174C /* Launch Screen.storyboard */,
 			);
 			name = PxView;
 			sourceTree = "<group>";
@@ -1900,7 +1903,6 @@
 				48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				DEB52BCC1F0CC73D003F7E27 /* InfoPlist.strings in Resources */,
-				48D0DC821FC0F2A70045174C /* LaunchScreen.storyboard in Resources */,
 				D5E5A830C3DC4F51B3392710 /* Entypo.ttf in Resources */,
 				02E44289B1224E0294770A36 /* EvilIcons.ttf in Resources */,
 				9F37BAA1544942359C06F3CD /* FontAwesome.ttf in Resources */,
@@ -1908,9 +1910,11 @@
 				294FE8D9B3D94AE0B380CB5B /* Ionicons.ttf in Resources */,
 				FEF93A32BCB4412A9A074E98 /* MaterialIcons.ttf in Resources */,
 				DA438169BE3D4E17A624A091 /* Octicons.ttf in Resources */,
+				48D0DD221FC10DA50045174C /* Launch Screen.storyboard in Resources */,
 				4F8B557EDA034C43989D7BC0 /* SimpleLineIcons.ttf in Resources */,
 				18F34E3117174A909735C364 /* Zocial.ttf in Resources */,
 				035C78D366474595B7F3A807 /* MaterialCommunityIcons.ttf in Resources */,
+				48D0DD201FC10BB60045174C /* Assets.xcassets in Resources */,
 				8A6E2332DC84435BBEB1D8F8 /* Feather.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2204,7 +2208,6 @@
 			baseConfigurationReference = 4A7B727CF347E0DE51160144 /* Pods-PxView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2230,6 +2233,7 @@
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 				);
 				INFOPLIST_FILE = PxView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2249,7 +2253,6 @@
 			baseConfigurationReference = A0EEED11A8DD59E24818F24A /* Pods-PxView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -2274,6 +2277,7 @@
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 				);
 				INFOPLIST_FILE = PxView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
