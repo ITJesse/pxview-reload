@@ -144,7 +144,6 @@ class Trending extends Component {
           showSearchBar
           word={word}
           showBackButton={isFocusSearchBar}
-          showMenuButton={!config.navigation.tab && !isFocusSearchBar}
           searchType={searchType}
           onFocus={this.handleOnFocusSearchBar}
           onChangeText={this.handleOnChangeSearchText}

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { StyleSheet, View, Platform, StatusBar } from 'react-native';
 import { HeaderBackButton, withNavigation } from 'react-navigation';
-import DrawerMenuButton from '../components/DrawerMenuButton';
 import { globalStyleVariables } from '../styles';
 
 const styles = StyleSheet.create({
@@ -51,7 +50,6 @@ const styles = StyleSheet.create({
 class PXHeader extends Component {
   static propTypes = {
     onPressBackButton: PropTypes.func,
-    showMenuButton: PropTypes.bool,
     showBackButton: PropTypes.bool,
     headerTitle: PropTypes.element,
     headerRight: PropTypes.element,
@@ -60,7 +58,6 @@ class PXHeader extends Component {
 
   static defaultProps = {
     onPressBackButton: null,
-    showMenuButton: false,
     showBackButton: false,
     headerTitle: null,
     headerRight: null,
@@ -83,7 +80,6 @@ class PXHeader extends Component {
 
   render() {
     const {
-      showMenuButton,
       showBackButton,
       headerTitle,
       headerRight,
@@ -99,11 +95,6 @@ class PXHeader extends Component {
         ]}
       >
         <View style={styles.subContainer}>
-          {showMenuButton &&
-            <DrawerMenuButton
-              onPress={this.handleOnPressDrawerMenuButton}
-              color={darkTheme ? '#fff' : globalStyleVariables.PRIMARY_COLOR}
-            />}
           {showBackButton &&
             <HeaderBackButton
               onPress={this.handleOnPressBackButton}

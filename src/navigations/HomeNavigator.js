@@ -1,33 +1,16 @@
-import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import enhanceRouter from './routers/enhanceRouter';
 import Home from '../screens/Home/Home';
-import DrawerMenuButton from '../components/DrawerMenuButton';
-import DrawerIcon from '../components/DrawerIcon';
 import { globalStyles, globalStyleVariables } from '../styles';
 import config from '../common/config';
 import { SCREENS } from '../common/constants';
 
-const navigationOptionsForTab = {
-  header: null,
-};
-
-const navigationOptionsForDrawer = ({ navigation, screenProps: { i18n } }) => ({
-  title: i18n.home,
-  drawerLabel: i18n.home,
-  drawerIcon: ({ tintColor }) =>
-    <DrawerIcon name="home" size={24} color={tintColor} />,
-  headerLeft: (
-    <DrawerMenuButton onPress={() => navigation.navigate('DrawerOpen')} />
-  ),
-});
-
 const routeConfig = {
   [SCREENS.Home]: {
     screen: Home,
-    navigationOptions: config.navigation.tab
-      ? navigationOptionsForTab
-      : navigationOptionsForDrawer,
+    navigationOptions: {
+      header: null,
+    },
   },
 };
 
