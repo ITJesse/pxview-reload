@@ -71,8 +71,10 @@ const styles = StyleSheet.create({
   actionContainer: {
     paddingHorizontal: 10,
     paddingVertical: 20,
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   row: {
     padding: 10,
@@ -334,18 +336,17 @@ class BookmarkModal extends Component {
                   />
                 </View>
                 <Separator />
-                <View
-                  style={[
-                    styles.actionContainer,
-                    !isBookmark && { justifyContent: 'center' },
-                  ]}
-                >
-                  {isBookmark &&
-                    <PXTouchable onPress={this.handleOnPressRemoveButton}>
+                {isBookmark &&
+                  <PXTouchable onPress={this.handleOnPressRemoveButton}>
+                    <View
+                      style={[styles.actionContainer, { paddingVertical: 30 }]}
+                    >
                       <Text>
                         {i18n.likeRemove}
                       </Text>
-                    </PXTouchable>}
+                    </View>
+                  </PXTouchable>}
+                {!isBookmark &&
                   <PXTouchable
                     style={
                       !isBookmark && {
@@ -355,18 +356,17 @@ class BookmarkModal extends Component {
                     }
                     onPress={this.handleOnPressBookmarkButton}
                   >
-                    {!isBookmark &&
+                    <View style={styles.actionContainer}>
                       <MaterialIcon
                         name="favorite"
                         color="rgb(210, 212, 216)"
                         size={20}
-                      />}
-
-                    <Text>
-                      {isBookmark ? i18n.save : i18n.likeAdd}
-                    </Text>
-                  </PXTouchable>
-                </View>
+                      />
+                      <Text>
+                        {isBookmark ? i18n.save : i18n.likeAdd}
+                      </Text>
+                    </View>
+                  </PXTouchable>}
               </View>
             </TouchableWithoutFeedback>
           </View>

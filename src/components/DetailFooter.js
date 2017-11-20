@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   footerSpacer: {
-    marginBottom: 120,
+    marginBottom: 50,
   },
 });
 
