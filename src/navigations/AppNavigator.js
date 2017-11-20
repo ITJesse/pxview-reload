@@ -1,6 +1,5 @@
 import { StackNavigator } from 'react-navigation';
 import AppTabNavigator from './AppTabNavigator';
-import AppDrawerNavigator from './AppDrawerNavigator';
 import enhanceRouter from './routers/enhanceRouter';
 // import Login from '../screens/Login/Login';
 import SearchFilterModal from '../components/SearchFilterModal';
@@ -11,12 +10,11 @@ import Encyclopedia from '../screens/Shared/Encyclopedia';
 import myPageRouteConfig from './routeConfigs/myPage';
 import sharedRouteConfig from './routeConfigs/shared';
 import { globalStyles, globalStyleVariables } from '../styles';
-import config from '../common/config';
 import { SCREENS } from '../common/constants';
 
 const appRouteConfig = {
   [SCREENS.Main]: {
-    screen: config.navigation.tab ? AppTabNavigator : AppDrawerNavigator,
+    screen: AppTabNavigator,
     navigationOptions: {
       header: null,
     },

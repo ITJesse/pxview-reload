@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, Platform } from 'react-native';
+import { View, Image } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { globalStyleVariables } from '../styles';
 
@@ -26,10 +26,7 @@ class PXCacheImage extends Component {
       .then(res => {
         if (!this.unmounting) {
           // const base64Str = `data:image/png;base64,${res.base64()}`;
-          const filePath =
-            Platform.OS === 'android'
-              ? `file://${res.path()}`
-              : `${res.path()}`;
+          const filePath = `${res.path()}`;
           Image.getSize(filePath, (width, height) => {
             if (!this.unmounting) {
               this.setState({

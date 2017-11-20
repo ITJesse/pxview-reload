@@ -1,18 +1,11 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { Icon } from 'react-native-elements';
-import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import HomeNavigator from './HomeNavigator';
 import RankingNavigator from './RankingNavigator';
 import TrendingNavigator from './TrendingNavigator';
 import NewWorksNavigator from './NewWorksNavigator';
 import MyPageNavigator from './MyPageNavigator';
-import Home from '../screens/Home/Home';
-import Ranking from '../screens/Ranking/Ranking';
-import Trending from '../screens/Trending/Trending';
-import NewWorks from '../screens/NewWorks/NewWorks';
-import MyPage from '../screens/MyPage/MyPage';
 import { SCREENS } from '../common/constants';
 
 const renderTabBarIcon = (tintColor, focused, name, iconType) =>
@@ -26,7 +19,7 @@ const renderTabBarIcon = (tintColor, focused, name, iconType) =>
 const AppTabNavigator = TabNavigator(
   {
     [SCREENS.HomeTab]: {
-      screen: Platform.OS === 'android' ? Home : HomeNavigator,
+      screen: HomeNavigator,
       navigationOptions: ({ screenProps: { i18n } }) => ({
         tabBarLabel: i18n.home,
         tabBarIcon: ({ tintColor, focused }) =>
@@ -34,7 +27,7 @@ const AppTabNavigator = TabNavigator(
       }),
     },
     [SCREENS.RankingTab]: {
-      screen: Platform.OS === 'android' ? Ranking : RankingNavigator,
+      screen: RankingNavigator,
       navigationOptions: ({ screenProps: { i18n } }) => ({
         tabBarLabel: i18n.ranking,
         tabBarIcon: ({ tintColor, focused }) =>
@@ -42,7 +35,7 @@ const AppTabNavigator = TabNavigator(
       }),
     },
     [SCREENS.TrendingTab]: {
-      screen: Platform.OS === 'android' ? Trending : TrendingNavigator,
+      screen: TrendingNavigator,
       navigationOptions: ({ screenProps: { i18n } }) => ({
         tabBarLabel: i18n.search,
         tabBarIcon: ({ tintColor, focused }) =>
@@ -50,7 +43,7 @@ const AppTabNavigator = TabNavigator(
       }),
     },
     [SCREENS.NewWorksTab]: {
-      screen: Platform.OS === 'android' ? NewWorks : NewWorksNavigator,
+      screen: NewWorksNavigator,
       navigationOptions: ({ screenProps: { i18n } }) => ({
         tabBarLabel: i18n.newest,
         tabBarIcon: ({ tintColor, focused }) =>
@@ -58,7 +51,7 @@ const AppTabNavigator = TabNavigator(
       }),
     },
     [SCREENS.MyPageTab]: {
-      screen: Platform.OS === 'android' ? MyPage : MyPageNavigator,
+      screen: MyPageNavigator,
       navigationOptions: ({ screenProps: { i18n } }) => ({
         tabBarLabel: i18n.myPage,
         tabBarIcon: ({ tintColor, focused }) =>
@@ -72,8 +65,7 @@ const AppTabNavigator = TabNavigator(
     animationEnabled: true,
     lazy: false,
     tabBarPosition: 'bottom',
-    tabBarComponent:
-      Platform.OS === 'android' ? NavigationComponent : TabBarBottom,
+    tabBarComponent: TabBarBottom,
     tabBarOptions: {
       activeTintColor: 'rgb(59,89,152)',
       inactiveTintColor: 'rgb(204,204,204)',

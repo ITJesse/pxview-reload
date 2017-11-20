@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: Platform.OS === 'android' ? 'flex-start' : 'center',
+    alignItems: 'center',
   },
   text: {
     fontSize: 17,

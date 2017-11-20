@@ -4,9 +4,7 @@ import {
   Text,
   View,
   InteractionManager,
-  Platform,
   LayoutAnimation,
-  UIManager,
   DeviceEventEmitter,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -43,12 +41,8 @@ const styles = StyleSheet.create({
   },
   headerTitleContainer: {
     flex: 1,
-    alignItems: Platform.OS === 'android' ? 'flex-start' : 'center',
-    ...Platform.select({
-      ios: {
-        maxWidth: globalStyleVariables.WINDOW_WIDTH - 150,
-      },
-    }),
+    alignItems: 'center',
+    maxWidth: globalStyleVariables.WINDOW_WIDTH - 150,
   },
   headerThumnailNameContainer: {
     flexDirection: 'row',
@@ -77,11 +71,6 @@ class Detail extends Component {
       selectedImageIndex: null,
     };
     this.listViewOffset = 0;
-    if (Platform.OS === 'android') {
-      /* eslint no-unused-expressions: ["error", { "allowShortCircuit": true }] */
-      UIManager.setLayoutAnimationEnabledExperimental &&
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-    }
   }
 
   componentDidMount() {

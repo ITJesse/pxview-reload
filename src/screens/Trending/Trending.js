@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Keyboard,
-  Platform,
-  BackHandler,
-} from 'react-native';
+import { StyleSheet, View, Keyboard, BackHandler } from 'react-native';
 import TrendingIllustTags from './TrendingIllustTags';
 import RecommendedUsers from '../Shared/RecommendedUsers';
 import Search from '../../containers/Search';
@@ -13,7 +7,6 @@ import PXSearchBar from '../../components/PXSearchBar';
 import PXTabView from '../../components/PXTabView';
 import { connectLocalization } from '../../components/Localization';
 import { SEARCH_TYPES, SCREENS } from '../../common/constants';
-import config from '../../common/config';
 
 const styles = StyleSheet.create({
   container: {
@@ -38,15 +31,6 @@ class Trending extends Component {
       word: null,
       searchType: SEARCH_TYPES.ILLUST,
     };
-  }
-
-  componentDidMount() {
-    if (Platform.OS === 'android') {
-      this.backHandlerListener = BackHandler.addEventListener(
-        'hardwareBackPress',
-        this.handleOnPressBackButton,
-      );
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -144,7 +128,6 @@ class Trending extends Component {
           showSearchBar
           word={word}
           showBackButton={isFocusSearchBar}
-          showMenuButton={!config.navigation.tab && !isFocusSearchBar}
           searchType={searchType}
           onFocus={this.handleOnFocusSearchBar}
           onChangeText={this.handleOnChangeSearchText}

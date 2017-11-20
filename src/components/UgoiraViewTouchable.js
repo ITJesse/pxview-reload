@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Platform,
-  TouchableWithoutFeedback,
-  StyleSheet,
-} from 'react-native';
+import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { unzip } from 'react-native-zip-archive';
@@ -167,10 +162,7 @@ class UgoiraViewTouchable extends Component {
           {ugoiraPath
             ? <UgoiraView
                 images={ugoiraMeta.item.frames.map(frame => ({
-                  uri:
-                    Platform.OS === 'android'
-                      ? `file://${ugoiraPath}/${frame.file}`
-                      : `${ugoiraPath}/${frame.file}`,
+                  uri: `${ugoiraPath}/${frame.file}`,
                   delay: frame.delay,
                 }))}
                 paused={paused}

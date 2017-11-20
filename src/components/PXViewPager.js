@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Platform, ViewPagerAndroid, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import Loader from './Loader';
-import { globalStyles, globalStyleVariables } from '../styles';
+import { globalStyleVariables } from '../styles';
 
 const LIST_WINDOW_SIZE = 5;
 
@@ -46,18 +46,6 @@ class PXViewPager extends Component {
 
   render() {
     const { items, index, renderContent, onEndReached } = this.props;
-    if (Platform.OS === 'android') {
-      return (
-        <ViewPagerAndroid
-          key={`pxViewPager-${items.length}`} // https://github.com/facebook/react-native/issues/4775
-          initialPage={index}
-          style={globalStyles.container}
-          onPageSelected={this.handleOnAndroidViewPagerPageSelected}
-        >
-          {this.renderContentForAndroid()}
-        </ViewPagerAndroid>
-      );
-    }
     return (
       <FlatList
         ref={ref => (this.flatList = ref)}

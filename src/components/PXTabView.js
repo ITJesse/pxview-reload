@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   TabViewAnimated,
   TabBar,
   TabViewPagerScroll,
-  TabViewPagerPan,
 } from 'react-native-tab-view';
 import { globalStyleVariables } from '../styles';
 
@@ -35,10 +34,7 @@ class PXTabView extends Component {
     );
   };
 
-  renderPager = props =>
-    Platform.OS === 'ios'
-      ? <TabViewPagerScroll {...props} />
-      : <TabViewPagerPan {...props} />;
+  renderPager = props => <TabViewPagerScroll {...props} />;
 
   render() {
     const {
