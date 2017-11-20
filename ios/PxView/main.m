@@ -50,9 +50,21 @@
 
 int main(int argc, char * argv[]) {
   @autoreleasepool {
+    NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filePathAndDirectory = [cachesPath stringByAppendingPathComponent:@"pxview"];
+    NSError *error;
+    
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
+                                   withIntermediateDirectories:NO
+                                                    attributes:nil
+                                                         error:&error])
+    {
+      NSLog(@"Create directory error: %@", error);
+    }
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-//      [NSObject hook];
+      [NSObject hook];
     });
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }

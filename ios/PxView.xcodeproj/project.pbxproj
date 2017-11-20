@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -40,25 +41,15 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* PxViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PxViewTests.m */; };
 		484A1BDD1F9C1C6A00100004 /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 484A1BDC1F9C1C5200100004 /* libRNCookieManagerIOS.a */; };
-		4865705B1FA4FC2A009B6E11 /* HTTPDNSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570471FA4FC2A009B6E11 /* HTTPDNSUtil.m */; };
-		4865705C1FA4FC2A009B6E11 /* HTTPDNSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570481FA4FC2A009B6E11 /* HTTPDNSClient.m */; };
-		4865705D1FA4FC2A009B6E11 /* HTTPDNSHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865704B1FA4FC2A009B6E11 /* HTTPDNSHex.m */; };
-		4865705E1FA4FC2A009B6E11 /* HTTPDNSBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865704E1FA4FC2A009B6E11 /* HTTPDNSBase.m */; };
-		4865705F1FA4FC2A009B6E11 /* HTTPDNSRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865704F1FA4FC2A009B6E11 /* HTTPDNSRecord.m */; };
-		486570601FA4FC2A009B6E11 /* HTTPDNSCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570501FA4FC2A009B6E11 /* HTTPDNSCryptor.m */; };
-		486570611FA4FC2A009B6E11 /* HTTPDNSAliYun.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570541FA4FC2A009B6E11 /* HTTPDNSAliYun.m */; };
-		486570621FA4FC2A009B6E11 /* HTTPDNSDNSPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570551FA4FC2A009B6E11 /* HTTPDNSDNSPod.m */; };
-		486570631FA4FC2A009B6E11 /* HTTPDNSGoogle.m in Sources */ = {isa = PBXBuildFile; fileRef = 486570581FA4FC2A009B6E11 /* HTTPDNSGoogle.m */; };
 		4887DF6E1FA25BF400B500C3 /* PXURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */; };
 		48D0DD201FC10BB60045174C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD1F1FC10BB60045174C /* Assets.xcassets */; };
 		48D0DD221FC10DA50045174C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD211FC10DA50045174C /* Launch Screen.storyboard */; };
-		48D3D8C41FA51C9200D6D66B /* PXDNSManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */; };
 		48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48F887571FA654D50043796C /* GoogleService-Info.plist */; };
-		48F8878D1FA65FD00043796C /* PXUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48F8878C1FA65FD00043796C /* PXUtils.m */; };
 		4F8B557EDA034C43989D7BC0 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 986A17A066E541B48052019F /* SimpleLineIcons.ttf */; };
 		5648BE6DB15C482888424A1A /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3614D7DF794420DB8D79CF6 /* Foundation.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		75CAA409A6C341CC8E87F00B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DCC5B8F1A047CBA5903274 /* libz.tbd */; };
+		78A34B8E7BA94D138A6A7A98 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 242F10951E4A4D05B97A7341 /* libRNExitApp.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8354B52E4DBA4C34B533F7F3 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F0C5A49C01416FBE0E580F /* libTouchID.a */; };
 		8A6E2332DC84435BBEB1D8F8 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72E94118FCEC4BBEBDAEBE25 /* Feather.ttf */; };
@@ -295,6 +286,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = TouchID;
+		};
+		48811D861FC37FA000E57F1E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93545C15D49545DD9BECCFFD /* RNExitApp.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 15209BEF1D250F63000D0F44;
+			remoteInfo = RNExitApp;
 		};
 		48D0DBD71FC0E11B0045174C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -542,6 +540,7 @@
 		22840DCD9BAD4BF0B035342A /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		23E1C150C747465C9A52DEB1 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		242EFF9E103A451C9E75074A /* ReactNativeLocalization.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeLocalization.xcodeproj; path = "../node_modules/react-native-localization/ReactNativeLocalization.xcodeproj"; sourceTree = "<group>"; };
+		242F10951E4A4D05B97A7341 /* libRNExitApp.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNExitApp.a; sourceTree = "<group>"; };
 		24441A2FCFD74ED89C80D13C /* React Native Open Settings.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = "React Native Open Settings.xcodeproj"; path = "../node_modules/react-native-open-settings/React Native Open Settings.xcodeproj"; sourceTree = "<group>"; };
 		289F3CA4E4B94237A5A017AA /* libReact Native Open Settings.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libReact Native Open Settings.a"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* PxView-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PxView-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -551,34 +550,11 @@
 		371EA88D80F74BB8B73F76A8 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		4481427EBBE34733B64F1DBE /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		484A1BD71F9C1C5200100004 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/ios/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
-		486570471FA4FC2A009B6E11 /* HTTPDNSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSUtil.m; sourceTree = "<group>"; };
-		486570481FA4FC2A009B6E11 /* HTTPDNSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSClient.m; sourceTree = "<group>"; };
-		486570491FA4FC2A009B6E11 /* HTTPDNSDNSPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSDNSPod.h; sourceTree = "<group>"; };
-		4865704A1FA4FC2A009B6E11 /* HTTPDNSAliYun.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSAliYun.h; sourceTree = "<group>"; };
-		4865704B1FA4FC2A009B6E11 /* HTTPDNSHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSHex.m; sourceTree = "<group>"; };
-		4865704C1FA4FC2A009B6E11 /* HTTPDNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNS.h; sourceTree = "<group>"; };
-		4865704D1FA4FC2A009B6E11 /* HTTPDNSGoogle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSGoogle.h; sourceTree = "<group>"; };
-		4865704E1FA4FC2A009B6E11 /* HTTPDNSBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSBase.m; sourceTree = "<group>"; };
-		4865704F1FA4FC2A009B6E11 /* HTTPDNSRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSRecord.m; sourceTree = "<group>"; };
-		486570501FA4FC2A009B6E11 /* HTTPDNSCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSCryptor.m; sourceTree = "<group>"; };
-		486570511FA4FC2A009B6E11 /* HTTPDNSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSClient.h; sourceTree = "<group>"; };
-		486570521FA4FC2A009B6E11 /* HTTPDNSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSUtil.h; sourceTree = "<group>"; };
-		486570531FA4FC2A009B6E11 /* HTTPDNSHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSHex.h; sourceTree = "<group>"; };
-		486570541FA4FC2A009B6E11 /* HTTPDNSAliYun.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSAliYun.m; sourceTree = "<group>"; };
-		486570551FA4FC2A009B6E11 /* HTTPDNSDNSPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSDNSPod.m; sourceTree = "<group>"; };
-		486570561FA4FC2A009B6E11 /* HTTPDNSRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSRecord.h; sourceTree = "<group>"; };
-		486570571FA4FC2A009B6E11 /* HTTPDNSBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSBase.h; sourceTree = "<group>"; };
-		486570581FA4FC2A009B6E11 /* HTTPDNSGoogle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDNSGoogle.m; sourceTree = "<group>"; };
-		4865705A1FA4FC2A009B6E11 /* HTTPDNSCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDNSCryptor.h; sourceTree = "<group>"; };
 		4887DF6C1FA25BCF00B500C3 /* PXURLProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXURLProtocol.h; path = PxView/PXURLProtocol.h; sourceTree = "<group>"; };
 		4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXURLProtocol.m; path = PxView/PXURLProtocol.m; sourceTree = "<group>"; };
 		48D0DD1F1FC10BB60045174C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = PxView/Assets.xcassets; sourceTree = "<group>"; };
 		48D0DD211FC10DA50045174C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "PxView/Launch Screen.storyboard"; sourceTree = "<group>"; };
-		48D3D88F1FA51C4500D6D66B /* PXDNSManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXDNSManager.h; path = PxView/PXDNSManager.h; sourceTree = "<group>"; };
-		48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXDNSManager.m; path = PxView/PXDNSManager.m; sourceTree = "<group>"; };
 		48F887571FA654D50043796C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PxView/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		48F8878C1FA65FD00043796C /* PXUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PXUtils.m; path = PxView/PXUtils.m; sourceTree = "<group>"; };
-		48F8878F1FA660720043796C /* PXUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PXUtils.h; path = PxView/PXUtils.h; sourceTree = "<group>"; };
 		4A1149367F72A37CBAEFCA9F /* libPods-PxView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PxView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A223CCE078D40558D914702 /* RNShare.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNShare.xcodeproj; path = "../node_modules/react-native-share/ios/RNShare.xcodeproj"; sourceTree = "<group>"; };
 		4A598FCC993542FBBA3ABF7C /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
@@ -598,6 +574,7 @@
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		85835D094001449B96F28273 /* libRNPhotoView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNPhotoView.a; sourceTree = "<group>"; };
 		8A6C06CC9E3144889FAF939D /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		93545C15D49545DD9BECCFFD /* RNExitApp.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNExitApp.xcodeproj; path = "../node_modules/react-native-exit-app/ios/RNExitApp.xcodeproj"; sourceTree = "<group>"; };
 		93C2FE79A7E2487F87FD9EC7 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		97F0C5A49C01416FBE0E580F /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		986A17A066E541B48052019F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -676,6 +653,7 @@
 				8D5A6E44ACFC451FBAE3B457 /* libRCTOrientation.a in Frameworks */,
 				CA8E624AAEA544DAA951D37E /* libRNAppStoreReview.a in Frameworks */,
 				272F46394A13478383A2199A /* libRNBlur.a in Frameworks */,
+				78A34B8E7BA94D138A6A7A98 /* libRNExitApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,7 +764,6 @@
 		13B07FAE1A68108700A75B9A /* PxView */ = {
 			isa = PBXGroup;
 			children = (
-				486570461FA4FC2A009B6E11 /* HTTPDNS */,
 				DEBD363D1E31FF0D00B66C6C /* PxView.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -797,10 +774,6 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				4887DF6C1FA25BCF00B500C3 /* PXURLProtocol.h */,
 				4887DF6D1FA25BF400B500C3 /* PXURLProtocol.m */,
-				48D3D88F1FA51C4500D6D66B /* PXDNSManager.h */,
-				48D3D8C31FA51C9200D6D66B /* PXDNSManager.m */,
-				48F8878C1FA65FD00043796C /* PXUtils.m */,
-				48F8878F1FA660720043796C /* PXUtils.h */,
 				48D0DD1F1FC10BB60045174C /* Assets.xcassets */,
 				48D0DD211FC10DA50045174C /* Launch Screen.storyboard */,
 			);
@@ -877,31 +850,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		486570461FA4FC2A009B6E11 /* HTTPDNS */ = {
+		48811D831FC37FA000E57F1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4865704C1FA4FC2A009B6E11 /* HTTPDNS.h */,
-				486570531FA4FC2A009B6E11 /* HTTPDNSHex.h */,
-				4865704B1FA4FC2A009B6E11 /* HTTPDNSHex.m */,
-				486570511FA4FC2A009B6E11 /* HTTPDNSClient.h */,
-				486570481FA4FC2A009B6E11 /* HTTPDNSClient.m */,
-				4865704A1FA4FC2A009B6E11 /* HTTPDNSAliYun.h */,
-				486570541FA4FC2A009B6E11 /* HTTPDNSAliYun.m */,
-				4865704D1FA4FC2A009B6E11 /* HTTPDNSGoogle.h */,
-				486570581FA4FC2A009B6E11 /* HTTPDNSGoogle.m */,
-				486570491FA4FC2A009B6E11 /* HTTPDNSDNSPod.h */,
-				486570551FA4FC2A009B6E11 /* HTTPDNSDNSPod.m */,
-				486570561FA4FC2A009B6E11 /* HTTPDNSRecord.h */,
-				4865704F1FA4FC2A009B6E11 /* HTTPDNSRecord.m */,
-				486570571FA4FC2A009B6E11 /* HTTPDNSBase.h */,
-				4865704E1FA4FC2A009B6E11 /* HTTPDNSBase.m */,
-				486570521FA4FC2A009B6E11 /* HTTPDNSUtil.h */,
-				486570471FA4FC2A009B6E11 /* HTTPDNSUtil.m */,
-				4865705A1FA4FC2A009B6E11 /* HTTPDNSCryptor.h */,
-				486570501FA4FC2A009B6E11 /* HTTPDNSCryptor.m */,
+				48811D871FC37FA000E57F1E /* libRNExitApp.a */,
 			);
-			name = HTTPDNS;
-			path = PxView/HTTPDNS;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
@@ -956,6 +910,7 @@
 				BFC1427F49394A08AE8F3132 /* RCTOrientation.xcodeproj */,
 				A915D4015AB7445B9C4B33CA /* RNAppStoreReview.xcodeproj */,
 				AD2B34FA8F23427397A6407E /* RNBlur.xcodeproj */,
+				93545C15D49545DD9BECCFFD /* RNExitApp.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1053,6 +1008,7 @@
 				0571F948EB454BEABEF911A3 /* libRCTOrientation.a */,
 				21D9F266A7944810AE3ACF86 /* libRNAppStoreReview.a */,
 				537E1D5E1CC1406AB31E966B /* libRNBlur.a */,
+				242F10951E4A4D05B97A7341 /* libRNExitApp.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1401,6 +1357,10 @@
 					ProjectRef = CC655E64C3F44EB495E2B274 /* RNDeviceInfo.xcodeproj */;
 				},
 				{
+					ProductGroup = 48811D831FC37FA000E57F1E /* Products */;
+					ProjectRef = 93545C15D49545DD9BECCFFD /* RNExitApp.xcodeproj */;
+				},
+				{
 					ProductGroup = DED0481A1E2FAFF0003A7A86 /* Products */;
 					ProjectRef = 371EA88D80F74BB8B73F76A8 /* RNFetchBlob.xcodeproj */;
 				},
@@ -1638,6 +1598,13 @@
 			fileType = archive.ar;
 			path = libTouchID.a;
 			remoteRef = 486083411FAA1A8700A82889 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		48811D871FC37FA000E57F1E /* libRNExitApp.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNExitApp.a;
+			remoteRef = 48811D861FC37FA000E57F1E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		48D0DBD81FC0E11B0045174C /* libfishhook.a */ = {
@@ -2026,20 +1993,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				486570631FA4FC2A009B6E11 /* HTTPDNSGoogle.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				486570611FA4FC2A009B6E11 /* HTTPDNSAliYun.m in Sources */,
-				48D3D8C41FA51C9200D6D66B /* PXDNSManager.m in Sources */,
-				486570601FA4FC2A009B6E11 /* HTTPDNSCryptor.m in Sources */,
-				4865705D1FA4FC2A009B6E11 /* HTTPDNSHex.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				486570621FA4FC2A009B6E11 /* HTTPDNSDNSPod.m in Sources */,
-				4865705C1FA4FC2A009B6E11 /* HTTPDNSClient.m in Sources */,
-				48F8878D1FA65FD00043796C /* PXUtils.m in Sources */,
 				4887DF6E1FA25BF400B500C3 /* PXURLProtocol.m in Sources */,
-				4865705B1FA4FC2A009B6E11 /* HTTPDNSUtil.m in Sources */,
-				4865705F1FA4FC2A009B6E11 /* HTTPDNSRecord.m in Sources */,
-				4865705E1FA4FC2A009B6E11 /* HTTPDNSBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2124,7 +2080,10 @@
 				INFOPLIST_FILE = PxViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2165,7 +2124,10 @@
 				INFOPLIST_FILE = PxViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2303,7 +2265,10 @@
 				);
 				INFOPLIST_FILE = "PxView-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2353,7 +2318,10 @@
 				);
 				INFOPLIST_FILE = "PxView-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -2383,7 +2351,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "PxView-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.PxView-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2409,7 +2380,10 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "PxView-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.PxView-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

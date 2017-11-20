@@ -1,53 +1,41 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
-import RNFetchBlob from 'react-native-fetch-blob';
 import { globalStyleVariables } from '../styles';
 
 class PXCacheImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUri: null,
+      width: 0,
+      height: 0,
     };
   }
 
   componentDidMount() {
     const { uri, onFoundImageSize } = this.props;
-    this.task = RNFetchBlob.config({
-      fileCache: true,
-      appendExt: 'png',
-      key: uri,
-      path: `${RNFetchBlob.fs.dirs.CacheDir}/pxview/${uri.split('/').pop()}`,
-    }).fetch('GET', uri, {
-      referer: 'http://www.pixiv.net',
-      // 'Cache-Control' : 'no-store'
-    });
-    this.task
-      .then(res => {
+    Image.getSize(
+      uri,
+      // success
+      (width, height) => {
         if (!this.unmounting) {
-          // const base64Str = `data:image/png;base64,${res.base64()}`;
-          const filePath = `${res.path()}`;
-          Image.getSize(filePath, (width, height) => {
-            if (!this.unmounting) {
-              this.setState({
-                imageUri: filePath,
-                width,
-                height,
-              });
-              if (onFoundImageSize) {
-                onFoundImageSize(width, height, filePath);
-              }
-            }
+          this.setState({
+            width,
+            height,
           });
+          if (onFoundImageSize) {
+            onFoundImageSize(width, height, uri);
+          }
         }
-      })
-      .catch(() => {});
+      },
+      // failure
+      () => {
+        console.log('Get size failed');
+      },
+    );
   }
+
   componentWillUnmount() {
     this.unmounting = true;
-    if (this.task) {
-      this.task.cancel();
-    }
   }
 
   render() {

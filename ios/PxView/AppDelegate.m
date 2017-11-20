@@ -24,14 +24,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//  PXUtils *utils = [[PXUtils alloc] init];
-//  [PXUtils cleanFile:[PXUtils getFilePath:@"Log.txt"]];
-//  [PXUtils collectDeviceInfomation];
-//  [PXUtils collectNetworkInfomation];
-//  [PXUtils collectReachableInfomation];
-//  [UIPasteboard generalPasteboard].string = [PXUtils readTextFromFile:[PXUtils getFilePath:@"Log.txt"]];
-//  [utils uploadFile:[PXUtils getFilePath:@"Log.txt"]];
-  
   [FIRApp configure];
   [Fabric with:@[[Crashlytics class]]];
   RCTSetLogThreshold(RCTLogLevelWarning);

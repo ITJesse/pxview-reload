@@ -1,15 +1,17 @@
 //
 //  PXURLProtocol.h
-//  PxView
+//  CachedWebView
 //
-//  Created by Jesse Zhu on 2017/10/27.
-//  Copyright © 2017年 Facebook. All rights reserved.
+//  Created by Mark on 16/5/19.
+//
 //
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const PXProtocolHttpHeadKey;
+
 @interface PXURLProtocol : NSURLProtocol
-@property(nonatomic, strong) NSURLConnection *connection;
-@property(nonatomic, copy) NSString *hostname;
-@property(nonatomic) NSInteger retryCount;
+//添加需要过滤的请求前缀
++ (NSSet *)filterUrlPres;
++ (void)setFilterUrlPres:(NSSet *)filterUrlPre;
 @end

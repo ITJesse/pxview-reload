@@ -10,6 +10,7 @@ import { List, ListItem } from 'react-native-elements';
 import RNFetchBlob from 'react-native-fetch-blob';
 import TouchID from 'react-native-touch-id';
 import { connect } from 'react-redux';
+import RNExitApp from 'react-native-exit-app';
 
 import { connectLocalization } from '../../components/Localization';
 import { globalStyleVariables } from '../../styles';
@@ -82,7 +83,18 @@ class Settings extends Component {
       });
   }
 
-  handleOnPressListItem = item => {
+  formatFileSize = size => {
+    if (size < 1024) {
+      return `${size}B`;
+    } else if (size < 1024 ** 2) {
+      return `${Math.ceil(size / 1024)}KB`;
+    } else if (size < 1024 ** 3) {
+      return `${Math.ceil(size / 1024 / 1024)}MB`;
+    }
+    return `${Math.ceil(size / 1024 / 1024 / 1024)}GB`;
+  };
+
+  handleOnPressListItem = async item => {
     const { navigation: { navigate }, i18n } = this.props;
     switch (item.id) {
       case 'accountSettings': {
@@ -112,8 +124,14 @@ class Settings extends Component {
         break;
       }
       case 'cacheClear': {
+        const stat = await RNFetchBlob.fs.stat(
+          `${RNFetchBlob.fs.dirs.CacheDir}/pxview/`,
+        );
         Alert.alert(
-          i18n.cacheClearConfirmation,
+          i18n.formatString(
+            i18n.cacheClearConfirmation,
+            this.formatFileSize(stat.size),
+          ),
           null,
           [
             { text: i18n.cancel, style: 'cancel' },
@@ -166,12 +184,18 @@ class Settings extends Component {
       });
   };
 
-  handleOnPressConfirmClearCache = () => {
+  handleOnPressConfirmClearCache = async () => {
     const { i18n } = this.props;
     RNFetchBlob.fs
       .unlink(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/`)
       .then(() => {
         DeviceEventEmitter.emit('showToast', i18n.cacheClearSuccess);
+        Alert.alert(
+          i18n.exitApp,
+          null,
+          [{ text: i18n.ok, onPress: RNExitApp.exitApp }],
+          { cancelable: false },
+        );
       })
       .catch(() => {});
   };

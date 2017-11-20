@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { View, FlatList } from 'react-native';
-import Loader from './Loader';
+import { FlatList } from 'react-native';
 import { globalStyleVariables } from '../styles';
 
 const LIST_WINDOW_SIZE = 5;
 
 class PXViewPager extends Component {
-  handleOnIOSViewPagerPageSelected = e => {
+  handleViewPagerPageSelected = e => {
     const { onPageSelected } = this.props;
     const contentOffset = e.nativeEvent.contentOffset;
     const viewSize = e.nativeEvent.layoutMeasurement;
@@ -15,33 +14,6 @@ class PXViewPager extends Component {
     if (index > -1) {
       onPageSelected(index);
     }
-  };
-
-  handleOnAndroidViewPagerPageSelected = e => {
-    const { items, onEndReached } = this.props;
-    // const { position } = e.nativeEvent;
-    const { onPageSelected } = this.props;
-    const index = e.nativeEvent.position;
-    onPageSelected(index);
-    if (index >= items.length - 2) {
-      onEndReached();
-    }
-  };
-
-  renderContentForAndroid = () => {
-    const { items, renderContent, index } = this.props;
-    // console.log('renderContentForAndroid ', items);
-    const size = Math.floor(LIST_WINDOW_SIZE / 2);
-    return items.map((item, i) => {
-      if (i >= index - size && i <= index + size) {
-        return renderContent({ item });
-      }
-      return (
-        <View key={item.id}>
-          <Loader />
-        </View>
-      );
-    });
   };
 
   render() {
@@ -53,7 +25,7 @@ class PXViewPager extends Component {
         keyExtractor={item => item.id}
         renderItem={renderContent}
         scrollEventThrottle={16}
-        onMomentumScrollEnd={this.handleOnIOSViewPagerPageSelected}
+        onMomentumScrollEnd={this.handleViewPagerPageSelected}
         onEndReached={onEndReached}
         onEndReachedThreshold={0.1}
         horizontal
