@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, View, StatusBar } from 'react-native';
-import {
-  TabViewAnimated,
-  TabViewPagerScroll,
-  TabViewPagerPan,
-} from 'react-native-tab-view';
+import { StyleSheet, View, StatusBar } from 'react-native';
+import { TabViewAnimated, TabViewPagerScroll } from 'react-native-tab-view';
 import PXHeader from '../../components/PXHeader';
 import PXPhotoView from '../../components/PXPhotoView';
 import HeaderTextTitle from '../../components/HeaderTextTitle';
@@ -55,10 +51,7 @@ class ImagesViewer extends Component {
     }));
   };
 
-  renderPager = props =>
-    Platform.OS === 'ios'
-      ? <TabViewPagerScroll {...props} />
-      : <TabViewPagerPan {...props} />;
+  renderPager = props => <TabViewPagerScroll {...props} />;
 
   renderScene = ({ route, index }) => {
     if (Math.abs(this.state.index - this.state.routes.indexOf(route)) > 2) {

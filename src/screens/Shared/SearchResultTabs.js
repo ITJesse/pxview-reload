@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  Keyboard,
-  Platform,
-  BackHandler,
-} from 'react-native';
+import { StyleSheet, View, Keyboard, BackHandler } from 'react-native';
 import { connect } from 'react-redux';
 import Search from '../../containers/Search';
 import SearchResult from '../../containers/SearchResult';
@@ -45,15 +39,6 @@ class SearchResultTabs extends Component {
       newWord: word,
       searchOptions: {},
     };
-  }
-
-  componentDidMount() {
-    if (Platform.OS === 'android') {
-      this.backHandlerListener = BackHandler.addEventListener(
-        'hardwareBackPress',
-        this.handleOnPressHardwareBackButton,
-      );
-    }
   }
 
   componentWillReceiveProps(nextProps) {

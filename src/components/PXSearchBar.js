@@ -65,12 +65,7 @@ class PXSearchBar extends Component {
   };
 
   render() {
-    const {
-      word,
-      showBackButton,
-      headerRight,
-      onPressBackButton,
-    } = this.props;
+    const { word, showBackButton, headerRight, onPressBackButton } = this.props;
     return (
       <PXHeader
         headerTitle={this.renderSearchBar()}

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { StyleSheet, View, Platform, StatusBar } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { HeaderBackButton, withNavigation } from 'react-navigation';
 import { globalStyleVariables } from '../styles';
 
@@ -9,21 +9,8 @@ const styles = StyleSheet.create({
     paddingTop: globalStyleVariables.STATUSBAR_HEIGHT,
   },
   containerShadow: {
-    ...Platform.select({
-      ios: {
-        borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: 'rgba(0, 0, 0, .3)',
-      },
-      android: {
-        shadowColor: 'black',
-        shadowOpacity: 0.1,
-        shadowRadius: StyleSheet.hairlineWidth,
-        shadowOffset: {
-          height: StyleSheet.hairlineWidth,
-        },
-        elevation: 4,
-      },
-    }),
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: 'rgba(0, 0, 0, .3)',
   },
   containerDark: {
     backgroundColor: globalStyleVariables.PRIMARY_COLOR,

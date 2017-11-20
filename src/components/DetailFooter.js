@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import moment from 'moment';
 import HtmlView from 'react-native-htmlview';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   footerSpacer: {
-    marginBottom: Platform.OS === 'ios' ? 120 : 60,
+    marginBottom: 120,
   },
 });
 

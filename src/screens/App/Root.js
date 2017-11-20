@@ -1,6 +1,6 @@
 /* eslint react/prefer-stateless-function:0 */
 import React, { Component } from 'react';
-import { AppRegistry, Platform, StatusBar } from 'react-native';
+import { AppRegistry, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import App from './App';
 import { LocalizationProvider } from '../../components/Localization';
@@ -45,10 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 class Root extends Component {
   constructor(props) {
     super(props);
-    if (Platform.OS === 'ios') {
-      StatusBar.setBarStyle('light-content', true);
-      // StatusBar.setBarStyle('default');
-    }
+    StatusBar.setBarStyle('light-content', true);
   }
 
   render() {

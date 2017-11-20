@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Image, Platform, Linking } from 'react-native';
+import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { List, ListItem } from 'react-native-elements';
 import AppStoreReview from 'react-native-app-store-review';
@@ -121,10 +121,7 @@ class About extends Component {
           {list.map(item =>
             <ListItem
               key={item.id}
-              title={i18n.formatString(
-                i18n[item.title],
-                Platform.OS === 'ios' ? 'App Store' : 'Google Play',
-              )}
+              title={i18n.formatString(i18n[item.title], 'App Store')}
               leftIcon={{
                 name: item.icon,
                 type: item.type,

@@ -4,7 +4,6 @@ import {
   View,
   RefreshControl,
   FlatList,
-  Platform,
   DeviceEventEmitter,
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -126,7 +125,7 @@ class IllustList extends Component {
                   globalStyleVariables.WINDOW_WIDTH() / illustColumns * index,
                 index,
               })}
-              removeClippedSubviews={Platform.OS === 'android'}
+              removeClippedSubviews={false}
               initialNumToRender={5}
               onEndReachedThreshold={0.1}
               onEndReached={loadMoreItems}

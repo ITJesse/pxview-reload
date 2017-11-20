@@ -6,7 +6,6 @@ import {
   ScrollView,
   Linking,
   RefreshControl,
-  Platform,
   findNodeHandle,
   InteractionManager,
 } from 'react-native';
@@ -83,11 +82,7 @@ const styles = StyleSheet.create({
   },
   navbarHeader: {
     margin: 10,
-    ...Platform.select({
-      ios: {
-        top: 15,
-      },
-    }),
+    top: 15,
     alignItems: 'center',
     opacity: 0,
   },
@@ -286,7 +281,7 @@ class UserDetail extends Component {
           {
             opacity: isScrolled ? 1 : 0,
             flex: 1,
-            justifyContent: Platform.OS === 'android' ? 'flex-start' : 'center',
+            justifyContent: 'center',
           },
         ]}
         // eslint-disable-next-line no-nested-ternary
