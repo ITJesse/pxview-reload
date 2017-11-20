@@ -10,8 +10,7 @@ import OverlayKeychainButton from '../components/OverlayKeychainButton';
 const PXFormInput = props => {
   const {
     label,
-    meta,
-    meta: { touched, error },
+    meta: { touched, dirty, error },
     labelStyle,
     inputStyle,
     errorTextStyle,
@@ -31,7 +30,7 @@ const PXFormInput = props => {
         onChangeText={t => {
           input.onChange(t);
         }}
-        value={props.text || (meta.dirty ? undefined : input.value)}
+        value={props.text || (dirty ? undefined : input.value)}
       />
       {false && restProps.secureTextEntry && <OverlayKeychainButton />}
       {touched &&
