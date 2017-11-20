@@ -28,10 +28,10 @@ const PXFormInput = props => {
         inputStyle={inputStyle}
         {...input}
         {...restProps}
-        onChangeText={(text) => {
-          input.onChange(text);
+        onChangeText={t => {
+          input.onChange(t);
         }}
-        value={props.text || (meta.dirty?undefined : input.value)}
+        value={props.text || (meta.dirty ? undefined : input.value)}
       />
       {false && restProps.secureTextEntry && <OverlayKeychainButton />}
       {touched &&

@@ -139,15 +139,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const OpenSourceLicense = (props) => {
+const OpenSourceLicense = props => {
   const { id } = props.navigation.state.params;
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text>{ licenses[id] }</Text>
+        <Text>
+          {licenses[id]}
+        </Text>
       </ScrollView>
     </View>
   );
-}
+};
 
 export default OpenSourceLicense;

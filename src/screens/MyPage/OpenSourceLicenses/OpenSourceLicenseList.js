@@ -3,10 +3,8 @@ import { View, ScrollView, StyleSheet } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import { SCREENS } from '../../../common/constants';
 
-
 const styles = StyleSheet.create({
-  container: {
-  },
+  container: {},
   listItem: {
     height: 49,
     justifyContent: 'center',
@@ -37,7 +35,7 @@ const list = [
   },
 ];
 
-const OpenSourceLicenseList = (props) => {
+const OpenSourceLicenseList = props => {
   const handleOnPressListItem = item => {
     const { navigation: { navigate } } = props;
     navigate(SCREENS.OpenSourceLicense, item);
@@ -59,6 +57,6 @@ const OpenSourceLicenseList = (props) => {
       </ScrollView>
     </View>
   );
-}
+};
 
 export default OpenSourceLicenseList;
