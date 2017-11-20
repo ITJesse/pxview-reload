@@ -165,7 +165,7 @@ static NSSet *PXURLSessionFilterUrlPre;
   NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
   NSString *fileName = [urlString md5String];
   NSString *path = [[cachesPath stringByAppendingPathComponent:@"pxview"] stringByAppendingPathComponent:fileName];
-  NSLog(@"path = %@", path);
+//  NSLog(@"path = %@", path);
   return path;
 }
 
@@ -198,7 +198,7 @@ static NSSet *PXURLSessionFilterUrlPre;
   
   if ([request valueForHTTPHeaderField:PXProtocolHttpHeadKey] == nil && [self p_isFilterWithUrlString:request.URL.absoluteString]) {
     //拦截请求头中包含PXProtocolHttpHeadKey的请求
-    NSLog(@"request url:%@",request.URL.absoluteString);
+//    NSLog(@"request url:%@",request.URL.absoluteString);
     return YES;
   }
   return NO;
@@ -299,7 +299,7 @@ static NSSet *PXURLSessionFilterUrlPre;
     [self.client URLProtocol:self didFailWithError:error];
   } else {
     //将数据的缓存归档存入到本地文件中
-    NSLog(@"ok url = %@",task.currentRequest.URL.absoluteString);
+//    NSLog(@"ok url = %@",task.currentRequest.URL.absoluteString);
     PXURLProtocolCacheData *cacheData = [[PXURLProtocolCacheData alloc] init];
     cacheData.data = [self.cacheData copy];
     cacheData.addDate = [NSDate date];

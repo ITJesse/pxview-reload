@@ -21,6 +21,7 @@
   "cacheClear": "キャッシュを削除",
   "cacheClearConfirmation": "キャッシュ {0} を削除しますか?",
   "cacheClearSuccess": "削除しました",
+  "calculateCacheSize": "計算している",
   "cancel": "キャンセル",
   "collection": "コレクション",
   "collectionTags": "コレクションタグ",

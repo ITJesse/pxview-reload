@@ -11,6 +11,7 @@ import RNFetchBlob from 'react-native-fetch-blob';
 import TouchID from 'react-native-touch-id';
 import { connect } from 'react-redux';
 import RNExitApp from 'react-native-exit-app';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import { connectLocalization } from '../../components/Localization';
 import { globalStyleVariables } from '../../styles';
@@ -69,6 +70,7 @@ class Settings extends Component {
     super(props);
     this.state = {
       isTouchIDUsable: false,
+      loading: false,
     };
   }
 
@@ -124,13 +126,11 @@ class Settings extends Component {
         break;
       }
       case 'cacheClear': {
-        const stat = await RNFetchBlob.fs.stat(
-          `${RNFetchBlob.fs.dirs.CacheDir}/pxview/`,
-        );
+        const size = await this.calculateCacheSize();
         Alert.alert(
           i18n.formatString(
             i18n.cacheClearConfirmation,
-            this.formatFileSize(stat.size),
+            this.formatFileSize(size),
           ),
           null,
           [
@@ -182,6 +182,27 @@ class Settings extends Component {
         }
         setUseTouchID(false);
       });
+  };
+
+  setStateAsync = state =>
+    new Promise(resolve => this.setState(state, resolve));
+
+  delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+  calculateCacheSize = async () => {
+    await this.setStateAsync({ loading: true });
+    const files = await RNFetchBlob.fs.ls(
+      `${RNFetchBlob.fs.dirs.CacheDir}/pxview/`,
+    );
+    const tasks = files.map(file =>
+      RNFetchBlob.fs.stat(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/${file}`),
+    );
+    const stats = await Promise.all(tasks);
+    let size = 0;
+    stats.forEach(stat => (size += stat.size));
+    await this.setStateAsync({ loading: false });
+    await this.delay(500);
+    return size;
   };
 
   handleOnPressConfirmClearCache = async () => {
@@ -242,8 +263,15 @@ class Settings extends Component {
   };
 
   render() {
+    const { i18n } = this.props;
+
     return (
       <View style={styles.container}>
+        <Spinner
+          visible={this.state.loading}
+          textContent={i18n.calculateCacheSize}
+          textStyle={{ color: '#FFF' }}
+        />
         {
           <ScrollView style={styles.container}>
             {this.renderList(settingsList)}

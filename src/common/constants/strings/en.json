@@ -21,6 +21,7 @@
   "cacheClear": "Clear Cache",
   "cacheClearConfirmation": "Confirm clear {0} cache?",
   "cacheClearSuccess": "Cache clear successfully",
+  "calculateCacheSize": "Collecting",
   "cancel": "Cancel",
   "collection": "Collection",
   "collectionTags": "Collection tags",

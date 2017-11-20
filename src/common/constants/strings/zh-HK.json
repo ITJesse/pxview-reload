@@ -21,6 +21,7 @@
   "cacheClear": "清除緩存",
   "cacheClearConfirmation": "確定清除 {0} 缓存?",
   "cacheClearSuccess": "緩存清除成功",
+  "calculateCacheSize": "計算中",
   "cancel": "取消",
   "collection": "收藏",
   "collectionTags": "收藏的標籤",
