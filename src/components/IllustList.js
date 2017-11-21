@@ -64,14 +64,12 @@ class IllustList extends Component {
     const {
       data: { items },
       navigation: { navigate },
-      loadMoreItems,
       listKey,
       maxItems,
     } = this.props;
     navigate(SCREENS.Detail, {
       items: maxItems ? items.slice(0, maxItems) : items,
       index,
-      onListEndReached: loadMoreItems,
       parentListKey: listKey,
     });
   };
@@ -127,7 +125,7 @@ class IllustList extends Component {
               })}
               removeClippedSubviews={false}
               initialNumToRender={5}
-              onEndReachedThreshold={0.1}
+              onEndReachedThreshold={2}
               onEndReached={loadMoreItems}
               ListFooterComponent={this.renderFooter}
               onScroll={onScroll}

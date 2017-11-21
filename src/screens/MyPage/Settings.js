@@ -191,12 +191,45 @@ class Settings extends Component {
 
   calculateCacheSize = async () => {
     await this.setStateAsync({ loading: true });
-    const files = await RNFetchBlob.fs.ls(
+    const images = await RNFetchBlob.fs.ls(
       `${RNFetchBlob.fs.dirs.CacheDir}/pxview/`,
     );
-    const tasks = files.map(file =>
-      RNFetchBlob.fs.stat(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/${file}`),
+    const ugoiraZips = await RNFetchBlob.fs.ls(
+      `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira_zip`,
     );
+    const ugoiraDirs = await RNFetchBlob.fs.ls(
+      `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira`,
+    );
+    const ugoiraTasks = ugoiraDirs.map(dir =>
+      RNFetchBlob.fs.ls(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira/${dir}`),
+    );
+    const ugoiraDirsFileList = await Promise.all(ugoiraTasks);
+    let tasks = [];
+    ugoiraDirsFileList.forEach((list, index) => {
+      tasks = {
+        ...tasks,
+        ...list.map(image =>
+          RNFetchBlob.fs.stat(
+            `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira/${ugoiraDirs[
+              index
+            ]}/${image}`,
+          ),
+        ),
+      };
+    });
+
+    tasks = [
+      ...tasks,
+      ...images.map(image =>
+        RNFetchBlob.fs.stat(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/${image}`),
+      ),
+      ...ugoiraZips.map(zip =>
+        RNFetchBlob.fs.stat(
+          `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira_zip/${zip}`,
+        ),
+      ),
+    ];
+
     const stats = await Promise.all(tasks);
     let size = 0;
     stats.forEach(stat => (size += stat.size));

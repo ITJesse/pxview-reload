@@ -85,7 +85,6 @@ class PXCacheImage extends Component {
         });
         res = await this.task;
       } catch (error) {
-        console.log(error);
         return null;
       }
       filePath = res.path();
