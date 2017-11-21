@@ -15,38 +15,9 @@
 #include <stdio.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#import "AppDelegate.h"
-#import "PXURLProtocol.h"
 #import <objc/runtime.h>
+#import "AppDelegate.h"
 
-@interface NSObject (URLProtocolHook)
-- (NSURLSessionConfiguration *)zw_defaultSessionConfiguration;
-+ (void)hook;
-@end
-
-@implementation NSObject (URLProtocolHook)
-
-- (NSURLSessionConfiguration *)zw_defaultSessionConfiguration {
-  NSURLSessionConfiguration *configuration = [self zw_defaultSessionConfiguration];
-  NSArray *protocolClasses = @[[PXURLProtocol class]];
-  NSLog(@"Hooked NSURLSessionConfiguration");
-  configuration.protocolClasses = protocolClasses;
-  
-  return configuration;
-}
-
-+ (void)hook {
-  Method systemMethod = class_getClassMethod([NSURLSessionConfiguration class], @selector(defaultSessionConfiguration));
-  Method zwMethod = class_getClassMethod([self class], @selector(zw_defaultSessionConfiguration));
-  if (systemMethod && zwMethod) {
-    method_exchangeImplementations(systemMethod, zwMethod);
-    NSLog(@"Switched NSURLSessionConfiguration");
-  }
-  
-  [NSURLProtocol registerClass:[PXURLProtocol class]];
-}
-
-@end
 
 int main(int argc, char * argv[]) {
   @autoreleasepool {
@@ -62,10 +33,6 @@ int main(int argc, char * argv[]) {
       NSLog(@"Create directory error: %@", error);
     }
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      [NSObject hook];
-    });
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }
 }

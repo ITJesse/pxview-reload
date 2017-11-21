@@ -3,12 +3,16 @@ import { View, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { unzip } from 'react-native-zip-archive';
+import moment from 'moment';
+
 import UgoiraView from './UgoiraView';
 import PXCacheImage from './PXCacheImage';
 import Loader from './Loader';
 import OverlayPlayIcon from './OverlayPlayIcon';
 import * as ugoiraMetaActionCreators from '../common/actions/ugoiraMeta';
 import { globalStyleVariables } from '../styles';
+
+const CACHE_TIMEOUT = 30; // days
 
 const styles = StyleSheet.create({
   imageContainer: {
@@ -64,38 +68,40 @@ class UgoiraViewTouchable extends Component {
       } else {
         const downloadPath = `${RNFetchBlob.fs.dirs
           .CacheDir}/pxview/ugoira_zip/${zipUrl.split('/').pop()}`;
-        this.task = RNFetchBlob.config({
-          fileCache: true,
-          appendExt: 'zip',
-          key: zipUrl,
-          path: downloadPath,
-        }).fetch('GET', zipUrl, {
-          referer: 'http://www.pixiv.net',
-        });
-        try {
+
+        if (!await this.checkCache(downloadPath)) {
+          this.task = RNFetchBlob.config({
+            fileCache: true,
+            appendExt: 'zip',
+            key: zipUrl,
+            path: downloadPath,
+          }).fetch('GET', zipUrl, {
+            referer: 'http://www.pixiv.net',
+          });
           this.setState({
             isDownloadingZip: true,
           });
-          const res = await this.task;
-          if (!this.unmounting) {
-            try {
-              const path = await unzip(res.path(), ugoiraPath);
-              this.setState({
-                ugoiraPath: path,
-                isDownloadingZip: false,
-              });
-              // remove zip file after extracted
-              res.flush();
-            } catch (err) {
-              this.setState({
-                isDownloadingZip: false,
-              });
-            }
+          try {
+            await this.task;
+          } catch (err) {
+            this.setState({
+              isDownloadingZip: false,
+            });
           }
-        } catch (err) {
-          this.setState({
-            isDownloadingZip: false,
-          });
+        }
+        if (!this.unmounting) {
+          try {
+            const path = await unzip(downloadPath, ugoiraPath);
+            this.setState({
+              ugoiraPath: path,
+              isDownloadingZip: false,
+            });
+            // remove zip file after extracted
+          } catch (err) {
+            this.setState({
+              isDownloadingZip: false,
+            });
+          }
         }
       }
     } catch (err) {
@@ -109,6 +115,20 @@ class UgoiraViewTouchable extends Component {
       this.task.cancel();
     }
   }
+
+  checkCache = async filePath => {
+    const exist = await RNFetchBlob.fs.exists(filePath);
+    if (exist) {
+      const stat = await RNFetchBlob.fs.stat(filePath);
+      if (
+        moment(stat.lastModified).add(CACHE_TIMEOUT, 'days').isBefore(moment())
+      ) {
+        return false;
+      }
+      return true;
+    }
+    return false;
+  };
 
   fetchUgoiraMetaOrToggleAnimation = () => {
     const { item, ugoiraMeta, fetchUgoiraMeta } = this.props;

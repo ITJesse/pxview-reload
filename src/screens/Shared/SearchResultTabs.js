@@ -80,7 +80,11 @@ class SearchResultTabs extends Component {
   };
 
   handleOnChangeSearchText = word => {
-    this.setState({ newWord: word });
+    clearTimeout(this.changeTextTimeout);
+    this.changeTextTimeout = setTimeout(
+      () => this.setState({ newWord: word }),
+      200,
+    );
   };
 
   handleOnPressShowFilterModal = () => {

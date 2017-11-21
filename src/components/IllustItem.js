@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PXTouchable from './PXTouchable';
-import PXImage from './PXImage';
+import PXCacheImage from './PXCacheImage';
 import OverlayImagePages from './OverlayImagePages';
 import OverlayUgoiraIndicator from './OverlayUgoiraIndicator';
 import OverlayBookmarkButton from '../components/OverlayBookmarkButton';
@@ -68,7 +68,8 @@ class IllustItem extends Component {
         {isMute
           ? <OverlayMutedIndicator />
           : <View>
-              <PXImage
+              <PXCacheImage
+                noNeedSize
                 uri={item.image_urls.square_medium}
                 style={[
                   {
