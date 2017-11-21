@@ -93,6 +93,7 @@ class DetailFooter extends PureComponent {
             </PXTouchable>
             {((authUser && authUser.id !== item.user.id) || !authUser) &&
               <FollowButtonContainer
+                workaround
                 user={item.user}
                 navigation={navigation}
               />}

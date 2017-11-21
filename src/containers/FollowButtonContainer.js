@@ -7,6 +7,13 @@ import * as modalActionCreators from '../common/actions/modal';
 import { FOLLOWING_TYPES, MODAL_TYPES, SCREENS } from '../common/constants';
 
 class FollowButtonContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFollow: false,
+    };
+  }
+
   static propTypes = {
     authUser: PropTypes.object,
     user: PropTypes.object.isRequired,
@@ -20,15 +27,22 @@ class FollowButtonContainer extends Component {
     authUser: null,
   };
 
+  componentWillReciveProps(nextProps) {
+    const { user } = nextProps;
+    this.setState({
+      isFollow: user.is_followed,
+    });
+  }
+
   handleOnPress = () => {
-    const { authUser, user, navigation: { navigate } } = this.props;
+    const { authUser, user, workaround, navigation: { navigate } } = this.props;
     if (!authUser) {
       navigate(SCREENS.Login, {
         onLoginSuccess: () => {
           this.followUser(user.id, FOLLOWING_TYPES.PUBLIC);
         },
       });
-    } else if (user.is_followed) {
+    } else if (workaround ? this.state.isFollow : user.is_followed) {
       this.unfollowUser(user.id);
     } else {
       this.followUser(user.id, FOLLOWING_TYPES.PUBLIC);
@@ -54,18 +68,24 @@ class FollowButtonContainer extends Component {
   followUser = (userId, followType) => {
     const { followUser } = this.props;
     followUser(userId, followType);
+    this.setState({
+      isFollow: true,
+    });
   };
 
   unfollowUser = userId => {
     const { unfollowUser } = this.props;
     unfollowUser(userId);
+    this.setState({
+      isFollow: false,
+    });
   };
 
   render() {
-    const { user, ...restProps } = this.props;
+    const { user, workaround, ...restProps } = this.props;
     return (
       <FollowButton
-        isFollow={user.is_followed}
+        isFollow={workaround ? this.state.isFollow : user.is_followed}
         onLongPress={this.handleOnLongPress}
         onPress={this.handleOnPress}
         {...restProps}
