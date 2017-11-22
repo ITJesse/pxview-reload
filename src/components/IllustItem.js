@@ -74,6 +74,8 @@ class IllustItem extends Component {
                 style={[
                   {
                     resizeMode: 'cover',
+                  },
+                  {
                     width:
                       globalStyleVariables.WINDOW_WIDTH() / numColumns -
                       imageWidthOffset,

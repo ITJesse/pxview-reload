@@ -123,7 +123,7 @@ class PXCacheImage extends Component {
           style={style}
           {...otherProps}
         />
-      : null;
+      : <View style={[style[1], style[2]]} />;
   };
 
   renderDetailImage = () => {
@@ -156,7 +156,7 @@ class PXCacheImage extends Component {
             {...otherProps}
           />
         </View>
-      : null;
+      : <View style={[style[1], style[2]]} />;
   };
 
   render() {
