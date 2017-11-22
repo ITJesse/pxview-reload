@@ -1,10 +1,15 @@
 import React from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
+
+import { globalStyleVariables } from '../../../styles';
 import { SCREENS } from '../../../common/constants';
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+    backgroundColor: globalStyleVariables.BACKGROUND_COLOR,
+  },
   listItem: {
     height: 49,
     justifyContent: 'center',
@@ -43,7 +48,7 @@ const OpenSourceLicenseList = props => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView style={styles.container}>
         <List>
           {list.map(item =>
             <ListItem
