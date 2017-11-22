@@ -9,9 +9,11 @@ const globalStyles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   header: {
+    height: 48,
     backgroundColor: globalStyleVariables.HEADER_BACKGROUND_COLOR,
   },
   headerWithoutShadow: {
+    height: 48,
     shadowOpacity: 0,
     shadowOffset: {
       height: 0,
