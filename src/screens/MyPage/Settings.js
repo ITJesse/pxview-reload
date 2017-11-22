@@ -194,12 +194,26 @@ class Settings extends Component {
     const images = await RNFetchBlob.fs.ls(
       `${RNFetchBlob.fs.dirs.CacheDir}/pxview/`,
     );
-    const ugoiraZips = await RNFetchBlob.fs.ls(
-      `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira_zip`,
-    );
-    const ugoiraDirs = await RNFetchBlob.fs.ls(
-      `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira`,
-    );
+    let ugoiraZips = [];
+    if (
+      await RNFetchBlob.fs.exists(
+        `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira_zip`,
+      )
+    ) {
+      ugoiraZips = await RNFetchBlob.fs.ls(
+        `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira_zip`,
+      );
+    }
+    let ugoiraDirs = [];
+    if (
+      await RNFetchBlob.fs.exists(
+        `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira`,
+      )
+    ) {
+      ugoiraDirs = await RNFetchBlob.fs.ls(
+        `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira`,
+      );
+    }
     const ugoiraTasks = ugoiraDirs.map(dir =>
       RNFetchBlob.fs.ls(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira/${dir}`),
     );
@@ -234,7 +248,7 @@ class Settings extends Component {
     let size = 0;
     stats.forEach(stat => (size += stat.size));
     await this.setStateAsync({ loading: false });
-    await this.delay(500);
+    await this.delay(1);
     return size;
   };
 
