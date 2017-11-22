@@ -3,24 +3,22 @@ import { takeEvery, select, put } from 'redux-saga/effects';
 import { ORIENTATION } from '../constants/actionTypes';
 import { setIllustColumns } from '../actions/orientation';
 import { getOrientation } from '../selectors';
-import { globalStyleVariables } from '../../styles';
+import config from '../config';
 
 function* handleOrientationChange() {
   const orientation = yield select(getOrientation);
   let ILLUST_COLUMNS;
-  const width = globalStyleVariables.WINDOW_WIDTH();
-  const height = globalStyleVariables.WINDOW_HEIGHT();
   if (orientation === 'PORTRAIT') {
-    if (height / width > 1.6) {
-      ILLUST_COLUMNS = 3; // iPhone
+    if (config.device === 'iphone') {
+      ILLUST_COLUMNS = 3;
     } else {
-      ILLUST_COLUMNS = 4; // iPad
+      ILLUST_COLUMNS = 4;
     }
   } else if (orientation === 'LANDSCAPE') {
-    if (height / width > 1.6) {
-      ILLUST_COLUMNS = 3; // iPhone
+    if (config.device === 'iphone') {
+      ILLUST_COLUMNS = 3;
     } else {
-      ILLUST_COLUMNS = 5; // iPad
+      ILLUST_COLUMNS = 5;
     }
   }
   yield put(setIllustColumns(ILLUST_COLUMNS));
