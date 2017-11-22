@@ -1,24 +1,16 @@
 # PxView Reload
+> The moded version of the [PxView](https://github.com/alphasp/pxview) for iOS device.
+
+
 ![logo](./src/images/logo.png)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/alphasp/pxview/pulls)
 
-Unofficial Pixiv app client for Android and iOS, built in React Native.
-
-## Gif
-![gif](./screenshots/demo.gif)
-
-## Screenshots
-![android_home](./screenshots/android/en/1.png)
-![android_search](./screenshots/android/en/2.png)
-![android_detail](./screenshots/android/en/3.png)
-![ios_detail](./screenshots/ios/en/3.png)
-![ios_connection](./screenshots/ios/en/4.png)
-![ios_ranking](./screenshots/ios/en/5.png)
+Unofficial Pixiv app client for iOS, built in React Native.
 
 ## Features
-- Tab navigation on iOS, drawer navigation on Android
+- Tab navigation
 - Ranking
 	- Enjoy the latest popular works.
  	- Find trending works over the past day, week, or month.
@@ -53,12 +45,10 @@ Unofficial Pixiv app client for Android and iOS, built in React Native.
 2. `$ npm install`
 3. `$ npm run pod-install`
 4. `$ react-native link`
-5. `$ npm run ios` or `npm run android`
+5. `$ npm run ios`
 6. (Optional) Set up Fabric / Crashlytics account on [Fabric.io](https://fabric.io/). 
 
-	a) `Android`: Change value for `io.fabric.ApiKey` in `./android/app/src/main/AndroidManifest.xml`
-	
-	b) `iOS`: Change value for `Fabric APIKey` in `./ios/PxView/info.plist`
+	a) `iOS`: Change value for `Fabric APIKey` in `./ios/PxView/info.plist`
 7. (Optional) Setup Firebase account on [Firebase](https://firebase.google.com/). Create a database, get apiKey, databaseURL, projectId from database settings, then change values for firebase config in `./src/common/config/env.dev.js` for development and `./src/common/config/env.prod.js` for production
 
 ## Application Architecture
@@ -87,10 +77,11 @@ $ npm test
 
 ## Related Projects
 [pxview](https://github.com/alphasp/pxview) - An unofficial Pixiv app client
+
 [pixiv-api-client](https://github.com/alphasp/pixiv-api-client) - Api client for Pixiv
 
 ## Contribute
-1. Fork [pxview](https://github.com/alphasp/pxview)
+1. Fork [pxview-reload](https://github.com/ITJesse/pxview-reload)
 2. Follow steps in Getting Started to install dependencies and setup.
 3. Make your code changes
 4. `npm run lint` to lint and prettify codes, make sure all eslint warning and errors are fixed.
