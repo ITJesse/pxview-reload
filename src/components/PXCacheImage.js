@@ -21,7 +21,6 @@ class PXCacheImage extends Component {
     const filePath = await this.downloadImage(uri);
 
     if (!this.unmounting && filePath) {
-      // const base64Str = `data:image/png;base64,${res.base64()}`;
       let size = {
         width: null,
         height: null,
@@ -120,9 +119,6 @@ class PXCacheImage extends Component {
       ? <Image
           source={{
             uri: this.state.imageUri,
-            headers: {
-              referer: 'http://www.pixiv.net',
-            },
           }}
           style={style}
           {...otherProps}
@@ -146,9 +142,6 @@ class PXCacheImage extends Component {
           <Image
             source={{
               uri: this.state.imageUri,
-              headers: {
-                referer: 'http://www.pixiv.net',
-              },
             }}
             style={[
               {

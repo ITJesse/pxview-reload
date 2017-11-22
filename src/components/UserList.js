@@ -122,7 +122,7 @@ class UserList extends Component {
               data={items}
               keyExtractor={item => item.user.id}
               renderItem={this.renderItem}
-              onEndReachedThreshold={0.1}
+              onEndReachedThreshold={2}
               onEndReached={loadMoreItems}
               ListFooterComponent={this.renderFooter}
               refreshControl={
