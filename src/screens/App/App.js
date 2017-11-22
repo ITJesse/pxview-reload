@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, DeviceEventEmitter } from 'react-native';
+import { View, StyleSheet, DeviceEventEmitter, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import SplashScreen from 'react-native-splash-screen';
 import { MessageBar, MessageBarManager } from 'react-native-message-bar';
@@ -79,6 +79,31 @@ class App extends Component {
     setOrientation(orientation);
   }
 
+  handleOnNavigationStateChange = (prevState, newState) => {
+    const currentScreen = this.getCurrentRouteName(newState);
+    const prevScreen = this.getCurrentRouteName(prevState);
+
+    if (prevScreen !== currentScreen) {
+      if (currentScreen === 'Trending') {
+        StatusBar.setBarStyle('default', true);
+      } else {
+        StatusBar.setBarStyle('light-content', true);
+      }
+    }
+  };
+
+  getCurrentRouteName = navigationState => {
+    if (!navigationState) {
+      return null;
+    }
+    const route = navigationState.routes[navigationState.index];
+    // dive into nested navigators
+    if (route.routes) {
+      return this.getCurrentRouteName(route);
+    }
+    return route.routeName;
+  };
+
   render() {
     const {
       rehydrated,
@@ -93,6 +118,7 @@ class App extends Component {
     } else if (user) {
       renderComponent = (
         <AppNavigator
+          onNavigationStateChange={this.handleOnNavigationStateChange}
           screenProps={{ i18n }}
           uriPrefix={/^(?:https?:\/\/)?(?:www|touch)\.pixiv\.net\/|^pixiv:\/\//}
         />
