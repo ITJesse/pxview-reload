@@ -1,5 +1,7 @@
-import { takeEvery, take, apply, put, select } from 'redux-saga/effects';
+import { takeEvery, take, apply, put, select, call } from 'redux-saga/effects';
 import { stopSubmit } from 'redux-form';
+import { Answers } from 'react-native-fabric';
+
 import { editAccountSuccess, editAccountFailure } from '../actions/editAccount';
 import { login, stopLogin } from '../actions/auth';
 import { fetchMyAccountState } from '../actions/myAccountState';
@@ -70,4 +72,16 @@ export function* handleEditAccount(action) {
 
 export function* watchEditAccount() {
   yield takeEvery(EDIT_ACCOUNT.REQUEST, handleEditAccount);
+}
+
+export function* watchSignUpSuccess() {
+  yield takeEvery(EDIT_ACCOUNT.SUCCESS, function*() {
+    yield call(Answers.logSignUp, 'Email', true);
+  });
+}
+
+export function* watchSignUpFailure() {
+  yield takeEvery(EDIT_ACCOUNT.FAILURE, function*() {
+    yield call(Answers.logSignUp, 'Email', false);
+  });
 }

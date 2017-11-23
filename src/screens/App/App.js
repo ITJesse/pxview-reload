@@ -6,6 +6,7 @@ import { MessageBar, MessageBarManager } from 'react-native-message-bar';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import PrivacySnapshot from 'react-native-privacy-snapshot';
 import Orientation from 'react-native-orientation';
+import { Answers } from 'react-native-fabric';
 
 import AppNavigator from '../../navigations/AppNavigator';
 import LoginNavigator from '../../navigations/LoginNavigator';
@@ -84,6 +85,7 @@ class App extends Component {
     const prevScreen = this.getCurrentRouteName(prevState);
 
     if (prevScreen !== currentScreen) {
+      Answers.logCustom('PageView', { page: currentScreen });
       if (currentScreen === 'Trending') {
         StatusBar.setBarStyle('default', true);
       } else {

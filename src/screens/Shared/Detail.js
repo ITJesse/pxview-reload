@@ -81,9 +81,7 @@ class Detail extends Component {
       addBrowsingHistory,
       fetchIllustDetail,
     } = this.props;
-    Answers.logContentView('Detail', 'Illust', `${illustId}`, {
-      title: item.title,
-    });
+    Answers.logContentView('Detail', 'Illust', `${illustId}`, { ...item });
     InteractionManager.runAfterInteractions(() => {
       if (this.detailView) {
         this.setState({ mounting: false });
@@ -259,7 +257,12 @@ class Detail extends Component {
       url: `http://www.pixiv.net/member_illust.php?illust_id=${item.id}&mode=medium`,
     };
     Share.open(shareOptions)
-      .then(this.handleOnCancelMenuBottomSheet)
+      .then(() => {
+        this.handleOnCancelMenuBottomSheet();
+        Answers.logShare('Share', item.title, 'Illust', `${item.id}`, {
+          ...item,
+        });
+      })
       .catch(this.handleOnCancelMenuBottomSheet);
   };
 
@@ -271,6 +274,7 @@ class Detail extends Component {
         ? item.meta_pages.map(page => page.image_urls.original)
         : [item.meta_single_page.original_image_url];
     saveImage([images[selectedImageIndex]]);
+    Answers.logCustom('SaveImage', { ...item });
     this.handleOnCancelMenuBottomSheet();
   };
 
