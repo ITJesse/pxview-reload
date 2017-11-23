@@ -89,6 +89,7 @@
   "noSearchResult": "未找到任何相关结果",
   "ok": "确定",
   "openSourceLicenses": "开源许可证",
+  "passcodeNotAvailable": "密码现在不可用",
   "passcodeNotSet": "请先设置锁屏密码",
   "password": "密码",
   "permissionGrantAppSettings": "应用设置",

@@ -89,6 +89,7 @@
   "noSearchResult": "No search results found",
   "ok": "OK",
   "openSourceLicenses": "Open Source Licenses",
+  "passcodeNotAvailable": "Passcode is not available",
   "passcodeNotSet": "Please set the passcode in the system settings first",
   "password": "Password",
   "permissionGrantAppSettings": "App Settings",

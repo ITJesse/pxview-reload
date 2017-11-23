@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
 import RNFetchBlob from 'react-native-fetch-blob';
-import TouchID from 'react-native-touch-id';
 import { connect } from 'react-redux';
 import RNExitApp from 'react-native-exit-app';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -16,6 +15,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { connectLocalization } from '../../components/Localization';
 import { globalStyleVariables } from '../../styles';
 import { SCREENS } from '../../common/constants';
+import { PasscodeAuth } from '../../common/helpers/touchid';
 import * as touchIDActions from '../../common/actions/touchid';
 
 const styles = StyleSheet.create({
@@ -69,20 +69,8 @@ class Settings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTouchIDUsable: false,
       loading: false,
     };
-  }
-
-  componentWillMount() {
-    TouchID.isSupported()
-      .then(() => {
-        console.log('TouchID usable');
-        this.setState({ isTouchIDUsable: true });
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 
   formatFileSize = size => {
@@ -146,42 +134,34 @@ class Settings extends Component {
     }
   };
 
-  handleOnSwitchListItem = () => {
+  handleCheckPasscode = async () => {
     const { useTouchID, setUseTouchID, i18n } = this.props;
     if (useTouchID) {
-      setUseTouchID(false);
-      return;
+      return setUseTouchID(false);
     }
-    TouchID.authenticate(i18n.useTouchIDLoginDescription)
-      .then(() => {
-        // Success code
-        console.log('User authenticated with TouchID');
-        setUseTouchID(true);
-      })
-      .catch(error => {
-        // Failure code
-        switch (error.name) {
-          case 'LAErrorTouchIDNotAvailable':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
-            break;
-          case 'LAErrorTouchIDNotEnrolled':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDNotEnrolled);
-            break;
-          case 'RCTTouchIDUnknownError':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDUnknownError);
-            break;
-          case 'RCTTouchIDNotSupported':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDHasLocked);
-            break;
-          case 'LAErrorUserCancel':
-          case 'LAErrorUserFallback':
-            break;
-          default:
-            DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
-            break;
-        }
-        setUseTouchID(false);
-      });
+    try {
+      await PasscodeAuth.authenticate(i18n.useTouchIDLoginDescription);
+    } catch (error) {
+      switch (error) {
+        case 'LAErrorAuthenticationFailed':
+          DeviceEventEmitter.emit('showToast', i18n.touchIdAuthFailed);
+          break;
+        case 'LAErrorPasscodeNotSet':
+        case 'PasscodeAuthNotSet':
+          DeviceEventEmitter.emit('showToast', i18n.passcodeNotSet);
+          break;
+        case 'LAErrorSystemCancel':
+        case 'LAErrorUserCancel':
+        case 'LAErrorUserFallback':
+          break;
+        case 'PasscodeAuthNotSupported':
+        default:
+          DeviceEventEmitter.emit('showToast', i18n.passcodeNotAvailable);
+          break;
+      }
+      return setUseTouchID(false);
+    }
+    return setUseTouchID(true);
   };
 
   setStateAsync = state =>
@@ -294,17 +274,10 @@ class Settings extends Component {
           title={i18n.useTouchID}
           containerStyle={styles.listItem}
           switched={this.props.useTouchID}
-          onSwitch={() => this.handleOnSwitchListItem()}
-          switchDisabled={!this.state.isTouchIDUsable}
+          onSwitch={() => this.handleCheckPasscode()}
           switchButton
           hideChevron
         />
-        {/* <ListItem
-          key="touchIdAutoLockTime"
-          title={i18n.touchIdAutoLockTime}
-          onPress={() => this.handleOnPressListItem('touchIdAutoLockTime')}
-          containerStyle={styles.listItem}
-        /> */}
       </List>
     );
   };

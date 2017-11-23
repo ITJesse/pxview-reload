@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import TouchID from 'react-native-touch-id';
+import { PasscodeAuth } from '../../common/helpers/touchid';
 import CookieManager from 'react-native-cookies';
 import { Answers } from 'react-native-fabric';
 import SplashScreen from 'react-native-splash-screen';
@@ -58,7 +58,7 @@ class TouchIDLogin extends Component {
 
   handleTouchIDLogin = () => {
     const { i18n, setShouldCheckTouchID } = this.props;
-    TouchID.authenticate(i18n.useTouchIDLoginDescription)
+    PasscodeAuth.authenticate(i18n.useTouchIDLoginDescription)
       .then(() => {
         // Success code
         Answers.logLogin('Touch ID', true);
@@ -66,27 +66,22 @@ class TouchIDLogin extends Component {
       })
       .catch(error => {
         // Failure code
-        Answers.logLogin('Touch ID', false, { error: error.name });
-        switch (error.name) {
-          case 'LAErrorTouchIDNotAvailable':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
+        Answers.logLogin('Touch ID', false, { error });
+        switch (error) {
+          case 'LAErrorAuthenticationFailed':
+            DeviceEventEmitter.emit('showToast', i18n.touchIdAuthFailed);
             break;
-          case 'LAErrorTouchIDNotEnrolled':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDNotEnrolled);
+          case 'LAErrorPasscodeNotSet':
+          case 'PasscodeAuthNotSet':
+            DeviceEventEmitter.emit('showToast', i18n.passcodeNotSet);
             break;
-          case 'RCTTouchIDUnknownError':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDUnknownError);
-            break;
-          case 'LAErrorUserFallback':
-            this.handleOnPressLogout();
-            break;
-          case 'RCTTouchIDNotSupported':
-            DeviceEventEmitter.emit('showToast', i18n.touchIDHasLocked);
-            break;
+          case 'LAErrorSystemCancel':
           case 'LAErrorUserCancel':
+          case 'LAErrorUserFallback':
             break;
+          case 'PasscodeAuthNotSupported':
           default:
-            DeviceEventEmitter.emit('showToast', i18n.touchIDNotAvailable);
+            DeviceEventEmitter.emit('showToast', i18n.passcodeNotAvailable);
             break;
         }
       });

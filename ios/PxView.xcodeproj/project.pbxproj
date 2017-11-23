@@ -41,6 +41,7 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* PxViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PxViewTests.m */; };
 		484A1BDD1F9C1C6A00100004 /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 484A1BDC1F9C1C5200100004 /* libRNCookieManagerIOS.a */; };
+		4854674C1FC6553A004042A8 /* PasscodeAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4854674A1FC65539004042A8 /* PasscodeAuth.m */; };
 		48D0DD201FC10BB60045174C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD1F1FC10BB60045174C /* Assets.xcassets */; };
 		48D0DD221FC10DA50045174C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD211FC10DA50045174C /* Launch Screen.storyboard */; };
 		48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48F887571FA654D50043796C /* GoogleService-Info.plist */; };
@@ -50,7 +51,6 @@
 		75CAA409A6C341CC8E87F00B /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 71DCC5B8F1A047CBA5903274 /* libz.tbd */; };
 		78A34B8E7BA94D138A6A7A98 /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 242F10951E4A4D05B97A7341 /* libRNExitApp.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		8354B52E4DBA4C34B533F7F3 /* libTouchID.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97F0C5A49C01416FBE0E580F /* libTouchID.a */; };
 		8A6E2332DC84435BBEB1D8F8 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72E94118FCEC4BBEBDAEBE25 /* Feather.ttf */; };
 		8ABF9D06F1DA4630A9D1CE9C /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3316D9A04AE5474584B578F5 /* libRNFetchBlob.a */; };
 		8D5A6E44ACFC451FBAE3B457 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0571F948EB454BEABEF911A3 /* libRCTOrientation.a */; };
@@ -278,13 +278,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1BD725DA1CF77A8B005DBD79;
 			remoteInfo = RNCookieManagerIOS;
-		};
-		486083411FAA1A8700A82889 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9D978A246535459A894449F9 /* TouchID.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = TouchID;
 		};
 		48811D861FC37FA000E57F1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -550,6 +543,8 @@
 		371EA88D80F74BB8B73F76A8 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		4481427EBBE34733B64F1DBE /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		484A1BD71F9C1C5200100004 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/ios/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
+		4854674A1FC65539004042A8 /* PasscodeAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasscodeAuth.m; path = PxView/PasscodeAuth.m; sourceTree = "<group>"; };
+		4854674B1FC6553A004042A8 /* PasscodeAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodeAuth.h; path = PxView/PasscodeAuth.h; sourceTree = "<group>"; };
 		48D0DD1F1FC10BB60045174C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = PxView/Assets.xcassets; sourceTree = "<group>"; };
 		48D0DD211FC10DA50045174C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "PxView/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		48F887571FA654D50043796C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PxView/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -576,7 +571,6 @@
 		93C2FE79A7E2487F87FD9EC7 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		97F0C5A49C01416FBE0E580F /* libTouchID.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libTouchID.a; sourceTree = "<group>"; };
 		986A17A066E541B48052019F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		9D978A246535459A894449F9 /* TouchID.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = TouchID.xcodeproj; path = "../node_modules/react-native-touch-id/TouchID.xcodeproj"; sourceTree = "<group>"; };
 		9E437647675D44FAB441338B /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		A0EEED11A8DD59E24818F24A /* Pods-PxView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PxView.release.xcconfig"; path = "Pods/Target Support Files/Pods-PxView/Pods-PxView.release.xcconfig"; sourceTree = "<group>"; };
 		A3614D7DF794420DB8D79CF6 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -646,7 +640,6 @@
 				A47DFC5396E94E9CB08265DC /* libRNZipArchive.a in Frameworks */,
 				75CAA409A6C341CC8E87F00B /* libz.tbd in Frameworks */,
 				A62FAFDB26BF17A3192D66E4 /* libPods-PxView.a in Frameworks */,
-				8354B52E4DBA4C34B533F7F3 /* libTouchID.a in Frameworks */,
 				00D31BAF4DD841DA84022AEC /* libRCTPrivacySnapshot.a in Frameworks */,
 				8D5A6E44ACFC451FBAE3B457 /* libRCTOrientation.a in Frameworks */,
 				CA8E624AAEA544DAA951D37E /* libRNAppStoreReview.a in Frameworks */,
@@ -766,6 +759,8 @@
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				4854674B1FC6553A004042A8 /* PasscodeAuth.h */,
+				4854674A1FC65539004042A8 /* PasscodeAuth.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				48F887571FA654D50043796C /* GoogleService-Info.plist */,
@@ -838,14 +833,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4860833E1FAA1A8700A82889 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				486083421FAA1A8700A82889 /* libTouchID.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		48811D831FC37FA000E57F1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -901,7 +888,6 @@
 				6D3F70B72BF0426DB1F0F70C /* SplashScreen.xcodeproj */,
 				8A6C06CC9E3144889FAF939D /* BVLinearGradient.xcodeproj */,
 				74C2B0EC629D46D1A12162AF /* RNZipArchive.xcodeproj */,
-				9D978A246535459A894449F9 /* TouchID.xcodeproj */,
 				67A29D38178B4888BD9E8928 /* RCTPrivacySnapshot.xcodeproj */,
 				BFC1427F49394A08AE8F3132 /* RCTOrientation.xcodeproj */,
 				A915D4015AB7445B9C4B33CA /* RNAppStoreReview.xcodeproj */,
@@ -1385,10 +1371,6 @@
 					ProductGroup = DED4786C1EFBBCDA00DBAFC4 /* Products */;
 					ProjectRef = 6D3F70B72BF0426DB1F0F70C /* SplashScreen.xcodeproj */;
 				},
-				{
-					ProductGroup = 4860833E1FAA1A8700A82889 /* Products */;
-					ProjectRef = 9D978A246535459A894449F9 /* TouchID.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1588,13 +1570,6 @@
 			fileType = archive.ar;
 			path = libRNCookieManagerIOS.a;
 			remoteRef = 484A1BDB1F9C1C5200100004 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		486083421FAA1A8700A82889 /* libTouchID.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTouchID.a;
-			remoteRef = 486083411FAA1A8700A82889 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		48811D871FC37FA000E57F1E /* libRNExitApp.a */ = {
@@ -1992,6 +1967,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				4854674C1FC6553A004042A8 /* PasscodeAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2073,6 +2049,7 @@
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = PxViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -2118,6 +2095,7 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = PxViewTests/Info.plist;
@@ -2168,6 +2146,7 @@
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = PxView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -2213,6 +2192,7 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = PxView/Info.plist;
@@ -2264,6 +2244,7 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = "PxView-tvOS/Info.plist";
@@ -2319,6 +2300,7 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-photo-view/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 					"$(SRCROOT)/../node_modules/react-native-passcode-auth",
 				);
 				INFOPLIST_FILE = "PxView-tvOS/Info.plist";
