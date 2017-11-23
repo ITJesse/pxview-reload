@@ -114,7 +114,13 @@ class Settings extends Component {
         break;
       }
       case 'cacheClear': {
-        const size = await this.calculateCacheSize();
+        let size;
+        try {
+          size = await this.calculateCacheSize();
+        } catch (error) {
+          await this.setStateAsync({ loading: false });
+          return;
+        }
         Alert.alert(
           i18n.formatString(
             i18n.cacheClearConfirmation,
@@ -227,7 +233,6 @@ class Settings extends Component {
     const stats = await Promise.all(tasks);
     let size = 0;
     stats.forEach(stat => (size += stat.size));
-    await this.setStateAsync({ loading: false });
     await this.delay(1);
     return size;
   };
