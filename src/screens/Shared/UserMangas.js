@@ -30,13 +30,14 @@ class UserMangas extends Component {
   };
 
   render() {
-    const { userMangas, items, listKey } = this.props;
+    const { userMangas, items, listKey, noBookmark } = this.props;
     return (
       <IllustList
         data={{ ...userMangas, items }}
         listKey={listKey}
         loadMoreItems={this.loadMoreItems}
         onRefresh={this.handleOnRefresh}
+        noBookmark={noBookmark}
       />
     );
   }

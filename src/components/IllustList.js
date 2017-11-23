@@ -39,7 +39,7 @@ class IllustList extends Component {
   }
 
   renderItem({ item, index }) {
-    const { orientation: { illustColumns } } = this.props;
+    const { orientation: { illustColumns }, noBookmark } = this.props;
     return (
       <IllustItem
         key={item.id}
@@ -47,6 +47,7 @@ class IllustList extends Component {
         index={index}
         numColumns={illustColumns}
         onPressItem={() => this.handleOnPressItem(item, index)}
+        noBookmark={noBookmark}
       />
     );
   }

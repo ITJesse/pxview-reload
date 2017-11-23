@@ -47,6 +47,7 @@ class IllustItem extends Component {
       isHighlight,
       isMute,
       auth,
+      noBookmark,
     } = this.props;
     const imageWidthOffset = isHighlight ? HIGHLIGHT_BORDER_WIDTH * 2 + 1 : 1;
     return (
@@ -86,7 +87,9 @@ class IllustItem extends Component {
                   imageStyle,
                 ]}
               />
-              {auth.user && <OverlayBookmarkButton item={item} />}
+              {auth.user &&
+                !noBookmark &&
+                <OverlayBookmarkButton item={item} />}
             </View>}
         {item.meta_pages && item.meta_pages.length
           ? <OverlayImagePages total={item.meta_pages.length} />

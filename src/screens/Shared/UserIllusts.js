@@ -35,13 +35,14 @@ class UserIllusts extends Component {
   };
 
   render() {
-    const { userIllusts, items, listKey } = this.props;
+    const { userIllusts, items, listKey, noBookmark } = this.props;
     return (
       <IllustList
         data={{ ...userIllusts, items }}
         listKey={listKey}
         loadMoreItems={this.loadMoreItems}
         onRefresh={this.handleOnRefresh}
+        noBookmark={noBookmark}
       />
     );
   }

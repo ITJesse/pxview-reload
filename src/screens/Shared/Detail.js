@@ -382,17 +382,19 @@ class Detail extends Component {
   }
 
   render() {
-    const { item, isMuteUser, i18n } = this.props;
+    const { item, isMuteUser, i18n, authUser } = this.props;
     const {
       isActionButtonVisible,
       isOpenMenuBottomSheet,
       selectedImageIndex,
     } = this.state;
+    const isSelf = item.user.id === authUser.id;
     return (
       <View style={styles.container} ref={ref => (this.detailView = ref)}>
         {this.renderMainContent()}
         {isActionButtonVisible &&
           item &&
+          !isSelf &&
           <ActionButton
             buttonColor="rgba(255,255,255,1)"
             bgColor="red"
@@ -415,24 +417,26 @@ class Detail extends Component {
             iconType="entypo"
             text={i18n.share}
           />
-          <PXBottomSheetButton
-            onPress={this.handleOnPressToggleMuteUser}
-            iconName="user-times"
-            iconType="font-awesome"
-            textStyle={{
-              marginLeft: 28,
-            }}
-            text={isMuteUser ? i18n.userMuteRemove : i18n.userMuteAdd}
-          />
-          <PXBottomSheetButton
-            onPress={this.handleOnPressReportUser}
-            iconName="ban"
-            iconType="font-awesome"
-            textStyle={{
-              marginLeft: 34,
-            }}
-            text={i18n.reportUser}
-          />
+          {!isSelf &&
+            <PXBottomSheetButton
+              onPress={this.handleOnPressToggleMuteUser}
+              iconName="user-times"
+              iconType="font-awesome"
+              textStyle={{
+                marginLeft: 28,
+              }}
+              text={isMuteUser ? i18n.userMuteRemove : i18n.userMuteAdd}
+            />}
+          {!isSelf &&
+            <PXBottomSheetButton
+              onPress={this.handleOnPressReportUser}
+              iconName="ban"
+              iconType="font-awesome"
+              textStyle={{
+                marginLeft: 34,
+              }}
+              text={i18n.reportUser}
+            />}
           <PXBottomSheetCancelButton
             onPress={this.handleOnCancelMenuBottomSheet}
             textStyle={{

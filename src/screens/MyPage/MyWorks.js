@@ -39,9 +39,13 @@ class MyWorks extends Component {
     const { userId } = navigation.state.params;
     switch (route.key) {
       case '1':
-        return <UserIllusts userId={userId} navigation={navigation} />;
+        return (
+          <UserIllusts userId={userId} navigation={navigation} noBookmark />
+        );
       case '2':
-        return <UserMangas userId={userId} navigation={navigation} />;
+        return (
+          <UserMangas userId={userId} navigation={navigation} noBookmark />
+        );
       default:
         return null;
     }
