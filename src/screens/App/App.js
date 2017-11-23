@@ -86,7 +86,7 @@ class App extends Component {
 
     if (prevScreen !== currentScreen) {
       Answers.logCustom('PageView', { page: currentScreen });
-      if (currentScreen === 'Trending') {
+      if (currentScreen === 'Trending' || currentScreen === 'SearchResult') {
         StatusBar.setBarStyle('default', true);
       } else {
         StatusBar.setBarStyle('light-content', true);

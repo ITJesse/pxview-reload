@@ -12,12 +12,12 @@ import { makeGetUserIllustsItems } from '../common/selectors';
 import config from '../common/config';
 import { globalStyleVariables } from '../styles';
 
-const AVATAR_SIZE = 50;
+const AVATAR_SIZE = config.device === 'iphone' ? 60 : 70;
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: '#fff',
-    marginBottom: 20,
+    marginBottom: 30,
   },
   imagePreviews: {
     flex: 1,
@@ -27,9 +27,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: 80,
+    marginLeft: config.device === 'iphone' ? 80 : 100,
     marginRight: 5,
-    marginVertical: 5,
+    marginVertical: 10,
   },
   userInfo: {
     flexDirection: 'row',
@@ -81,6 +81,9 @@ class UserPreview extends Component {
                 index={index}
                 numColumns={illustColumns}
                 onPressItem={() => this.handleOnPressImagePreview(items, index)}
+                style={{
+                  backgroundColor: '#fff',
+                }}
               />,
             )}
         </View>
