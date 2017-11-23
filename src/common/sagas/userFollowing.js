@@ -4,13 +4,13 @@ import {
   fetchUserFollowingSuccess,
   fetchUserFollowingFailure,
 } from '../actions/userFollowing';
-import { fetchUserIllusts } from '../actions/userIllusts';
+// import { fetchUserIllusts } from '../actions/userIllusts';
 import { addError } from '../actions/error';
 import pixiv from '../helpers/apiClient';
 import { USER_FOLLOWING } from '../constants/actionTypes';
 import Schemas from '../constants/schemas';
 import { FOLLOWING_TYPES } from '../constants';
-import config from '../config';
+// import config from '../config';
 
 export function* handleFetchUserFollowing(action) {
   const { userId, followingType, nextUrl } = action.payload;
@@ -46,12 +46,12 @@ export function* handleFetchUserFollowing(action) {
         response.next_url,
       ),
     );
-    if (config.device === 'ipad') {
-      const tasks = response.user_previews.map(user =>
-        put(fetchUserIllusts(user.user.id)),
-      );
-      yield all(tasks);
-    }
+    // if (config.device === 'ipad') {
+    //   const tasks = response.user_previews.map(user =>
+    //     put(fetchUserIllusts(user.user.id)),
+    //   );
+    //   yield all(tasks);
+    // }
   } catch (err) {
     yield put(fetchUserFollowingFailure(userId));
     yield put(addError(err));

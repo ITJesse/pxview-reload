@@ -1,13 +1,15 @@
 import { normalize } from 'normalizr';
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, all } from 'redux-saga/effects';
 import {
   fetchRecommendedUsersSuccess,
   fetchRecommendedUsersFailure,
 } from '../actions/recommendedUsers';
+// import { fetchUserIllusts } from '../actions/userIllusts';
 import { addError } from '../actions/error';
 import pixiv from '../helpers/apiClient';
 import { RECOMMENDED_USERS } from '../constants/actionTypes';
 import Schemas from '../constants/schemas';
+// import config from '../config';
 
 export function* handleFetchRecommendedUsers(action) {
   const { options, nextUrl } = action.payload;
@@ -38,6 +40,12 @@ export function* handleFetchRecommendedUsers(action) {
         response.next_url,
       ),
     );
+    // if (config.device === 'ipad') {
+    //   const tasks = response.user_previews.map(user =>
+    //     put(fetchUserIllusts(user.user.id)),
+    //   );
+    //   yield all(tasks);
+    // }
   } catch (err) {
     yield put(fetchRecommendedUsersFailure());
     yield put(addError(err));

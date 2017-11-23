@@ -73,6 +73,13 @@ class UserPreview extends Component {
             },
           ]}
         >
+          {config.device === 'ipad' &&
+            <View
+              style={{
+                width: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
+                height: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
+              }}
+            />}
           {items &&
             items.map((illust, index) =>
               <IllustItem
@@ -114,14 +121,14 @@ export default withNavigation(
   connect((state, props) => {
     const { orientation } = state;
     const { item: { user, illusts } } = props;
-    if (config.device === 'ipad') {
-      const getUserIllustsItems = makeGetUserIllustsItems();
-      return {
-        user: props.item.user,
-        items: getUserIllustsItems(state, props),
-        orientation,
-      };
-    }
+    // if (config.device === 'ipad') {
+    //   const getUserIllustsItems = makeGetUserIllustsItems();
+    //   return {
+    //     user: props.item.user,
+    //     items: getUserIllustsItems(state, props),
+    //     orientation,
+    //   };
+    // }
     return {
       items: illusts,
       user,
