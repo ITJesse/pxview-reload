@@ -329,7 +329,7 @@ class Detail extends Component {
   renderContent = ({ item }) => {
     const { navigation, i18n, authUser } = this.props;
     return (
-      <View key={item.id}>
+      <View key={item.id} testID="Detail">
         <PXHeader
           headerTitle={this.renderHeaderTitle(item)}
           headerRight={this.renderHeaderRight(item)}

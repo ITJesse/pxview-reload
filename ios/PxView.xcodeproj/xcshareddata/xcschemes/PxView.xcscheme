@@ -61,9 +61,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "PxViewTests.xctest"
-               BlueprintName = "PxViewTests"
+               BlueprintIdentifier = "485893341FCB0B020082342A"
+               BuildableName = "PxViewUITests.xctest"
+               BlueprintName = "PxViewUITests"
                ReferencedContainer = "container:PxView.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -81,7 +81,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""

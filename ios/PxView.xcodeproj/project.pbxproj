@@ -42,6 +42,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* PxViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PxViewTests.m */; };
 		484A1BDD1F9C1C6A00100004 /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 484A1BDC1F9C1C5200100004 /* libRNCookieManagerIOS.a */; };
 		4854674C1FC6553A004042A8 /* PasscodeAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4854674A1FC65539004042A8 /* PasscodeAuth.m */; };
+		485893381FCB0B020082342A /* PxViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485893371FCB0B020082342A /* PxViewUITests.swift */; };
+		48C95BF91FCB0F0400708727 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C95BF81FCB0F0400708727 /* SnapshotHelper.swift */; };
 		48D0DD201FC10BB60045174C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD1F1FC10BB60045174C /* Assets.xcassets */; };
 		48D0DD221FC10DA50045174C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48D0DD211FC10DA50045174C /* Launch Screen.storyboard */; };
 		48F8878B1FA654D50043796C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48F887571FA654D50043796C /* GoogleService-Info.plist */; };
@@ -278,6 +280,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 1BD725DA1CF77A8B005DBD79;
 			remoteInfo = RNCookieManagerIOS;
+		};
+		4858933A1FCB0B020082342A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = PxView;
 		};
 		48811D861FC37FA000E57F1E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -545,6 +554,10 @@
 		484A1BD71F9C1C5200100004 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/ios/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
 		4854674A1FC65539004042A8 /* PasscodeAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasscodeAuth.m; path = PxView/PasscodeAuth.m; sourceTree = "<group>"; };
 		4854674B1FC6553A004042A8 /* PasscodeAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodeAuth.h; path = PxView/PasscodeAuth.h; sourceTree = "<group>"; };
+		485893351FCB0B020082342A /* PxViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PxViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		485893371FCB0B020082342A /* PxViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PxViewUITests.swift; sourceTree = "<group>"; };
+		485893391FCB0B020082342A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		48C95BF81FCB0F0400708727 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		48D0DD1F1FC10BB60045174C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = PxView/Assets.xcassets; sourceTree = "<group>"; };
 		48D0DD211FC10DA50045174C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "PxView/Launch Screen.storyboard"; sourceTree = "<group>"; };
 		48F887571FA654D50043796C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "PxView/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -664,6 +677,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2D02E48D1E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		485893321FCB0B020082342A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -833,6 +853,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		485893361FCB0B020082342A /* PxViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				485893371FCB0B020082342A /* PxViewUITests.swift */,
+				48C95BF81FCB0F0400708727 /* SnapshotHelper.swift */,
+				485893391FCB0B020082342A /* Info.plist */,
+			);
+			path = PxViewUITests;
+			sourceTree = "<group>";
+		};
 		48811D831FC37FA000E57F1E /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,6 +942,7 @@
 				13B07FAE1A68108700A75B9A /* PxView */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* PxViewTests */,
+				485893361FCB0B020082342A /* PxViewUITests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				FD8E20B5C3D542F699FA4047 /* Resources */,
 				A6D1F2247BEEE2F7C604A60E /* Frameworks */,
@@ -930,6 +961,7 @@
 				00E356EE1AD99517003FC87E /* PxViewTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* PxView-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* PxView-tvOSTests.xctest */,
+				485893351FCB0B020082342A /* PxViewUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1195,12 +1227,31 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* PxView-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		485893341FCB0B020082342A /* PxViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4858933C1FCB0B020082342A /* Build configuration list for PBXNativeTarget "PxViewUITests" */;
+			buildPhases = (
+				485893311FCB0B020082342A /* Sources */,
+				485893321FCB0B020082342A /* Frameworks */,
+				485893331FCB0B020082342A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4858933B1FCB0B020082342A /* PBXTargetDependency */,
+			);
+			name = PxViewUITests;
+			productName = PxViewUITests;
+			productReference = 485893351FCB0B020082342A /* PxViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0910;
 				LastUpgradeCheck = 610;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
@@ -1229,6 +1280,12 @@
 						DevelopmentTeam = 9975VG746Y;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					485893341FCB0B020082342A = {
+						CreatedOnToolsVersion = 9.1;
+						DevelopmentTeam = 9975VG746Y;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 				};
 			};
@@ -1378,6 +1435,7 @@
 				00E356ED1AD99517003FC87E /* PxViewTests */,
 				2D02E47A1E0B4A5D006451C7 /* PxView-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* PxView-tvOSTests */,
+				485893341FCB0B020082342A /* PxViewUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1844,6 +1902,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		485893331FCB0B020082342A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1902,7 +1967,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#!/bin/bash\nbuildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\n";
+			shellScript = "#!/bin/bash\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then\n    buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\n    buildNumber=$(($buildNumber + 1))\n    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"$INFOPLIST_FILE\"\nfi\n";
 		};
 		DEFCAAE01E2FB8E700E61FEA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1988,6 +2053,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		485893311FCB0B020082342A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				485893381FCB0B020082342A /* PxViewUITests.swift in Sources */,
+				48C95BF91FCB0F0400708727 /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2000,6 +2074,11 @@
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* PxView-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+		4858933B1FCB0B020082342A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* PxView */;
+			targetProxy = 4858933A1FCB0B020082342A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2383,6 +2462,77 @@
 			};
 			name = Release;
 		};
+		4858933D1FCB0B020082342A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 9975VG746Y;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = PxViewUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.itjesse.PxViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PxView;
+			};
+			name = Debug;
+		};
+		4858933E1FCB0B020082342A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 9975VG746Y;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = PxViewUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.itjesse.PxViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = PxView;
+			};
+			name = Release;
+		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2496,6 +2646,15 @@
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
 				2D02E49A1E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4858933C1FCB0B020082342A /* Build configuration list for PBXNativeTarget "PxViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4858933D1FCB0B020082342A /* Debug */,
+				4858933E1FCB0B020082342A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

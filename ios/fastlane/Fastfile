@@ -3,13 +3,7 @@ fastlane_version "2.58.0"
 default_platform :ios
 
 platform :ios do
-  #
-  # Learn more here: https://docs.fastlane.tools/getting-started/ios/beta-deployment/
-  #             and: https://docs.fastlane.tools/getting-started/android/beta-deployment/
-  #
   lane :beta do |values|
-    # Fabric generated this lane for deployment to Crashlytics Beta
-    # set 'export_method' to 'ad-hoc' if your Crashlytics Beta distribution uses ad-hoc provisioning
     gym(scheme: 'PxView', export_method: 'ad-hoc')
 
     emails = values[:test_email] ? values[:test_email] : ['jesse@itjesse.com', 'legend.t@icloud.com'] # You can list more emails here
@@ -22,13 +16,20 @@ platform :ios do
                     notes: 'Distributed with fastlane', # Check out the changelog_from_git_commits action
             notifications: true) # Should this distribution notify your testers via email?
 
-    # for all available options run `fastlane action crashlytics`
+  end
 
-    # You can notify your team in chat that a beta build has been uploaded
-    # slack(
-    #   slack_url: "https://hooks.slack.com/services/YOUR/TEAM/INFO"
-    #   channel: "beta-releases",
-    #   message: "Successfully uploaded a beta release - see it at https://fabric.io/_/beta"
-    # )
+  lane :screenshots do
+    snapshot
+    frameit
+    deliver
+  end
+  lane :upload do
+    deliver(
+      username: "jesse@itjesse.com",
+      app_identifier: "com.itjesse.pxview",
+      include_in_app_purchases: false,
+      skip_binary_upload: true,
+      skip_metadata: true,
+      skip_app_version_update: true)
   end
 end

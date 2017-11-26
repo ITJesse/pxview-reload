@@ -39,7 +39,7 @@
     "react-native-elements": "^0.18.2",
     "react-native-exit-app": "^1.0.0",
     "react-native-fabric": "^0.5.1",
-    "react-native-fetch-blob": "^0.10.8",
+    "react-native-fetch-blob": "github:ITJesse/react-native-fetch-blob.git",
     "react-native-htmlview": "^0.12.1",
     "react-native-hyperlink": "0.0.11",
     "react-native-iphone-x-helper": "^1.0.1",

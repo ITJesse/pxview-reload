@@ -138,12 +138,14 @@ class Login extends Component {
                   component={PXFormInput}
                   label={i18n.loginEmailOrPixivId}
                   autoCapitalize="none"
+                  testID="LoginPageUsernameField"
                 />
                 <Field
                   name="password"
                   component={PXFormInput}
                   label={i18n.password}
                   secureTextEntry
+                  testID="LoginPagePasswordField"
                 />
                 <Button
                   title={i18n.login}
@@ -151,6 +153,7 @@ class Login extends Component {
                   backgroundColor={globalStyleVariables.PRIMARY_COLOR}
                   raised
                   onPress={handleSubmit(this.submit)}
+                  testID="LoginPageLoginButton"
                 />
                 <Button
                   title={i18n.loginNoAccount}
@@ -161,6 +164,7 @@ class Login extends Component {
                   backgroundColor="transparent"
                   color={globalStyleVariables.PRIMARY_COLOR}
                   onPress={this.handleOnPressSignUp}
+                  testID="LoginPagePreviewButton"
                 />
                 <Button
                   title={i18n.eula}
@@ -171,6 +175,7 @@ class Login extends Component {
                   backgroundColor="transparent"
                   color={globalStyleVariables.PRIMARY_COLOR}
                   onPress={this.handleOpenEula}
+                  testID="LoginPageEulaButton"
                 />
               </View>
             </KeyboardAvoidingView>

@@ -65,6 +65,7 @@ class IllustItem extends Component {
         ]}
         onPress={onPressItem}
         disabled={isMute}
+        testID={`${item.id}`}
       >
         {isMute
           ? <OverlayMutedIndicator />

@@ -62,6 +62,7 @@ const menuList2 = [
     title: 'logout',
     icon: 'sign-out',
     type: 'font-awesome',
+    testID: 'LogoutButton',
   },
 ];
 
@@ -132,6 +133,7 @@ class MyPage extends Component {
             text: i18n.logout,
             style: 'destructive',
             onPress: this.handleOnPressConfirmLogout,
+            testID: 'LogoutConfirmButton',
           },
         ],
         { cancelable: false },
@@ -191,6 +193,7 @@ class MyPage extends Component {
               style: { width: 30, textAlign: 'center' },
             }}
             onPress={() => this.handleOnPressListItem(item)}
+            testID={item.testID}
           />,
         )}
       </List>

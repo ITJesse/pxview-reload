@@ -65,7 +65,13 @@ const AppTabNavigator = TabNavigator(
     animationEnabled: true,
     lazy: false,
     tabBarPosition: 'bottom',
-    tabBarComponent: TabBarBottom,
+    tabBarComponent: props =>
+      <TabBarBottom
+        {...props}
+        getTestIDProps={scene => ({
+          testID: scene.route.key,
+        })}
+      />,
     tabBarOptions: {
       activeTintColor: 'rgb(59,89,152)',
       inactiveTintColor: 'rgb(204,204,204)',
@@ -82,8 +88,11 @@ const AppTabNavigator = TabNavigator(
         },
         labelColor: 'rgb(59,89,152)',
         tabs: {
-          HomeTab: {},
-          Rankingtab: {
+          HomeTab: {
+            testID: 'homeTab',
+          },
+          RankingTab: {
+            testID: 'RankingTab',
             // barBackgroundColor: '#EEEEEE',
           },
           TrendingTab: {

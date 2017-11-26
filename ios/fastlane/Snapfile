@@ -1,0 +1,27 @@
+devices([
+  "iPhone X",
+  "iPhone 8",
+  "iPhone 8 Plus",
+  "iPhone SE",
+  "iPad Pro (12.9-inch)",
+  "iPad Pro (9.7-inch)",
+])
+
+languages([
+  "en-US",
+  "ja",
+  "zh-Hans",
+  "zh-Hant",
+])
+
+scheme "PxView"
+
+# output_directory "./fastlane/screenshots"
+workspace "./PxView.xcworkspace"
+
+# launch_arguments(["-favColor red"])
+
+# localize_simulator true
+reinstall_app true
+app_identifier "com.itjesse.pxview"
+
