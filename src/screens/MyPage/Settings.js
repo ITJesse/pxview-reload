@@ -128,7 +128,11 @@ class Settings extends Component {
           ),
           null,
           [
-            { text: i18n.cancel, style: 'cancel' },
+            {
+              text: i18n.cancel,
+              style: 'cancel',
+              onPress: () => this.setStateAsync({ loading: false }),
+            },
             { text: i18n.ok, onPress: this.handleOnPressConfirmClearCache },
           ],
           { cancelable: false },
