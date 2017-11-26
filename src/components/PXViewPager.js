@@ -20,7 +20,7 @@ class PXViewPager extends Component {
     const { items, index, renderContent, onEndReached } = this.props;
     return (
       <FlatList
-        ref={ref => (this.flatList = ref)}
+        ref={ref => (this.flatList = ref)} // eslint-disable-line no-return-assign
         data={items}
         keyExtractor={item => item.id}
         renderItem={renderContent}

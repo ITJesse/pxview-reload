@@ -353,7 +353,7 @@ class UserDetail extends Component {
                 height: 100,
                 backgroundColor: 'transparent',
               }}
-              ref={ref => (this.backgroundImage = ref)}
+              ref={ref => (this.backgroundImage = ref)} // eslint-disable-line no-return-assign
               onLoadEnd={this.handleOnProfileImageLoaded}
             />
             <BlurView

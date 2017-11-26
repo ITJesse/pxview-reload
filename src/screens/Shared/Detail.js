@@ -390,7 +390,10 @@ class Detail extends Component {
     } = this.state;
     const isSelf = item.user.id === authUser.id;
     return (
-      <View style={styles.container} ref={ref => (this.detailView = ref)}>
+      <View
+        style={styles.container}
+        ref={ref => (this.detailView = ref)} // eslint-disable-line no-return-assign
+      >
         {this.renderMainContent()}
         {isActionButtonVisible &&
           item &&

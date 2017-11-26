@@ -77,7 +77,7 @@ class TagSettings extends Component {
       <View style={globalStyles.container}>
         <View style={styles.inputContainer}>
           <FormInput
-            ref={ref => (this.formInput = ref)}
+            ref={ref => (this.formInput = ref)} // eslint-disable-line no-return-assign
             placeholder={formInputPlaceholder}
             autoCorrect={false}
             containerStyle={styles.formInputContainer}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { View, StyleSheet, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -38,82 +38,76 @@ const styles = StyleSheet.create({
   },
 });
 
-class IllustCollection extends Component {
-  render() {
-    const {
-      navigation: { navigate },
-      items,
-      title,
-      total,
-      viewMoreTitle,
-      onPressViewMore,
-      illustColumns,
-    } = this.props;
-    if (!items || !items.length) {
-      return null;
-    }
-    const illusts = items.slice(0, illustColumns * 2);
-    return (
-      <View style={styles.container}>
-        <View style={styles.title}>
-          <Text>
-            {title}
-          </Text>
-          <PXTouchable onPress={onPressViewMore}>
-            <View style={styles.viewAllContainer}>
-              {total &&
-                <Text style={styles.total}>
-                  {total}
-                </Text>}
-              <Text>
-                {viewMoreTitle}
-              </Text>
-              <Icon name="chevron-right" style={styles.chevronIcon} />
-            </View>
-          </PXTouchable>
-        </View>
-        <View style={styles.imagePreviews}>
-          {illusts &&
-            illusts.length &&
-            illusts.map((item, index) =>
-              <IllustItem
-                key={item.id}
-                item={item}
-                index={index}
-                numColumns={illustColumns}
-                onPressItem={() =>
-                  navigate(SCREENS.Detail, { items: illusts, index })}
-                containerStyle={{
-                  width:
-                    (globalStyleVariables.WINDOW_WIDTH() -
-                      CONTAINER_MARGIN * 2) /
-                      illustColumns -
-                    1,
-                  height:
-                    (globalStyleVariables.WINDOW_WIDTH() -
-                      CONTAINER_MARGIN * 2) /
-                      illustColumns -
-                    1,
-                }}
-                imageStyle={{
-                  width:
-                    (globalStyleVariables.WINDOW_WIDTH() -
-                      CONTAINER_MARGIN * 2) /
-                      illustColumns -
-                    1,
-                  height:
-                    (globalStyleVariables.WINDOW_WIDTH() -
-                      CONTAINER_MARGIN * 2) /
-                      illustColumns -
-                    1,
-                }}
-              />,
-            )}
-        </View>
-      </View>
-    );
+const IllustCollection = () => {
+  const {
+    navigation: { navigate },
+    items,
+    title,
+    total,
+    viewMoreTitle,
+    onPressViewMore,
+    illustColumns,
+  } = this.props;
+  if (!items || !items.length) {
+    return null;
   }
-}
+  const illusts = items.slice(0, illustColumns * 2);
+  return (
+    <View style={styles.container}>
+      <View style={styles.title}>
+        <Text>
+          {title}
+        </Text>
+        <PXTouchable onPress={onPressViewMore}>
+          <View style={styles.viewAllContainer}>
+            {total &&
+              <Text style={styles.total}>
+                {total}
+              </Text>}
+            <Text>
+              {viewMoreTitle}
+            </Text>
+            <Icon name="chevron-right" style={styles.chevronIcon} />
+          </View>
+        </PXTouchable>
+      </View>
+      <View style={styles.imagePreviews}>
+        {illusts &&
+          illusts.length &&
+          illusts.map((item, index) =>
+            <IllustItem
+              key={item.id}
+              item={item}
+              index={index}
+              numColumns={illustColumns}
+              onPressItem={() =>
+                navigate(SCREENS.Detail, { items: illusts, index })}
+              containerStyle={{
+                width:
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
+                    illustColumns -
+                  1,
+                height:
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
+                    illustColumns -
+                  1,
+              }}
+              imageStyle={{
+                width:
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
+                    illustColumns -
+                  1,
+                height:
+                  (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
+                    illustColumns -
+                  1,
+              }}
+            />,
+          )}
+      </View>
+    </View>
+  );
+};
 
 export default connect(state => ({
   illustColumns: state.orientation.illustColumns,

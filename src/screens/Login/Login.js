@@ -102,9 +102,7 @@ class Login extends Component {
   };
 
   handleOpenEula = () => {
-    Linking.openURL('https://www.pixiv.net/terms/')
-      .then()
-      .catch(err => console.error('An error occurred', err));
+    Linking.openURL('https://www.pixiv.net/terms/').then();
   };
 
   render() {
@@ -112,7 +110,7 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View
-          ref={ref => (this.list = ref)}
+          ref={ref => (this.list = ref)} // eslint-disable-line no-return-assign
           style={{ flex: 1 }}
           onLayout={this.handleOnLayout}
         >

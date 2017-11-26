@@ -112,7 +112,7 @@ class IllustList extends Component {
         {loaded
           ? <FlatList
               onLayout={this.handleOnLayout}
-              ref={ref => (this.illustList = ref)}
+              ref={ref => (this.illustList = ref)} // eslint-disable-line no-return-assign
               data={muteFilter()}
               numColumns={illustColumns}
               keyExtractor={item => item.id}

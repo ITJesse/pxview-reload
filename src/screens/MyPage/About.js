@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import { List, ListItem } from 'react-native-elements';
-import AppStoreReview from 'react-native-app-store-review';
+// import AppStoreReview from 'react-native-app-store-review';
 
 import { connectLocalization } from '../../components/Localization';
 import { globalStyles } from '../../styles';

@@ -236,7 +236,7 @@ class Settings extends Component {
 
     const stats = await Promise.all(tasks);
     let size = 0;
-    stats.forEach(stat => (size += stat.size));
+    stats.forEach(stat => (size += stat.size)); // eslint-disable-line no-return-assign
     await this.delay(1);
     return size;
   };

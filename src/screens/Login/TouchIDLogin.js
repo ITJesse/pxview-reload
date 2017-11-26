@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
-import { PasscodeAuth } from '../../common/helpers/touchid';
 import CookieManager from 'react-native-cookies';
 import { Answers } from 'react-native-fabric';
 import SplashScreen from 'react-native-splash-screen';
 
+import { PasscodeAuth } from '../../common/helpers/touchid';
 import { connectLocalization } from '../../components/Localization';
 import * as authActionCreators from '../../common/actions/auth';
 import * as modalActionCreators from '../../common/actions/modal';

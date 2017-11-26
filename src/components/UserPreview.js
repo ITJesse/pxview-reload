@@ -8,7 +8,7 @@ import PXThumbnailTouchable from '../components/PXThumbnailTouchable';
 import FollowButtonContainer from '../containers/FollowButtonContainer';
 import IllustItem from './IllustItem';
 import { SCREENS } from '../common/constants';
-import { makeGetUserIllustsItems } from '../common/selectors';
+// import { makeGetUserIllustsItems } from '../common/selectors';
 import config from '../common/config';
 import { globalStyleVariables } from '../styles';
 

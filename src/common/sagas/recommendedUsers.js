@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr';
-import { takeEvery, apply, put, all } from 'redux-saga/effects';
+import { takeEvery, apply, put } from 'redux-saga/effects';
 import {
   fetchRecommendedUsersSuccess,
   fetchRecommendedUsersFailure,

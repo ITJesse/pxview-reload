@@ -27,3 +27,5 @@ function* handleOrientationChange() {
 export function* watchOrientationChange() {
   yield takeEvery(ORIENTATION.SET, handleOrientationChange);
 }
+
+export default watchOrientationChange;

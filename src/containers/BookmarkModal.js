@@ -305,7 +305,7 @@ class BookmarkModal extends Component {
                 </View>
                 <View style={styles.newTagContainer}>
                   <TextInput
-                    ref={ref => (this.tagInput = ref)}
+                    ref={ref => (this.tagInput = ref)} // eslint-disable-line no-return-assign
                     style={styles.tagInput}
                     placeholder={i18n.collectionTagsAdd}
                     autoCorrect={false}
@@ -371,7 +371,9 @@ class BookmarkModal extends Component {
             </TouchableWithoutFeedback>
           </View>
         </TouchableWithoutFeedback>
-        <Toast ref={ref => (this.toast = ref)} />
+        <Toast
+          ref={ref => (this.toast = ref)} // eslint-disable-line no-return-assign
+        />
       </Modal>
     );
   }

@@ -134,8 +134,13 @@ class App extends Component {
           shouldCheckTouchID &&
           <TouchIDNavigator screenProps={{ i18n }} />}
         {renderComponent}
-        <MessageBar ref={ref => (this.messageBarAlert = ref)} />
-        <Toast ref={ref => (this.toast = ref)} opacity={0.7} />
+        <MessageBar
+          ref={ref => (this.messageBarAlert = ref)} // eslint-disable-line no-return-assign
+        />
+        <Toast
+          ref={ref => (this.toast = ref)} // eslint-disable-line no-return-assign
+          opacity={0.7}
+        />
         <ModalRoot />
       </View>
     );
