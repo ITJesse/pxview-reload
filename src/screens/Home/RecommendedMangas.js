@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as recommendedMangasActionCreators from '../../common/actions/recommendedMangas';
 import { getRecommendedMangasItems } from '../../common/selectors';
 
 class RecommendedMangas extends Component {
   componentDidMount() {
-    const { fetchRecommendedMangas, clearRecommendedMangas } = this.props;
-    clearRecommendedMangas();
-    fetchRecommendedMangas();
+    const {
+      fetchRecommendedMangas,
+      clearRecommendedMangas,
+      recommendedMangas: { timestamp },
+      items,
+    } = this.props;
+    if (
+      items.length < 1 ||
+      moment(timestamp).add(1, 'days').isBefore(moment())
+    ) {
+      clearRecommendedMangas();
+      fetchRecommendedMangas();
+    }
   }
 
   loadMoreItems = () => {
@@ -44,7 +56,7 @@ export default connect((state, props) => {
   const { recommendedMangas } = state;
   return {
     recommendedMangas,
-    items: getRecommendedMangasItems(state, props),
+    items: getRecommendedMangasItems(state, props).filter(item => !!item),
     listKey: `${props.navigation.state.key}-recommendedMangas`,
   };
 }, recommendedMangasActionCreators)(RecommendedMangas);

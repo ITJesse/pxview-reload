@@ -3,16 +3,28 @@
 import React, { Component } from 'react';
 import { InteractionManager } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../components/IllustList';
 import * as walkthroughIllustsActionCreators from '../common/actions/walkthroughIllusts';
 import { getWalkthroughIllustsItems } from '../common/selectors';
 
 class WalkthroughIllustList extends Component {
   componentDidMount() {
-    const { fetchWalkthroughIllusts, clearWalkthroughIllusts } = this.props;
+    const {
+      fetchWalkthroughIllusts,
+      clearWalkthroughIllusts,
+      walkthroughIllusts: { timestamp },
+      items,
+    } = this.props;
     InteractionManager.runAfterInteractions(() => {
-      clearWalkthroughIllusts();
-      fetchWalkthroughIllusts();
+      if (
+        items.length < 1 ||
+        moment(timestamp).add(1, 'days').isBefore(moment())
+      ) {
+        clearWalkthroughIllusts();
+        fetchWalkthroughIllusts();
+      }
     });
   }
 
@@ -33,7 +45,7 @@ export default connect((state, props) => {
   const { walkthroughIllusts } = state;
   return {
     walkthroughIllusts,
-    items: getWalkthroughIllustsItems(state, props),
+    items: getWalkthroughIllustsItems(state, props).filter(item => !!item),
     listKey: 'walkthroughIllustList',
   };
 }, walkthroughIllustsActionCreators)(WalkthroughIllustList);

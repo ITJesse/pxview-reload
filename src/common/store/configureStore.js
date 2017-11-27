@@ -40,9 +40,30 @@ export default function configureStore() {
     (inboundState, key) => {
       switch (key) {
         case 'entities': {
-          const { entities, browsingHistory, muteUsers } = store.getState();
+          const {
+            entities,
+            browsingHistory,
+            walkthroughIllusts,
+            trendingIllustTags,
+            recommendedIllusts,
+            recommendedMangas,
+            recommendedUsers,
+            muteUsers,
+            ranking,
+          } = store.getState();
           const selectedUsersEntities = {};
-          const selectedIllustsEntities = browsingHistory.items
+          let savedItemList = [
+            ...browsingHistory.items,
+            ...recommendedIllusts.items,
+            ...recommendedMangas.items,
+            ...walkthroughIllusts.items,
+            ...trendingIllustTags.illusts,
+            ...recommendedUsers.illusts,
+          ];
+          Object.keys(ranking).forEach(rankingKey => {
+            savedItemList = [...savedItemList, ...ranking[rankingKey].items];
+          });
+          const selectedIllustsEntities = savedItemList
             .filter(id => entities.illusts[id])
             .reduce((prev, id) => {
               prev[id] = entities.illusts[id];
@@ -56,9 +77,16 @@ export default function configureStore() {
               prev[id] = entities.users[id];
               return prev;
             }, {});
+          const selectedUsersEntities3 = recommendedUsers.items
+            .filter(id => entities.users[id])
+            .reduce((prev, id) => {
+              prev[id] = entities.users[id];
+              return prev;
+            }, {});
           const finalSelectedUsersEntities = {
             ...selectedUsersEntities,
             ...selectedUsersEntities2,
+            ...selectedUsersEntities3,
           };
           return {
             ...inboundState,
@@ -83,9 +111,15 @@ export default function configureStore() {
 
   persistStore(store, {
     whitelist: [
-      'searchHistory',
+      'walkthroughIllusts',
+      'trendingIllustTags',
+      'recommendedIllusts',
+      'recommendedMangas',
+      'recommendedUsers',
       'browsingHistory',
       'highlightTags',
+      'searchHistory',
+      'ranking',
       'touchid',
       'muteTags',
       'muteUsers',

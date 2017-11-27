@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as recommendedIllustsActionCreators from '../../common/actions/recommendedIllusts';
 import { getRecommendedIllustsItems } from '../../common/selectors';
 
 class RecommendedIllusts extends Component {
   componentDidMount() {
-    const { fetchRecommendedIllusts, clearRecommendedIllusts } = this.props;
-    clearRecommendedIllusts();
-    fetchRecommendedIllusts();
+    const {
+      fetchRecommendedIllusts,
+      clearRecommendedIllusts,
+      recommendedIllusts: { timestamp },
+      items,
+    } = this.props;
+    if (
+      items.length < 1 ||
+      moment(timestamp).add(1, 'days').isBefore(moment())
+    ) {
+      clearRecommendedIllusts();
+      fetchRecommendedIllusts();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,7 +66,7 @@ export default connect((state, props) => {
   const { recommendedIllusts, user } = state;
   return {
     recommendedIllusts,
-    items: getRecommendedIllustsItems(state, props),
+    items: getRecommendedIllustsItems(state, props).filter(item => !!item),
     user,
     listKey: `${props.navigation.state.key}-recommendedIllusts`,
   };

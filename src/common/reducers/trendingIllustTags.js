@@ -4,6 +4,7 @@ const initState = {
   loading: false,
   loaded: false,
   refreshing: false,
+  illusts: [],
   items: [],
 };
 
@@ -24,6 +25,7 @@ export default function trendingIllustTags(state = initState, action) {
         loaded: true,
         refreshing: false,
         items: [...new Set([...state.items, ...action.payload.items])],
+        illusts: [...Object.keys(action.payload.entities.illusts)],
         timestamp: action.payload.timestamp,
       };
     case TRENDING_ILLUST_TAGS.FAILURE:

@@ -74,7 +74,7 @@ class IllustTagList extends Component {
     if (index === 0) {
       const width = globalStyleVariables.WINDOW_WIDTH();
       const height =
-        globalStyleVariables.WINDOW_WIDTH() / illustColumns * 2 - 1;
+        globalStyleVariables.WINDOW_WIDTH() / illustColumns * 1.5 - 1;
       imageContainerStyle = {
         width,
         height,

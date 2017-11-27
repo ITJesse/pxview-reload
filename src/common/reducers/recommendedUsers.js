@@ -5,6 +5,7 @@ const initState = {
   loaded: false,
   refreshing: false,
   items: [],
+  illusts: [],
   offset: 0,
   nextUrl: null,
 };
@@ -26,6 +27,7 @@ export default function recommendedUsers(state = initState, action) {
         loaded: true,
         refreshing: false,
         items: [...new Set([...state.items, ...action.payload.items])],
+        illusts: [...Object.keys(action.payload.entities.illusts)],
         offset: action.payload.offset,
         nextUrl: action.payload.nextUrl,
         timestamp: action.payload.timestamp,

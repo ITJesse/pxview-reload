@@ -1,16 +1,30 @@
 import React, { Component } from 'react';
 import { InteractionManager } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as rankingActionCreators from '../../common/actions/ranking';
 import { makeGetRankingItems } from '../../common/selectors';
 
 class RankingList extends Component {
   componentDidMount() {
-    const { rankingMode, options, fetchRanking, clearRanking } = this.props;
+    const {
+      rankingMode,
+      options,
+      fetchRanking,
+      clearRanking,
+      ranking: { timestamp },
+      items,
+    } = this.props;
     InteractionManager.runAfterInteractions(() => {
-      clearRanking(rankingMode);
-      fetchRanking(rankingMode, options);
+      if (
+        items.length < 1 ||
+        moment(timestamp).add(1, 'days').isBefore(moment())
+      ) {
+        clearRanking(rankingMode);
+        fetchRanking(rankingMode, options);
+      }
     });
   }
 
@@ -65,7 +79,7 @@ export default connect(() => {
     const { ranking } = state;
     return {
       ranking: ranking[props.rankingMode],
-      items: getRankingItems(state, props),
+      items: getRankingItems(state, props).filter(item => !!item),
       listKey: `${props.navigation.state.key}-${props.rankingMode}`,
     };
   };
