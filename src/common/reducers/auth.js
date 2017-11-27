@@ -22,6 +22,7 @@ export default function auth(
         ...state,
         user: null,
         loaded: false,
+        loading: false,
       };
     case AUTH_LOGIN.REQUEST:
     case AUTH_SIGNUP.REQUEST:
@@ -44,7 +45,7 @@ export default function auth(
     case AUTH_REFRESH_ACCESS_TOKEN.FAILURE:
       return {
         ...state,
-        loading: true,
+        loading: false,
         loaded: false,
       };
     case REHYDRATE:

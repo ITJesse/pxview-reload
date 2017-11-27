@@ -23,15 +23,17 @@ int main(int argc, char * argv[]) {
   @autoreleasepool {
     NSString *cachesPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     NSString *filePathAndDirectory = [cachesPath stringByAppendingPathComponent:@"pxview"];
-    NSError *error;
-    
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
-                                   withIntermediateDirectories:NO
-                                                    attributes:nil
-                                                         error:&error])
-    {
-      NSLog(@"Create directory error: %@", error);
-    }
+    [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
+                              withIntermediateDirectories:NO
+                                               attributes:nil
+                                                    error:nil];
+    filePathAndDirectory = [cachesPath stringByAppendingPathComponent:@"tmp"];
+    [[NSFileManager defaultManager] removeItemAtPath:filePathAndDirectory
+                                               error:nil];
+    [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory
+                              withIntermediateDirectories:NO
+                                               attributes:nil
+                                                    error:nil];
     
     return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
   }

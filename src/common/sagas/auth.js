@@ -17,6 +17,7 @@ import { Answers } from 'react-native-fabric';
 
 import {
   login,
+  logout,
   loginSuccess,
   loginFailure,
   signUpSuccess,
@@ -29,6 +30,11 @@ import {
 import { clearTouchIDSettings } from '../actions/touchid';
 import { setLanguage } from '../actions/i18n';
 import { addError } from '../actions/error';
+import { clearRecommendedIllusts } from '../../common/actions/recommendedIllusts';
+import { clearRecommendedMangas } from '../../common/actions/recommendedMangas';
+import { clearTrendingIllustTags } from '../../common/actions/trendingIllustTags';
+import { clearRecommendedUsers } from '../../common/actions/recommendedUsers';
+
 import pixiv from '../helpers/apiClient';
 import { getAuth, getAuthUser, getLang } from '../selectors';
 import {
@@ -135,6 +141,10 @@ export function* refreshAccessTokenOnExpiry(authResponse) {
 export function* handleLogout() {
   yield apply(pixiv, pixiv.logout);
   yield put(clearTouchIDSettings());
+  yield put(clearRecommendedIllusts());
+  yield put(clearRecommendedMangas());
+  yield put(clearRecommendedUsers());
+  yield put(clearTrendingIllustTags());
 }
 
 export function* watchLoginRequestTask() {
@@ -249,6 +259,8 @@ export function* watchRehydrate() {
           AUTH_REFRESH_ACCESS_TOKEN.FAILURE,
           AUTH_LOGOUT.SUCCESS,
         ]);
+      } else {
+        yield put(logout());
       }
       const lang = yield select(getLang);
       yield put(setLanguage(lang));

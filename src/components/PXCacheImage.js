@@ -65,28 +65,23 @@ class PXCacheImage extends Component {
     });
 
   downloadImage = async uri => {
-    let filePath = `${RNFetchBlob.fs.dirs.CacheDir}/pxview/${uri
+    const filePath = `${RNFetchBlob.fs.dirs.CacheDir}/pxview/${uri
       .split('/')
       .pop()}`;
     if (!await this.checkCache(filePath)) {
       let res;
       try {
         this.task = RNFetchBlob.config({
-          fileCache: true,
-          appendExt: 'png',
           key: uri,
-          path: `${RNFetchBlob.fs.dirs.CacheDir}/pxview/${uri
-            .split('/')
-            .pop()}`,
+          path: `${RNFetchBlob.fs.dirs.CacheDir}/tmp/${uri.split('/').pop()}`,
         }).fetch('GET', uri, {
           referer: 'http://www.pixiv.net',
-          // 'Cache-Control' : 'no-store'
         });
         res = await this.task;
+        await RNFetchBlob.fs.mv(res.path(), filePath);
       } catch (error) {
         return null;
       }
-      filePath = res.path();
     }
     return filePath;
   };

@@ -41,7 +41,6 @@ class PXTabView extends Component {
       navigationState,
       renderScene,
       onIndexChange,
-      lazy,
       ...restProps
     } = this.props;
     return (
@@ -52,7 +51,7 @@ class PXTabView extends Component {
         renderHeader={this.renderHeader}
         renderPager={this.renderPager}
         onIndexChange={onIndexChange}
-        lazy={lazy}
+        lazy={false}
         {...restProps}
       />
     );
