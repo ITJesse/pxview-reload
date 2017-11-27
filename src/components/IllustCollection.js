@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const IllustCollection = () => {
+const IllustCollection = props => {
   const {
     navigation: { navigate },
     items,
@@ -47,7 +47,7 @@ const IllustCollection = () => {
     viewMoreTitle,
     onPressViewMore,
     illustColumns,
-  } = this.props;
+  } = props;
   if (!items || !items.length) {
     return null;
   }
