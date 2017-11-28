@@ -63,29 +63,10 @@ export function* authorize(email, password, isProvisionalAccount) {
 
 export function* handleRefreshAccessToken(refreshToken) {
   try {
-    let response;
-    const auth = yield select(getAuth);
-    const { user } = auth;
-    if (!auth.rehydrated) {
-      const now = moment();
-      const end = moment(auth.timestamp);
-      const duration = Math.floor(
-        moment.duration(now.diff(end)).asMilliseconds() / 1000,
-      );
-      if (user.expiresIn - duration < 300) {
-        response = yield apply(pixiv, pixiv.refreshAccessToken, [refreshToken]);
-      } else {
-        response = {
-          access_token: user.accessToken,
-          expires_in: user.expiresIn - duration,
-          refresh_token: user.refreshToken,
-          user,
-        };
-        yield apply(pixiv, pixiv.setAuthInfo, [response]);
-      }
-    } else {
-      response = yield apply(pixiv, pixiv.refreshAccessToken, [refreshToken]);
-    }
+    const response = yield apply(pixiv, pixiv.refreshAccessToken, [
+      refreshToken,
+    ]);
+    const user = yield select(getAuthUser);
     const options = setProvisionalAccountOptions(
       user.isProvisionalAccount,
       user.password,
