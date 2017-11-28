@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as myPixivActionCreators from '../../common/actions/myPixiv';
 import { getMyPixivItems } from '../../common/selectors';
 
 class MyPixiv extends Component {
   componentDidMount() {
-    const { fetchMyPixiv, clearMyPixiv } = this.props;
-    clearMyPixiv();
-    fetchMyPixiv();
+    const {
+      fetchMyPixiv,
+      clearMyPixiv,
+      myPixiv: { timestamp },
+      items,
+    } = this.props;
+    if (
+      items.length < 1 ||
+      moment(timestamp).add(3, 'hours').isBefore(moment())
+    ) {
+      clearMyPixiv();
+      fetchMyPixiv();
+    }
   }
 
   loadMoreItems = () => {

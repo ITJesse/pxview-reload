@@ -43,21 +43,29 @@ export default function configureStore() {
           const {
             entities,
             browsingHistory,
+            followingUserIllusts,
             walkthroughIllusts,
             trendingIllustTags,
             recommendedIllusts,
             recommendedMangas,
             recommendedUsers,
+            newIllusts,
+            newMangas,
+            myPixiv,
             muteUsers,
             ranking,
           } = store.getState();
           const selectedUsersEntities = {};
           let savedItemList = [
             ...browsingHistory.items,
-            ...recommendedIllusts.items,
-            ...recommendedMangas.items,
+            ...followingUserIllusts.items,
             ...walkthroughIllusts.items,
             ...trendingIllustTags.illusts,
+            ...recommendedIllusts.items,
+            ...recommendedMangas.items,
+            ...newIllusts.items,
+            ...newMangas.items,
+            ...myPixiv.items,
             ...recommendedUsers.illusts,
           ];
           Object.keys(ranking).forEach(rankingKey => {
@@ -111,6 +119,7 @@ export default function configureStore() {
 
   persistStore(store, {
     whitelist: [
+      'followingUserIllusts',
       'walkthroughIllusts',
       'trendingIllustTags',
       'recommendedIllusts',
@@ -119,6 +128,9 @@ export default function configureStore() {
       'browsingHistory',
       'highlightTags',
       'searchHistory',
+      'newIllusts',
+      'newMangas',
+      'myPixiv',
       'ranking',
       'touchid',
       'muteTags',

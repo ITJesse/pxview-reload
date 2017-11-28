@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as newMangasActionCreators from '../../common/actions/newMangas';
 import { getNewMangasItems } from '../../common/selectors';
 
 class NewMangas extends Component {
   componentDidMount() {
-    const { fetchNewMangas, clearNewMangas } = this.props;
-    clearNewMangas();
-    fetchNewMangas();
+    const {
+      fetchNewMangas,
+      clearNewMangas,
+      newMangas: { timestamp },
+      items,
+    } = this.props;
+    if (
+      items.length < 1 ||
+      moment(timestamp).add(3, 'hours').isBefore(moment())
+    ) {
+      clearNewMangas();
+      fetchNewMangas();
+    }
   }
 
   loadMoreItems = () => {

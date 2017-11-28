@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as newIllustsActionCreators from '../../common/actions/newIllusts';
 import { getNewIllustsItems } from '../../common/selectors';
 
 class NewIllusts extends Component {
   componentDidMount() {
-    const { fetchNewIllusts, clearNewIllusts } = this.props;
-    clearNewIllusts();
-    fetchNewIllusts();
+    const {
+      fetchNewIllusts,
+      clearNewIllusts,
+      newIllusts: { timestamp },
+      items,
+    } = this.props;
+    if (
+      items.length < 1 ||
+      moment(timestamp).add(3, 'hours').isBefore(moment())
+    ) {
+      clearNewIllusts();
+      fetchNewIllusts();
+    }
   }
 
   loadMoreItems = () => {

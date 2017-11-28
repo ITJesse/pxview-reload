@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 import { Button } from 'react-native-elements';
+import moment from 'moment';
+
 import { connectLocalization } from '../../components/Localization';
 import IllustList from '../../components/IllustList';
 import EmptyStateView from '../../components/EmptyStateView';
@@ -16,10 +18,17 @@ class FollowingUserIllusts extends Component {
       user,
       fetchFollowingUserIllusts,
       clearFollowingUserIllusts,
+      followingUserIllusts: { timestamp },
+      items,
     } = this.props;
-    clearFollowingUserIllusts();
-    if (user) {
-      fetchFollowingUserIllusts();
+    if (
+      items.length < 1 ||
+      moment(timestamp).add(1, 'hours').isBefore(moment())
+    ) {
+      clearFollowingUserIllusts();
+      if (user) {
+        fetchFollowingUserIllusts();
+      }
     }
   }
 
@@ -94,7 +103,7 @@ export default connectLocalization(
       const { followingUserIllusts, auth: { user } } = state;
       return {
         followingUserIllusts,
-        items: getFollowingUserIllustsItems(state),
+        items: getFollowingUserIllustsItems(state).filter(item => !!item),
         user,
         listKey: `${props.navigation.state.key}-followingUserIllusts`,
       };
