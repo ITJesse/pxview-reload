@@ -62,7 +62,7 @@ const AppTabNavigator = TabNavigator(
   {
     headerMode: 'none',
     swipeEnabled: false,
-    animationEnabled: true,
+    animationEnabled: false,
     lazy: false,
     tabBarPosition: 'bottom',
     tabBarComponent: props =>

@@ -70,11 +70,9 @@ const styles = StyleSheet.create({
   },
   actionContainer: {
     paddingHorizontal: 10,
-    paddingVertical: 20,
-    flex: 1,
+    paddingVertical: 0,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   row: {
     padding: 10,
@@ -336,37 +334,52 @@ class BookmarkModal extends Component {
                   />
                 </View>
                 <Separator />
-                {isBookmark &&
-                  <PXTouchable onPress={this.handleOnPressRemoveButton}>
-                    <View
-                      style={[styles.actionContainer, { paddingVertical: 30 }]}
+                <View
+                  style={[
+                    styles.actionContainer,
+                    !isBookmark && { justifyContent: 'center' },
+                  ]}
+                >
+                  {isBookmark &&
+                    <PXTouchable
+                      onPress={this.handleOnPressRemoveButton}
+                      style={{
+                        paddingHorizontal: 20,
+                        paddingVertical: 20,
+                      }}
                     >
                       <Text>
                         {i18n.likeRemove}
                       </Text>
-                    </View>
-                  </PXTouchable>}
-                {!isBookmark &&
+                    </PXTouchable>}
                   <PXTouchable
                     style={
-                      !isBookmark && {
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                      }
+                      isBookmark
+                        ? {
+                            paddingHorizontal: 20,
+                            paddingVertical: 20,
+                          }
+                        : {
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            paddingHorizontal: 70,
+                            paddingVertical: 20,
+                          }
                     }
                     onPress={this.handleOnPressBookmarkButton}
                   >
-                    <View style={styles.actionContainer}>
+                    {!isBookmark &&
                       <MaterialIcon
                         name="favorite"
                         color="rgb(210, 212, 216)"
                         size={20}
-                      />
-                      <Text>
-                        {isBookmark ? i18n.save : i18n.likeAdd}
-                      </Text>
-                    </View>
-                  </PXTouchable>}
+                      />}
+
+                    <Text>
+                      {isBookmark ? i18n.save : i18n.likeAdd}
+                    </Text>
+                  </PXTouchable>
+                </View>
               </View>
             </TouchableWithoutFeedback>
           </View>
