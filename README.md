@@ -6,6 +6,7 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/alphasp/pxview/pulls)
+[![Build status](https://build.appcenter.ms/v0.1/apps/451fc751-abb6-4420-9b80-848d2c1514bb/branches/master/badge)](https://appcenter.ms)
 
 Unofficial Pixiv app client for iOS, built in React Native.
 
