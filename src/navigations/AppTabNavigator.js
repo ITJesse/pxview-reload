@@ -79,7 +79,7 @@ const AppTabNavigator = TabNavigator(
       showLabel: true,
       style: {
         height: 48,
-        paddingBottom: 4,
+        paddingBottom: 2,
       },
       bottomNavigationOptions: {
         style: {
