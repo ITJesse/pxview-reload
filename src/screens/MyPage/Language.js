@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'react-native-elements';
+import RNExitApp from 'react-native-exit-app';
+
+import { connectLocalization } from '../../components/Localization';
 import * as i18nActionCreators from '../../common/actions/i18n';
 import { globalStyleVariables } from '../../styles';
 
@@ -42,9 +45,14 @@ const languageList = [
 
 class Settings extends Component {
   handleOnPressListItem = id => {
-    const { setLanguage, navigation: { goBack } } = this.props;
+    const { setLanguage, i18n } = this.props;
     setLanguage(id);
-    goBack();
+    Alert.alert(
+      i18n.exitApp,
+      null,
+      [{ text: i18n.ok, onPress: RNExitApp.exitApp }],
+      { cancelable: false },
+    );
   };
 
   renderList = list => {
@@ -86,9 +94,11 @@ class Settings extends Component {
   }
 }
 
-export default connect(
-  state => ({
-    lang: state.i18n.lang,
-  }),
-  i18nActionCreators,
-)(Settings);
+export default connectLocalization(
+  connect(
+    state => ({
+      lang: state.i18n.lang,
+    }),
+    i18nActionCreators,
+  )(Settings),
+);

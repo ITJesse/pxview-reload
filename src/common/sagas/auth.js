@@ -34,7 +34,6 @@ import { clearRecommendedIllusts } from '../../common/actions/recommendedIllusts
 import { clearRecommendedMangas } from '../../common/actions/recommendedMangas';
 import { clearTrendingIllustTags } from '../../common/actions/trendingIllustTags';
 import { clearRecommendedUsers } from '../../common/actions/recommendedUsers';
-
 import pixiv from '../helpers/apiClient';
 import { getAuth, getAuthUser, getLang } from '../selectors';
 import {
