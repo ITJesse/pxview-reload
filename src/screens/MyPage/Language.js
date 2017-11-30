@@ -45,7 +45,8 @@ const languageList = [
 
 class Settings extends Component {
   handleOnPressListItem = id => {
-    const { setLanguage, i18n } = this.props;
+    const { setLanguage, i18n, lang } = this.props;
+    if (id === lang) return;
     setLanguage(id);
     Alert.alert(
       i18n.exitApp,
