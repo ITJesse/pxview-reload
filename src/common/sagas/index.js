@@ -8,6 +8,7 @@ import {
   watchLoginFailure,
   watchSignUpSuccess,
   watchSignUpFailure,
+  watchLogoutSuccess,
 } from './auth';
 import { watchError } from './error';
 import { watchFetchWalkthroughIllusts } from './walkthroughIllusts';
@@ -98,5 +99,6 @@ export default function* rootSaga() {
     watchLoginFailure(),
     watchSignUpSuccess(),
     watchSignUpFailure(),
+    watchLogoutSuccess(),
   ]);
 }

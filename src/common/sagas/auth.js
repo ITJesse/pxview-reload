@@ -121,11 +121,6 @@ export function* refreshAccessTokenOnExpiry(authResponse) {
 
 export function* handleLogout() {
   yield apply(pixiv, pixiv.logout);
-  yield put(clearTouchIDSettings());
-  yield put(clearRecommendedIllusts());
-  yield put(clearRecommendedMangas());
-  yield put(clearRecommendedUsers());
-  yield put(clearTrendingIllustTags());
 }
 
 export function* watchLoginRequestTask() {
@@ -275,5 +270,15 @@ export function* watchSignUpSuccess() {
 export function* watchSignUpFailure() {
   yield takeEvery(AUTH_SIGNUP.FAILURE, function*() {
     yield call(Answers.logSignUp, 'Provisional', false);
+  });
+}
+
+export function* watchLogoutSuccess() {
+  yield takeEvery(AUTH_LOGOUT.SUCCESS, function*() {
+    yield put(clearTouchIDSettings());
+    yield put(clearRecommendedIllusts());
+    yield put(clearRecommendedMangas());
+    yield put(clearRecommendedUsers());
+    yield put(clearTrendingIllustTags());
   });
 }
