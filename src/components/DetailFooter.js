@@ -3,6 +3,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import moment from 'moment';
 import HtmlView from 'react-native-htmlview';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { connect } from 'react-redux';
+
 import RelatedIllusts from '../screens/Shared/RelatedIllusts';
 import IllustComments from '../screens/Shared/IllustComments';
 import FollowButtonContainer from '../containers/FollowButtonContainer';
@@ -72,6 +74,7 @@ class DetailFooter extends PureComponent {
       onLongPressTag,
       onPressLink,
       tags,
+      orientation: { illustColumns },
     } = this.props;
     return (
       <View onLayout={onLayoutView}>
@@ -150,7 +153,7 @@ class DetailFooter extends PureComponent {
           <RelatedIllusts
             illustId={item.id}
             isFeatureInDetailPage
-            maxItems={6}
+            maxItems={illustColumns * 2}
             navigation={navigation}
           />
         </View>
@@ -163,4 +166,9 @@ class DetailFooter extends PureComponent {
   }
 }
 
-export default DetailFooter;
+export default connect(state => {
+  const { orientation } = state;
+  return {
+    orientation,
+  };
+}, null)(DetailFooter);
