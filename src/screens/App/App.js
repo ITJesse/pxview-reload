@@ -85,7 +85,10 @@ class App extends Component {
     const prevScreen = this.getCurrentRouteName(prevState);
 
     if (prevScreen !== currentScreen) {
-      Answers.logCustom('PageView', { page: currentScreen });
+      // eslint-disable-next-line no-undef
+      if (!__DEV__) {
+        Answers.logCustom('PageView', { page: currentScreen });
+      }
       if (currentScreen === 'Trending' || currentScreen === 'SearchResult') {
         StatusBar.setBarStyle('default', true);
       } else {

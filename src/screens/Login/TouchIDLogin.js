@@ -61,12 +61,18 @@ class TouchIDLogin extends Component {
     PasscodeAuth.authenticate(i18n.useTouchIDLoginDescription)
       .then(() => {
         // Success code
-        Answers.logLogin('Touch ID', true);
+        // eslint-disable-next-line no-undef
+        if (!__DEV__) {
+          Answers.logLogin('Touch ID', true);
+        }
         setShouldCheckTouchID(false);
       })
       .catch(error => {
         // Failure code
-        Answers.logLogin('Touch ID', false, { error });
+        // eslint-disable-next-line no-undef
+        if (!__DEV__) {
+          Answers.logLogin('Touch ID', false, { error });
+        }
         switch (error) {
           case 'LAErrorAuthenticationFailed':
             DeviceEventEmitter.emit('showToast', i18n.touchIdAuthFailed);

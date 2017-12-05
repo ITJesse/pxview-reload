@@ -81,7 +81,10 @@ class Detail extends Component {
       addBrowsingHistory,
       fetchIllustDetail,
     } = this.props;
-    Answers.logContentView('Detail', 'Illust', `${illustId}`, { ...item });
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      Answers.logContentView('Detail', 'Illust', `${illustId}`, { ...item });
+    }
     InteractionManager.runAfterInteractions(() => {
       if (this.detailView) {
         this.setState({ mounting: false });
@@ -259,9 +262,12 @@ class Detail extends Component {
     Share.open(shareOptions)
       .then(() => {
         this.handleOnCancelMenuBottomSheet();
-        Answers.logShare('Share', item.title, 'Illust', `${item.id}`, {
-          ...item,
-        });
+        // eslint-disable-next-line no-undef
+        if (!__DEV__) {
+          Answers.logShare('Share', item.title, 'Illust', `${item.id}`, {
+            ...item,
+          });
+        }
       })
       .catch(this.handleOnCancelMenuBottomSheet);
   };
@@ -274,7 +280,10 @@ class Detail extends Component {
         ? item.meta_pages.map(page => page.image_urls.original)
         : [item.meta_single_page.original_image_url];
     saveImage([images[selectedImageIndex]]);
-    Answers.logCustom('SaveImage', { ...item });
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      Answers.logCustom('SaveImage', { ...item });
+    }
     this.handleOnCancelMenuBottomSheet();
   };
 

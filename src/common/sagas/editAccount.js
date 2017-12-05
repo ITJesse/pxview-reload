@@ -76,12 +76,18 @@ export function* watchEditAccount() {
 
 export function* watchSignUpSuccess() {
   yield takeEvery(EDIT_ACCOUNT.SUCCESS, function*() {
-    yield call(Answers.logSignUp, 'Email', true);
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      yield call(Answers.logSignUp, 'Email', true);
+    }
   });
 }
 
 export function* watchSignUpFailure() {
   yield takeEvery(EDIT_ACCOUNT.FAILURE, function*() {
-    yield call(Answers.logSignUp, 'Email', false);
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      yield call(Answers.logSignUp, 'Email', false);
+    }
   });
 }

@@ -10,7 +10,10 @@ import Schemas from '../constants/schemas';
 
 export function* handleFetchSearch(action) {
   const { navigationStateKey, word, options, nextUrl } = action.payload;
-  yield call(Answers.logSearch, word);
+  // eslint-disable-next-line no-undef
+  if (!__DEV__) {
+    yield call(Answers.logSearch, word);
+  }
   try {
     let response;
     if (nextUrl) {

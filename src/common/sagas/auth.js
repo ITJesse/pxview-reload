@@ -250,25 +250,37 @@ export function* watchRehydrate() {
 
 export function* watchLoginSuccess() {
   yield takeEvery(AUTH_LOGIN.SUCCESS, function*() {
-    yield call(Answers.logLogin, 'Account', true);
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      yield call(Answers.logLogin, 'Account', true);
+    }
   });
 }
 
 export function* watchLoginFailure() {
   yield takeEvery(AUTH_LOGIN.FAILURE, function*() {
-    yield call(Answers.logLogin, 'Account', false);
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      yield call(Answers.logLogin, 'Account', false);
+    }
   });
 }
 
 export function* watchSignUpSuccess() {
   yield takeEvery(AUTH_SIGNUP.SUCCESS, function*() {
-    yield call(Answers.logSignUp, 'Provisional', true);
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      yield call(Answers.logSignUp, 'Provisional', true);
+    }
   });
 }
 
 export function* watchSignUpFailure() {
   yield takeEvery(AUTH_SIGNUP.FAILURE, function*() {
-    yield call(Answers.logSignUp, 'Provisional', false);
+    // eslint-disable-next-line no-undef
+    if (!__DEV__) {
+      yield call(Answers.logSignUp, 'Provisional', false);
+    }
   });
 }
 
