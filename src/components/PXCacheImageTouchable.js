@@ -29,6 +29,7 @@ class PXCacheImageTouchable extends Component {
   }
 
   handleOnFoundImageSize = (width, height, url) => {
+    if (this.unmounting) return;
     if (width && height) {
       const newWidth =
         width > globalStyleVariables.WINDOW_WIDTH()
@@ -64,6 +65,10 @@ class PXCacheImageTouchable extends Component {
       onLongPress(index);
     }
   };
+
+  componentWillUnmount() {
+    this.unmounting = true;
+  }
 
   render() {
     const { uri, pageNumber, style, imageStyle } = this.props;

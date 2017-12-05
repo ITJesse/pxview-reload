@@ -65,7 +65,6 @@ class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mounting: true,
       isActionButtonVisible: true,
       isOpenMenuBottomSheet: false,
       selectedImageIndex: null,
@@ -86,9 +85,6 @@ class Detail extends Component {
       Answers.logContentView('Detail', 'Illust', `${illustId}`, { ...item });
     }
     InteractionManager.runAfterInteractions(() => {
-      if (this.detailView) {
-        this.setState({ mounting: false });
-      }
       if (isFromDeepLink) {
         fetchIllustDetail(illustId);
       } else {
@@ -361,10 +357,6 @@ class Detail extends Component {
 
   renderMainContent() {
     const { items, item, index, isFromDeepLink } = this.props;
-    const { mounting } = this.state;
-    if (mounting) {
-      return <Loader />;
-    }
     if (isFromDeepLink) {
       if (!item) {
         return <Loader />;
