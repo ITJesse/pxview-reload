@@ -25,7 +25,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [FIRApp configure];
-  [Fabric with:@[[Crashlytics class]]];
+  
+#ifdef DEBUG
+#else
+    [Fabric with:@[[Crashlytics class]]];
+#endif
+  
   RCTSetLogThreshold(RCTLogLevelWarning);
   
   NSURL *jsCodeLocation;

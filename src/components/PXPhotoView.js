@@ -24,8 +24,6 @@ class PXPhotoView extends PureComponent {
             referer: 'http://www.pixiv.net',
           },
         }}
-        resizeMode="contain"
-        androidScaleType="fitCenter"
         minimumZoomScale={1}
         maximumZoomScale={3}
         style={[photoStyle(), style]}

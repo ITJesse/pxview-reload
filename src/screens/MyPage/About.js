@@ -10,7 +10,7 @@ import { SCREENS } from '../../common/constants';
 
 const appStoreUrl =
   'itms-apps://itunes.apple.com/us/app/pxview-reload/id1286972382?l=zh&ls=1&mt=8';
-const sourceUrl = 'https://github.com/ITJesse/pxview-reload';
+// const sourceUrl = 'https://github.com/ITJesse/pxview-reload';
 
 const styles = StyleSheet.create({
   logoContainer: {
@@ -49,14 +49,14 @@ const list = [
     type: 'font-awesome',
     hideChevron: true,
   },
-  {
-    id: 'sourceCode',
-    title: 'sourceCode',
-    subtitle: sourceUrl,
-    icon: 'github',
-    type: 'font-awesome',
-    hideChevron: true,
-  },
+  // {
+  //   id: 'sourceCode',
+  //   title: 'sourceCode',
+  //   subtitle: sourceUrl,
+  //   icon: 'github',
+  //   type: 'font-awesome',
+  //   hideChevron: true,
+  // },
   {
     id: 'openSourceLicenses',
     title: 'openSourceLicenses',
@@ -78,10 +78,10 @@ class About extends Component {
         this.openUrl(appStoreUrl);
         break;
       }
-      case 'sourceCode': {
-        this.openUrl(sourceUrl);
-        break;
-      }
+      // case 'sourceCode': {
+      //   this.openUrl(sourceUrl);
+      //   break;
+      // }
       case 'openSourceLicenses': {
         navigate(SCREENS.OpenSourceLicenseList);
         break;
