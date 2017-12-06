@@ -15,19 +15,18 @@
 #import <React/RCTRootView.h>
 #import <React/RCTLog.h>
 #import <asl.h>
-@import Firebase;
 #import "SplashScreen.h"
-//#import "PXUtils.h"
+@import Firebase;
 
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [FIRApp configure];
   
 #ifdef DEBUG
 #else
+    [FIRApp configure];
     [Fabric with:@[[Crashlytics class]]];
 #endif
   
