@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { InteractionManager } from 'react-native';
 import PhotoView from 'react-native-photo-view';
 
 import { globalStyleVariables } from '../styles';
@@ -9,6 +10,21 @@ const photoStyle = () => ({
 });
 
 class PXPhotoView extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loaded: false,
+    };
+  }
+
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({
+        loaded: true,
+      });
+    });
+  }
+
   handleOnLoad = () => {
     const { onLoad, uri } = this.props;
     onLoad(uri);
@@ -16,21 +32,22 @@ class PXPhotoView extends PureComponent {
 
   render() {
     const { uri, style, onLoad, ...restProps } = this.props;
-    return (
-      <PhotoView
-        source={{
-          uri,
-          headers: {
-            referer: 'http://www.pixiv.net',
-          },
-        }}
-        minimumZoomScale={1}
-        maximumZoomScale={3}
-        style={[photoStyle(), style]}
-        onLoad={this.handleOnLoad}
-        {...restProps}
-      />
-    );
+    const { loaded } = this.state;
+    return loaded
+      ? <PhotoView
+          source={{
+            uri,
+            headers: {
+              referer: 'http://www.pixiv.net',
+            },
+          }}
+          minimumZoomScale={1}
+          maximumZoomScale={3}
+          style={[photoStyle(), style]}
+          onLoad={this.handleOnLoad}
+          {...restProps}
+        />
+      : null;
   }
 }
 
