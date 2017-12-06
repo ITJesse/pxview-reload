@@ -3,13 +3,12 @@ package com.pxview;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.ocetnik.timer.BackgroundTimerPackage;
+import com.reactnative.photoview.PhotoViewPackage;
 import com.rnziparchive.RNZipArchivePackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import cl.json.RNSharePackage;
-import com.reactnative.photoview.PhotoViewPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.opensettings.OpenSettingsPackage;
 import com.github.xinthink.rnmk.ReactMaterialKitPackage;
@@ -41,13 +40,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new BackgroundTimerPackage(),
+            new PhotoViewPackage(),
             new RNZipArchivePackage(),
             new VectorIconsPackage(),
             new SplashScreenReactPackage(),
             new RNSpinkitPackage(),
             new RNSharePackage(),
-            new PhotoViewPackage(),
             new OrientationPackage(),
             new OpenSettingsPackage(),
             new ReactMaterialKitPackage(),

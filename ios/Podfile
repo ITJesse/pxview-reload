@@ -11,6 +11,5 @@ target 'PxView' do
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
 
-  pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
 
 end

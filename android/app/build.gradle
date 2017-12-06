@@ -137,13 +137,12 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-background-timer')
+    compile project(':react-native-photo-view')
     compile project(':react-native-zip-archive')
     compile project(':react-native-vector-icons')
     compile project(':react-native-splash-screen')
     compile project(':react-native-spinkit')
     compile project(':react-native-share')
-    compile project(':react-native-photo-view')
     compile project(':react-native-orientation')
     compile project(':react-native-open-settings')
     compile project(':react-native-material-kit')
