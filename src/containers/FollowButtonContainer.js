@@ -27,8 +27,9 @@ class FollowButtonContainer extends Component {
     authUser: null,
   };
 
-  componentWillReciveProps(nextProps) {
-    const { user } = nextProps;
+  componentDidMount() {
+    const { user } = this.props;
+    // eslint-disable-next-line
     this.setState({
       isFollow: user.is_followed,
     });
