@@ -35,7 +35,7 @@ class PXCacheImageTouchable extends Component {
         width > globalStyleVariables.WINDOW_WIDTH()
           ? globalStyleVariables.WINDOW_WIDTH()
           : width;
-      const newHeight = height;
+      const newHeight = newWidth * (height / width);
       this.setState({
         width: newWidth,
         height: newHeight,

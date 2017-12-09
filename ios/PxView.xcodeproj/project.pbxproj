@@ -2047,7 +2047,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\nif [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n    export SKIP_BUNDLING=1\nfi\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n#if [ \"${CONFIGURATION}\" = \"Debug\" ]; then\n#    export SKIP_BUNDLING=1\n#fi\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
 		07ED73E19DF0E0FBB712A947 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
