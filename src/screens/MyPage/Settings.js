@@ -11,6 +11,7 @@ import RNFetchBlob from 'react-native-fetch-blob';
 import { connect } from 'react-redux';
 import RNExitApp from 'react-native-exit-app';
 import Spinner from 'react-native-loading-spinner-overlay';
+import { ImageCacheManager } from 'react-native-cached-image';
 
 import { connectLocalization } from '../../components/Localization';
 import { globalStyleVariables } from '../../styles';
@@ -71,6 +72,7 @@ class Settings extends Component {
     this.state = {
       loading: false,
     };
+    this.imageCacheManager = new ImageCacheManager();
   }
 
   formatFileSize = size => {
@@ -181,9 +183,9 @@ class Settings extends Component {
 
   calculateCacheSize = async () => {
     await this.setStateAsync({ loading: true });
-    const images = await RNFetchBlob.fs.ls(
-      `${RNFetchBlob.fs.dirs.CacheDir}/pxview/`,
-    );
+    const imageCache = await this.imageCacheManager.getCacheInfo({
+      cacheLocation: `${RNFetchBlob.fs.dirs.CacheDir}/pxview`,
+    });
     let ugoiraZips = [];
     if (
       await RNFetchBlob.fs.exists(
@@ -224,9 +226,6 @@ class Settings extends Component {
 
     tasks = [
       ...tasks,
-      ...images.map(image =>
-        RNFetchBlob.fs.stat(`${RNFetchBlob.fs.dirs.CacheDir}/pxview/${image}`),
-      ),
       ...ugoiraZips.map(zip =>
         RNFetchBlob.fs.stat(
           `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira_zip/${zip}`,
@@ -238,7 +237,7 @@ class Settings extends Component {
     let size = 0;
     stats.forEach(stat => (size += stat.size)); // eslint-disable-line no-return-assign
     await this.delay(1);
-    return size;
+    return size + imageCache.size;
   };
 
   handleOnPressConfirmClearCache = async () => {

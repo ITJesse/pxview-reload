@@ -73,17 +73,17 @@ class IllustItem extends Component {
               <PXCacheImage
                 noNeedSize
                 uri={item.image_urls.square_medium}
-                style={[
+                style={{
+                  width:
+                    globalStyleVariables.WINDOW_WIDTH() / numColumns -
+                    imageWidthOffset,
+                  height:
+                    globalStyleVariables.WINDOW_WIDTH() / numColumns -
+                    imageWidthOffset,
+                }}
+                imageStyle={[
                   {
                     resizeMode: 'cover',
-                  },
-                  {
-                    width:
-                      globalStyleVariables.WINDOW_WIDTH() / numColumns -
-                      imageWidthOffset,
-                    height:
-                      globalStyleVariables.WINDOW_WIDTH() / numColumns -
-                      imageWidthOffset,
                   },
                   imageStyle,
                 ]}

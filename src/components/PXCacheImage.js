@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import RNFetchBlob from 'react-native-fetch-blob';
-import moment from 'moment';
+import { CachedImage, ImageCacheManager } from 'react-native-cached-image';
 
 import { globalStyleVariables } from '../styles';
 
@@ -11,118 +11,78 @@ class PXCacheImage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUri: null,
       loaded: false,
+      width: null,
+      height: null,
     };
+    this.imageCacheManager = new ImageCacheManager({
+      cacheLocation: `${RNFetchBlob.fs.dirs.CacheDir}/pxview`,
+    });
   }
 
   async componentDidMount() {
-    const { uri, onFoundImageSize, noNeedSize } = this.props;
-    const filePath = await this.downloadImage(uri);
-
-    if (!this.unmounting && filePath) {
-      let size = {
-        width: null,
-        height: null,
-      };
-      if (!noNeedSize) {
-        try {
-          size = await this.getImageSize(filePath);
-        } catch (error) {
-          return null;
-        }
-        if (onFoundImageSize) {
-          onFoundImageSize(size.width, size.height, filePath);
-        }
-      }
-      if (!this.unmounting) {
-        this.setImageState(filePath, size);
-      }
-    }
-    return null;
-  }
-
-  setImageState(filePath, size) {
-    this.setState({
-      imageUri: filePath,
-      loaded: true,
-      ...size,
+    const { uri, noNeedSize } = this.props;
+    if (noNeedSize) return;
+    const filePath = await this.imageCacheManager.downloadAndCacheUrl(uri, {
+      headers: {
+        referer: 'http://www.pixiv.net',
+      },
     });
+
+    if (filePath && !this.unmounting) {
+      this.getSize(filePath);
+    }
   }
 
-  getImageSize = filePath =>
-    new Promise((resolve, reject) => {
-      Image.getSize(
-        filePath,
-        (width, height) => {
-          resolve({
+  getSize(filePath) {
+    const { uri, onFoundImageSize } = this.props;
+    Image.getSize(
+      filePath,
+      (width, height) => {
+        if (!this.unmounting) {
+          this.setState({
+            loaded: true,
             width,
             height,
           });
-        },
-        reject,
-      );
-    });
-
-  downloadImage = async uri => {
-    const filePath = `${RNFetchBlob.fs.dirs.CacheDir}/pxview/${uri
-      .split('/')
-      .pop()}`;
-    if (!await this.checkCache(filePath)) {
-      let res;
-      try {
-        this.task = RNFetchBlob.config({
-          key: uri,
-          path: `${RNFetchBlob.fs.dirs.CacheDir}/tmp/${uri.split('/').pop()}`,
-        }).fetch('GET', uri, {
-          referer: 'http://www.pixiv.net',
-        });
-        res = await this.task;
-        await RNFetchBlob.fs.mv(res.path(), filePath);
-      } catch (error) {
-        return null;
-      }
-    }
-    return filePath;
-  };
-
-  checkCache = async filePath => {
-    const exist = await RNFetchBlob.fs.exists(filePath);
-    if (exist) {
-      const stat = await RNFetchBlob.fs.stat(filePath);
-      if (
-        moment(stat.lastModified).add(CACHE_TIMEOUT, 'days').isBefore(moment())
-      ) {
-        return false;
-      }
-      return true;
-    }
-    return false;
-  };
+          if (onFoundImageSize) onFoundImageSize(width, height, uri);
+        }
+      },
+      err => console.log(err),
+    );
+  }
 
   componentWillUnmount() {
     this.unmounting = true;
-    if (this.task) {
-      this.task.cancel();
-    }
+  }
+
+  renderImage(props) {
+    const { source, style, imageStyle } = props;
+    return (
+      <Image {...this.props} source={source} style={[style, imageStyle]} />
+    );
   }
 
   renderIllustImage = () => {
-    const { style, ...otherProps } = this.props;
-    const { loaded } = this.state;
-    return loaded
-      ? <Image
-          source={{
-            uri: this.state.imageUri,
-          }}
-          style={style}
-          {...otherProps}
-        />
-      : <View style={[style[1], style[2]]} />;
+    const { uri, style } = this.props;
+    return (
+      <CachedImage
+        source={{
+          uri,
+          headers: {
+            referer: 'http://www.pixiv.net',
+          },
+        }}
+        ttl={CACHE_TIMEOUT * 24 * 60 * 60}
+        cacheLocation={`${RNFetchBlob.fs.dirs.CacheDir}/pxview`}
+        style={style}
+        renderImage={this.renderImage}
+      />
+    );
   };
 
   renderDetailImage = () => {
-    const { uri, style, ...otherProps } = this.props;
+    const { uri, style } = this.props;
     const { loaded, width, height } = this.state;
     return loaded
       ? <View
@@ -134,9 +94,12 @@ class PXCacheImage extends Component {
             backgroundColor: '#fff',
           }}
         >
-          <Image
+          <CachedImage
             source={{
-              uri: this.state.imageUri,
+              uri,
+              headers: {
+                referer: 'http://www.pixiv.net',
+              },
             }}
             style={[
               {
@@ -146,9 +109,8 @@ class PXCacheImage extends Component {
                     : width,
                 height: globalStyleVariables.WINDOW_WIDTH() * height / width,
               },
-              style,
             ]}
-            {...otherProps}
+            cacheLocation={`${RNFetchBlob.fs.dirs.CacheDir}/pxview`}
           />
         </View>
       : <View style={[style[1], style[2]]} />;
