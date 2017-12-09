@@ -37,12 +37,14 @@ class ImagesViewer extends Component {
   }
 
   handleOnImageLoaded = imageUrl => {
-    this.setState(({ images }) => ({
-      images: images.map(
-        image =>
-          image.url === imageUrl ? { ...image, loading: false } : image,
-      ),
-    }));
+    setTimeout(() => {
+      this.setState(({ images }) => ({
+        images: images.map(
+          image =>
+            image.url === imageUrl ? { ...image, loading: false } : image,
+        ),
+      }));
+    }, 100);
   };
 
   handleOnPressImage = () => {
