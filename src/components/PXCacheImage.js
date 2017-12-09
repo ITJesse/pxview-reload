@@ -56,12 +56,14 @@ class PXCacheImage extends Component {
     this.unmounting = true;
   }
 
-  renderImage(props) {
-    const { source, style, imageStyle } = props;
-    return (
-      <Image {...this.props} source={source} style={[style, imageStyle]} />
-    );
-  }
+  renderImage = props => {
+    const { source, style } = props;
+    const { imageStyle } = this.props;
+    if (!this.props.noNeedSize) {
+      console.log(style);
+    }
+    return <Image source={source} style={[style, imageStyle]} />;
+  };
 
   renderIllustImage = () => {
     const { uri, style } = this.props;
@@ -111,6 +113,7 @@ class PXCacheImage extends Component {
               },
             ]}
             cacheLocation={`${RNFetchBlob.fs.dirs.CacheDir}/pxview`}
+            renderImage={this.renderImage}
           />
         </View>
       : <View style={[style[1], style[2]]} />;
