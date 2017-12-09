@@ -59,9 +59,6 @@ class PXCacheImage extends Component {
   renderImage = props => {
     const { source, style } = props;
     const { imageStyle } = this.props;
-    if (!this.props.noNeedSize) {
-      console.log(style);
-    }
     return <Image source={source} style={[style, imageStyle]} />;
   };
 
@@ -86,6 +83,11 @@ class PXCacheImage extends Component {
   renderDetailImage = () => {
     const { uri, style } = this.props;
     const { loaded, width, height } = this.state;
+    const imageWidth =
+      width > globalStyleVariables.WINDOW_WIDTH()
+        ? globalStyleVariables.WINDOW_WIDTH()
+        : width;
+    const imageHeight = imageWidth * height / width;
     return loaded
       ? <View
           style={{
@@ -105,11 +107,8 @@ class PXCacheImage extends Component {
             }}
             style={[
               {
-                width:
-                  width > globalStyleVariables.WINDOW_WIDTH()
-                    ? globalStyleVariables.WINDOW_WIDTH()
-                    : width,
-                height: globalStyleVariables.WINDOW_WIDTH() * height / width,
+                width: imageWidth,
+                height: imageHeight,
               },
             ]}
             cacheLocation={`${RNFetchBlob.fs.dirs.CacheDir}/pxview`}

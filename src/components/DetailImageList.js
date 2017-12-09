@@ -274,17 +274,13 @@ class DetailImageList extends Component {
     } else if (item.type === 'ugoira') {
       return <UgoiraViewTouchable item={item} />;
     }
+    const initWidth = globalStyleVariables.WINDOW_WIDTH();
+    const initHeight = globalStyleVariables.WINDOW_HEIGHT() / 3;
     return (
       <PXCacheImageTouchable
         uri={item.image_urls.medium}
-        initWidth={
-          item.width > globalStyleVariables.WINDOW_WIDTH()
-            ? globalStyleVariables.WINDOW_WIDTH()
-            : item.width
-        }
-        initHeight={
-          globalStyleVariables.WINDOW_WIDTH() * item.height / item.width
-        }
+        initWidth={initWidth}
+        initHeight={initHeight}
         style={styles.imageContainer}
         imageStyle={styles.image}
         onPress={onPressImage}
