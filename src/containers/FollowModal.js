@@ -97,22 +97,23 @@ class FollowModal extends Component {
       ? FOLLOWING_TYPES.PRIVATE
       : FOLLOWING_TYPES.PUBLIC;
     this.followUser(userId, followType);
-    this.handleOnModalClose();
+    this.handleOnModalClose('follow');
   };
 
   handleOnPressRemoveButton = () => {
     const { userId } = this.props;
     this.unfollowUser(userId);
-    this.handleOnModalClose();
+    this.handleOnModalClose('unfollow');
   };
 
   handleOnPressModalRemoveButton = userId => {
     this.unfollowUser(userId);
-    this.handleOnModalClose();
+    this.handleOnModalClose('unfollow');
   };
 
-  handleOnModalClose = () => {
-    const { closeModal } = this.props;
+  handleOnModalClose = result => {
+    const { closeModal, onClosed } = this.props;
+    if (onClosed) onClosed(result);
     closeModal();
   };
 

@@ -62,7 +62,6 @@ class UserFollowing extends Component {
 
   render() {
     const { userFollowing, items, i18n } = this.props;
-    console.log(items);
     if (userFollowing && userFollowing.loaded && (!items || !items.length)) {
       return (
         <EmptyStateView

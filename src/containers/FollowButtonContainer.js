@@ -62,6 +62,9 @@ class FollowButtonContainer extends Component {
       openModal(MODAL_TYPES.FOLLOW, {
         userId: user.id,
         isFollow: user.is_followed,
+        onClosed: res => {
+          this.setState({ isFollow: res === 'follow' });
+        },
       });
     }
   };
