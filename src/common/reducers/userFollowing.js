@@ -78,6 +78,32 @@ export default function userFollowing(
           },
         },
       };
+    case USER_FOLLOWING.REMOVE:
+      return {
+        ...state,
+        [action.payload.followingType]: {
+          [action.payload.userId]: {
+            ...state[action.payload.followingType][action.payload.userId],
+            items: state[action.payload.followingType][
+              action.payload.userId
+            ].items.filter(item => item !== action.payload.followUserId),
+          },
+        },
+      };
+    case USER_FOLLOWING.ADD:
+      return {
+        ...state,
+        [action.payload.followingType]: {
+          [action.payload.userId]: {
+            ...state[action.payload.followingType][action.payload.userId],
+            items: [
+              action.payload.followUserId,
+              ...state[action.payload.followingType][action.payload.userId]
+                .items,
+            ],
+          },
+        },
+      };
     default:
       return state;
   }

@@ -99,7 +99,18 @@ export default connectLocalization(
       const { followingType } = props;
       return {
         userFollowing: userFollowing[followingType][userId],
-        items: getUserFollowingItems(state, props).filter(item => !item.illusts.some(e => !e) && item.user),
+        items: getUserFollowingItems(state, props).filter(item => {
+          if (!item) {
+            return false;
+          } else if (!item.illusts) {
+            return false;
+          } else if (item.illusts.some(e => !e)) {
+            return false;
+          } else if (!item.user) {
+            return false;
+          }
+          return true;
+        }),
         userId,
       };
     };

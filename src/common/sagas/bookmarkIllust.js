@@ -1,4 +1,4 @@
-import { takeEvery, apply, put, select } from 'redux-saga/effects';
+import { takeEvery, apply, put, select, call } from 'redux-saga/effects';
 import {
   bookmarkIllustSuccess,
   bookmarkIllustFailure,
@@ -47,7 +47,7 @@ export function* handleBookmarkIllust(action) {
       tags,
     ]);
     yield put(bookmarkIllustSuccess(illustId));
-    yield handleBookmarkIllustSuccess(illustId, bookmarkType);
+    yield call(handleBookmarkIllustSuccess, illustId, bookmarkType);
   } catch (err) {
     yield put(bookmarkIllustFailure(illustId));
     yield put(addError(err));
@@ -59,7 +59,7 @@ export function* handleUnbookmarkIllust(action) {
   try {
     yield apply(pixiv, pixiv.unbookmarkIllust, [illustId]);
     yield put(unbookmarkIllustSuccess(illustId));
-    yield handleUnbookmarkIllustSuccess(illustId);
+    yield call(handleUnbookmarkIllustSuccess, illustId);
   } catch (err) {
     yield put(unbookmarkIllustFailure(illustId));
     yield put(addError(err));

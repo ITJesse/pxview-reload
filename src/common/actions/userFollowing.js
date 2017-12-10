@@ -66,3 +66,25 @@ export function clearAllUserFollowing() {
     type: USER_FOLLOWING.CLEAR_ALL,
   };
 }
+
+export function addUserFollowing(userId, followUserId, followingType) {
+  return {
+    type: USER_FOLLOWING.ADD,
+    payload: {
+      userId,
+      followUserId,
+      followingType,
+    },
+  };
+}
+
+export function removeUserFollowing(userId, followUserId, followingType) {
+  return {
+    type: USER_FOLLOWING.REMOVE,
+    payload: {
+      userId,
+      followUserId,
+      followingType,
+    },
+  };
+}

@@ -140,7 +140,7 @@ export const USER_BOOKMARK_ILLUSTS = defineAction(
 
 export const USER_FOLLOWING = defineAction(
   'USER_FOLLOWING',
-  [REQUEST, SUCCESS, FAILURE, CLEAR, CLEAR_ALL],
+  [REQUEST, SUCCESS, FAILURE, CLEAR, CLEAR_ALL, ADD, REMOVE],
   appNamespace,
 );
 
