@@ -18,7 +18,7 @@ class MyPrivateBookmarkIllusts extends Component {
     if (
       items.length < 1 ||
       !timestamp ||
-      moment(timestamp).add(1, 'hours').isBefore(moment())
+      moment(timestamp).add(1, 'days').isBefore(moment())
     ) {
       clearMyPrivateBookmarkIllusts(userId);
       fetchMyPrivateBookmarkIllusts(userId, tag);

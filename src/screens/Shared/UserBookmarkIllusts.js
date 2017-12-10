@@ -22,7 +22,7 @@ class UserBookmarkIllusts extends Component {
         fetchUserBookmarkIllusts(userId, tag);
       });
     } else if (
-      moment(userBookmarkIllusts.timestamp).add(1, 'hours').isBefore(moment())
+      moment(userBookmarkIllusts.timestamp).add(1, 'days').isBefore(moment())
     ) {
       clearUserBookmarkIllusts(userId);
       InteractionManager.runAfterInteractions(() => {
