@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import DeviceInfo from 'react-native-device-info';
+
 import RankingList from './RankingList';
 import PastRanking from './PastRanking';
 import PXTabView from '../../components/PXTabView';
@@ -20,7 +22,13 @@ class Ranking extends Component {
         { key: '5', title: i18n.rankingWeekRookie },
         { key: '6', title: i18n.rankingWeek },
         { key: '7', title: i18n.rankingMonth },
-        { key: '8', title: i18n.rankingPast },
+        {
+          key: '8',
+          title:
+            DeviceInfo.getModel() === 'iPhone SE'
+              ? i18n.rankingPastShort
+              : i18n.rankingPast,
+        },
       ],
     };
   }

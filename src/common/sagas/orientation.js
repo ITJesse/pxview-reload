@@ -1,21 +1,21 @@
 import { takeEvery, select, put } from 'redux-saga/effects';
+import Device from 'react-native-device';
 
 import { ORIENTATION } from '../constants/actionTypes';
 import { setIllustColumns } from '../actions/orientation';
 import { getOrientation } from '../selectors';
-import config from '../config';
 
 function* handleOrientationChange() {
   const orientation = yield select(getOrientation);
   let ILLUST_COLUMNS;
   if (orientation === 'PORTRAIT') {
-    if (config.device === 'iphone') {
+    if (Device.isIphone()) {
       ILLUST_COLUMNS = 3;
     } else {
       ILLUST_COLUMNS = 4;
     }
   } else if (orientation === 'LANDSCAPE') {
-    if (config.device === 'iphone') {
+    if (Device.isIphone()) {
       ILLUST_COLUMNS = 3;
     } else {
       ILLUST_COLUMNS = 5;

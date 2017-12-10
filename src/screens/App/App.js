@@ -7,6 +7,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import PrivacySnapshot from 'react-native-privacy-snapshot';
 import Orientation from 'react-native-orientation';
 import { Answers } from 'react-native-fabric';
+import Device from 'react-native-device';
 
 import AppNavigator from '../../navigations/AppNavigator';
 import LoginNavigator from '../../navigations/LoginNavigator';
@@ -17,7 +18,6 @@ import ModalRoot from '../../containers/ModalRoot';
 import * as routeActionCreators from '../../common/actions/route';
 import * as touchIDActions from '../../common/actions/touchid';
 import * as orientationActions from '../../common/actions/orientation';
-import { globalStyleVariables } from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,10 +62,7 @@ class App extends Component {
     PrivacySnapshot.enabled(true);
     const initial = Orientation.getInitialOrientation();
     this.orientationDidChange(initial);
-    const width = globalStyleVariables.WINDOW_WIDTH();
-    const height = globalStyleVariables.WINDOW_HEIGHT();
-    if (height / width < 1.6) {
-      // iPad
+    if (Device.isIpad()) {
       Orientation.addOrientationListener(this.orientationDidChange);
     }
   }

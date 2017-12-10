@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import Device from 'react-native-device';
 
 import PXTouchable from '../components/PXTouchable';
 import PXThumbnailTouchable from '../components/PXThumbnailTouchable';
@@ -9,10 +10,9 @@ import FollowButtonContainer from '../containers/FollowButtonContainer';
 import IllustItem from './IllustItem';
 import { SCREENS } from '../common/constants';
 // import { makeGetUserIllustsItems } from '../common/selectors';
-import config from '../common/config';
 import { globalStyleVariables } from '../styles';
 
-const AVATAR_SIZE = config.device === 'iphone' ? 60 : 70;
+const AVATAR_SIZE = Device.isIphone() ? 60 : 70;
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginLeft: config.device === 'iphone' ? 80 : 100,
+    marginLeft: Device.isIphone() ? 80 : 100,
     marginRight: 5,
     marginVertical: 10,
   },
@@ -73,7 +73,7 @@ class UserPreview extends Component {
             },
           ]}
         >
-          {config.device === 'ipad' &&
+          {Device.isIpad() &&
             <View
               style={{
                 width: globalStyleVariables.WINDOW_WIDTH() / illustColumns,

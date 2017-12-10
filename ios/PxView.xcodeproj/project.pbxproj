@@ -41,6 +41,7 @@
 		2D02E4C91E0B4AEC006451C7 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* PxViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* PxViewTests.m */; };
 		484A1BDD1F9C1C6A00100004 /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 484A1BDC1F9C1C5200100004 /* libRNCookieManagerIOS.a */; };
+		484B62521FDDD8F800FC94FD /* DeviceUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 484B62511FDDD8F800FC94FD /* DeviceUtil.m */; };
 		4854674C1FC6553A004042A8 /* PasscodeAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4854674A1FC65539004042A8 /* PasscodeAuth.m */; };
 		485893381FCB0B020082342A /* PxViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485893371FCB0B020082342A /* PxViewUITests.swift */; };
 		48C95BF91FCB0F0400708727 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C95BF81FCB0F0400708727 /* SnapshotHelper.swift */; };
@@ -591,6 +592,8 @@
 		371EA88D80F74BB8B73F76A8 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		4481427EBBE34733B64F1DBE /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		484A1BD71F9C1C5200100004 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/ios/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
+		484B62501FDDD8F800FC94FD /* DeviceUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeviceUtil.h; path = PxView/DeviceUtil.h; sourceTree = "<group>"; };
+		484B62511FDDD8F800FC94FD /* DeviceUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeviceUtil.m; path = PxView/DeviceUtil.m; sourceTree = "<group>"; };
 		4854674A1FC65539004042A8 /* PasscodeAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasscodeAuth.m; path = PxView/PasscodeAuth.m; sourceTree = "<group>"; };
 		4854674B1FC6553A004042A8 /* PasscodeAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasscodeAuth.h; path = PxView/PasscodeAuth.h; sourceTree = "<group>"; };
 		485893351FCB0B020082342A /* PxViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PxViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -826,6 +829,8 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				4854674B1FC6553A004042A8 /* PasscodeAuth.h */,
 				4854674A1FC65539004042A8 /* PasscodeAuth.m */,
+				484B62501FDDD8F800FC94FD /* DeviceUtil.h */,
+				484B62511FDDD8F800FC94FD /* DeviceUtil.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				48F887571FA654D50043796C /* GoogleService-Info.plist */,
@@ -2154,6 +2159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				484B62521FDDD8F800FC94FD /* DeviceUtil.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				4854674C1FC6553A004042A8 /* PasscodeAuth.m in Sources */,
 			);

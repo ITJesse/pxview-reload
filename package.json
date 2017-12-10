@@ -36,6 +36,7 @@
     "react-native-cached-image": "^1.4.3",
     "react-native-cookies": "^3.2.0",
     "react-native-datepicker": "^1.6.0",
+    "react-native-device": "^1.0.1",
     "react-native-device-info": "^0.12.1",
     "react-native-easy-toast": "^1.0.9",
     "react-native-elements": "^0.18.2",
