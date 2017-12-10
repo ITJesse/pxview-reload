@@ -67,7 +67,6 @@ class MyCollection extends Component {
           <UserBookmarkIllusts
             userId={userId}
             tag={selectedPublicTag}
-            reload
             navigation={navigation}
           />
         );

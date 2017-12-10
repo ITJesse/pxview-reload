@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../../components/IllustList';
 import * as myPrivateBookmarkIllustActionCreators from '../../../common/actions/myPrivateBookmarkIllusts';
 import { getMyPrivateBookmarkIllustsItems } from '../../../common/selectors';
@@ -9,11 +11,18 @@ class MyPrivateBookmarkIllusts extends Component {
     const {
       userId,
       tag,
+      myPrivateBookmarkIllusts: { items, timestamp },
       fetchMyPrivateBookmarkIllusts,
       clearMyPrivateBookmarkIllusts,
     } = this.props;
-    clearMyPrivateBookmarkIllusts(userId);
-    fetchMyPrivateBookmarkIllusts(userId, tag);
+    if (
+      items.length < 1 ||
+      !timestamp ||
+      moment(timestamp).add(1, 'hours').isBefore(moment())
+    ) {
+      clearMyPrivateBookmarkIllusts(userId);
+      fetchMyPrivateBookmarkIllusts(userId, tag);
+    }
   }
 
   componentWillReceiveProps(nextProps) {

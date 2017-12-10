@@ -49,6 +49,27 @@ export default function userBookmarkIllusts(state = {}, action) {
           refreshing: false,
         },
       };
+    case USER_BOOKMARK_ILLUSTS.REMOVE:
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...state[action.payload.userId],
+          items: state[action.payload.userId].items.filter(
+            item => item !== action.payload.illustId,
+          ),
+        },
+      };
+    case USER_BOOKMARK_ILLUSTS.ADD:
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...state[action.payload.userId],
+          items: [
+            action.payload.illustId,
+            ...state[action.payload.userId].items,
+          ],
+        },
+      };
     default:
       return state;
   }

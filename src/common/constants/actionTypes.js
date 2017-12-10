@@ -134,7 +134,7 @@ export const USER_MANGAS = defineAction(
 
 export const USER_BOOKMARK_ILLUSTS = defineAction(
   'USER_BOOKMARK_ILLUSTS',
-  [REQUEST, SUCCESS, FAILURE, CLEAR, CLEAR_ALL],
+  [REQUEST, SUCCESS, FAILURE, CLEAR, CLEAR_ALL, REMOVE, ADD],
   appNamespace,
 );
 
@@ -158,7 +158,7 @@ export const USER_MY_PIXIV = defineAction(
 
 export const MY_PRIVATE_BOOKMARK_ILLUSTS = defineAction(
   'MY_PRIVATE_BOOKMARK_ILLUSTS',
-  [REQUEST, SUCCESS, FAILURE, CLEAR],
+  [REQUEST, SUCCESS, FAILURE, CLEAR, ADD, REMOVE],
   appNamespace,
 );
 

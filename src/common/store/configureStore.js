@@ -43,6 +43,8 @@ export default function configureStore() {
           const {
             entities,
             browsingHistory,
+            myPrivateBookmarkIllusts,
+            userBookmarkIllusts,
             followingUserIllusts,
             walkthroughIllusts,
             trendingIllustTags,
@@ -67,9 +69,16 @@ export default function configureStore() {
             ...newMangas.items,
             ...myPixiv.items,
             ...recommendedUsers.illusts,
+            ...myPrivateBookmarkIllusts.items,
           ];
           Object.keys(ranking).forEach(rankingKey => {
             savedItemList = [...savedItemList, ...ranking[rankingKey].items];
+          });
+          Object.keys(userBookmarkIllusts).forEach(userId => {
+            savedItemList = [
+              ...savedItemList,
+              ...userBookmarkIllusts[userId].items,
+            ];
           });
           const selectedIllustsEntities = savedItemList
             .filter(id => entities.illusts[id])
@@ -119,7 +128,9 @@ export default function configureStore() {
 
   persistStore(store, {
     whitelist: [
+      'myPrivateBookmarkIllusts',
       'followingUserIllusts',
+      'userBookmarkIllusts',
       'walkthroughIllusts',
       'trendingIllustTags',
       'recommendedIllusts',

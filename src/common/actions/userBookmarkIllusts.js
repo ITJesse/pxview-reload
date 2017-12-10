@@ -58,3 +58,23 @@ export function clearAllUserBookmarkIllusts() {
     type: USER_BOOKMARK_ILLUSTS.CLEAR_ALL,
   };
 }
+
+export function addUserBookmarkIllusts(userId, illustId) {
+  return {
+    type: USER_BOOKMARK_ILLUSTS.ADD,
+    payload: {
+      userId,
+      illustId,
+    },
+  };
+}
+
+export function removeUserBookmarkIllusts(userId, illustId) {
+  return {
+    type: USER_BOOKMARK_ILLUSTS.REMOVE,
+    payload: {
+      userId,
+      illustId,
+    },
+  };
+}

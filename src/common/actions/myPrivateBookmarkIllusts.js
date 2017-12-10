@@ -52,3 +52,21 @@ export function clearMyPrivateBookmarkIllusts(userId) {
     },
   };
 }
+
+export function addPrivateBookmarkIllusts(illustId) {
+  return {
+    type: MY_PRIVATE_BOOKMARK_ILLUSTS.ADD,
+    payload: {
+      illustId,
+    },
+  };
+}
+
+export function removePrivateBookmarkIllusts(illustId) {
+  return {
+    type: MY_PRIVATE_BOOKMARK_ILLUSTS.REMOVE,
+    payload: {
+      illustId,
+    },
+  };
+}

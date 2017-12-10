@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { InteractionManager } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
+
 import IllustList from '../../components/IllustList';
 import * as userBookmarkIllustActionCreators from '../../common/actions/userBookmarkIllusts';
 import { makeGetUserBookmarkIllustsItems } from '../../common/selectors';
@@ -11,11 +13,17 @@ class UserBookmarkIllusts extends Component {
       userBookmarkIllusts,
       userId,
       tag,
-      reload,
       fetchUserBookmarkIllusts,
       clearUserBookmarkIllusts,
     } = this.props;
-    if (!userBookmarkIllusts || !userBookmarkIllusts.items || reload) {
+    if (!userBookmarkIllusts || userBookmarkIllusts.items.length < 1) {
+      clearUserBookmarkIllusts(userId);
+      InteractionManager.runAfterInteractions(() => {
+        fetchUserBookmarkIllusts(userId, tag);
+      });
+    } else if (
+      moment(userBookmarkIllusts.timestamp).add(1, 'hours').isBefore(moment())
+    ) {
       clearUserBookmarkIllusts(userId);
       InteractionManager.runAfterInteractions(() => {
         fetchUserBookmarkIllusts(userId, tag);
@@ -60,8 +68,11 @@ class UserBookmarkIllusts extends Component {
       clearUserBookmarkIllusts,
       fetchUserBookmarkIllusts,
     } = this.props;
-    clearUserBookmarkIllusts(userId);
-    fetchUserBookmarkIllusts(userId, tag, null, true);
+    clearTimeout(this.refresh);
+    this.refresh = setTimeout(() => {
+      clearUserBookmarkIllusts(userId);
+      fetchUserBookmarkIllusts(userId, tag, null, true);
+    }, 300);
   };
 
   render() {

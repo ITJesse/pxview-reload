@@ -37,6 +37,16 @@ export default function userIllust(state = initState, action) {
         loaded: true,
         refreshing: false,
       };
+    case MY_PRIVATE_BOOKMARK_ILLUSTS.REMOVE:
+      return {
+        ...state,
+        items: state.items.filter(item => item !== action.payload.illustId),
+      };
+    case MY_PRIVATE_BOOKMARK_ILLUSTS.ADD:
+      return {
+        ...state,
+        items: [action.payload.illustId, ...state.items],
+      };
     default:
       return state;
   }

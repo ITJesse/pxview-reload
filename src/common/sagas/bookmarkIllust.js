@@ -1,14 +1,40 @@
-import { takeEvery, apply, put } from 'redux-saga/effects';
+import { takeEvery, apply, put, select } from 'redux-saga/effects';
 import {
   bookmarkIllustSuccess,
   bookmarkIllustFailure,
   unbookmarkIllustSuccess,
   unbookmarkIllustFailure,
 } from '../actions/bookmarkIllust';
+import {
+  addUserBookmarkIllusts,
+  removeUserBookmarkIllusts,
+} from '../actions/userBookmarkIllusts';
+import {
+  addPrivateBookmarkIllusts,
+  removePrivateBookmarkIllusts,
+} from '../actions/myPrivateBookmarkIllusts';
+import { getAuthUser } from '../selectors';
 import { addError } from '../actions/error';
 import pixiv from '../helpers/apiClient';
 import { BOOKMARK_ILLUST, UNBOOKMARK_ILLUST } from '../constants/actionTypes';
 import { BOOKMARK_TYPES } from '../constants';
+
+function* handleBookmarkIllustSuccess(illustId, bookmarkType) {
+  const user = yield select(getAuthUser);
+  if (bookmarkType === BOOKMARK_TYPES.PRIVATE) {
+    yield put(addPrivateBookmarkIllusts(illustId));
+    yield put(removeUserBookmarkIllusts(user.id, illustId));
+  } else {
+    yield put(addUserBookmarkIllusts(user.id, illustId));
+    yield put(removePrivateBookmarkIllusts(illustId));
+  }
+}
+
+function* handleUnbookmarkIllustSuccess(illustId) {
+  const user = yield select(getAuthUser);
+  yield put(removeUserBookmarkIllusts(user.id, illustId));
+  yield put(removePrivateBookmarkIllusts(illustId));
+}
 
 export function* handleBookmarkIllust(action) {
   const { illustId, bookmarkType, tags } = action.payload;
@@ -21,6 +47,7 @@ export function* handleBookmarkIllust(action) {
       tags,
     ]);
     yield put(bookmarkIllustSuccess(illustId));
+    yield handleBookmarkIllustSuccess(illustId, bookmarkType);
   } catch (err) {
     yield put(bookmarkIllustFailure(illustId));
     yield put(addError(err));
@@ -32,6 +59,7 @@ export function* handleUnbookmarkIllust(action) {
   try {
     yield apply(pixiv, pixiv.unbookmarkIllust, [illustId]);
     yield put(unbookmarkIllustSuccess(illustId));
+    yield handleUnbookmarkIllustSuccess(illustId);
   } catch (err) {
     yield put(unbookmarkIllustFailure(illustId));
     yield put(addError(err));
