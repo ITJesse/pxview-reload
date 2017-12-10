@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 class App extends Component {
   constructor(props) {
     super(props);
+    this.orientation = null;
     this.orientationDidChange = this.orientationDidChange.bind(this);
   }
 
@@ -77,7 +78,10 @@ class App extends Component {
 
   orientationDidChange(orientation) {
     const { setOrientation } = this.props;
-    setOrientation(orientation);
+    if (this.orientation !== orientation) {
+      setOrientation(orientation);
+      this.orientation = orientation;
+    }
   }
 
   handleOnNavigationStateChange = (prevState, newState) => {
