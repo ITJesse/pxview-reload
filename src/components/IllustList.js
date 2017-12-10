@@ -117,7 +117,7 @@ class IllustList extends Component {
               })}
               removeClippedSubviews={false}
               initialNumToRender={5}
-              onEndReachedThreshold={1}
+              onEndReachedThreshold={0.5}
               onEndReached={loadMoreItems}
               ListFooterComponent={this.renderFooter}
               onScroll={onScroll}

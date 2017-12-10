@@ -50,12 +50,14 @@ class UserBookmarkIllusts extends Component {
       userBookmarkIllusts,
       tag,
       userId,
+      userBookmarkIllusts: { loading },
       fetchUserBookmarkIllusts,
     } = this.props;
     if (
       userBookmarkIllusts &&
       !userBookmarkIllusts.loading &&
-      userBookmarkIllusts.nextUrl
+      userBookmarkIllusts.nextUrl &&
+      !loading
     ) {
       fetchUserBookmarkIllusts(userId, tag, userBookmarkIllusts.nextUrl);
     }
@@ -65,14 +67,14 @@ class UserBookmarkIllusts extends Component {
     const {
       userId,
       tag,
+      userBookmarkIllusts: { loading },
       clearUserBookmarkIllusts,
       fetchUserBookmarkIllusts,
     } = this.props;
-    clearTimeout(this.refresh);
-    this.refresh = setTimeout(() => {
+    if (!loading) {
       clearUserBookmarkIllusts(userId);
       fetchUserBookmarkIllusts(userId, tag, null, true);
-    }, 300);
+    }
   };
 
   render() {

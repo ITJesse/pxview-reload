@@ -55,11 +55,14 @@ class MyPrivateBookmarkIllusts extends Component {
     const {
       userId,
       tag,
+      loading,
       fetchMyPrivateBookmarkIllusts,
       clearMyPrivateBookmarkIllusts,
     } = this.props;
-    clearMyPrivateBookmarkIllusts(userId);
-    fetchMyPrivateBookmarkIllusts(userId, tag, null, true);
+    if (!loading) {
+      clearMyPrivateBookmarkIllusts(userId);
+      fetchMyPrivateBookmarkIllusts(userId, tag, null, true);
+    }
   };
 
   render() {
