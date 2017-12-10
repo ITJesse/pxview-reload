@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
+import moment from 'moment';
+
 import UserListContainer from '../../../containers/UserListContainer';
 import { connectLocalization } from '../../../components/Localization';
 import EmptyStateView from '../../../components/EmptyStateView';
@@ -15,10 +17,19 @@ class UserFollowing extends Component {
       fetchUserFollowing,
       clearUserFollowing,
       userId,
+      items,
       followingType,
+      userFollowing,
     } = this.props;
-    clearUserFollowing(userId, followingType);
-    fetchUserFollowing(userId, followingType);
+    if (
+      !userFollowing ||
+      !userFollowing.timestamp ||
+      items.length < 1 ||
+      moment(userFollowing.timestamp).add(1, 'days').isBefore(moment())
+    ) {
+      clearUserFollowing(userId, followingType);
+      fetchUserFollowing(userId, followingType);
+    }
   }
 
   loadMoreItems = () => {
@@ -51,6 +62,7 @@ class UserFollowing extends Component {
 
   render() {
     const { userFollowing, items, i18n } = this.props;
+    console.log(items);
     if (userFollowing && userFollowing.loaded && (!items || !items.length)) {
       return (
         <EmptyStateView
@@ -87,7 +99,7 @@ export default connectLocalization(
       const { followingType } = props;
       return {
         userFollowing: userFollowing[followingType][userId],
-        items: getUserFollowingItems(state, props),
+        items: getUserFollowingItems(state, props).filter(item => !item.illusts.some(e => !e) && item.user),
         userId,
       };
     };

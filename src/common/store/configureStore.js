@@ -51,6 +51,7 @@ export default function configureStore() {
             recommendedIllusts,
             recommendedMangas,
             recommendedUsers,
+            userFollowing,
             newIllusts,
             newMangas,
             myPixiv,
@@ -80,7 +81,7 @@ export default function configureStore() {
               ...userBookmarkIllusts[userId].items,
             ];
           });
-          const selectedIllustsEntities = savedItemList
+          let selectedIllustsEntities = savedItemList
             .filter(id => entities.illusts[id])
             .reduce((prev, id) => {
               prev[id] = entities.illusts[id];
@@ -88,6 +89,7 @@ export default function configureStore() {
               selectedUsersEntities[userId] = entities.users[userId];
               return prev;
             }, {});
+
           const selectedUsersEntities2 = muteUsers.items
             .filter(id => entities.users[id])
             .reduce((prev, id) => {
@@ -100,11 +102,36 @@ export default function configureStore() {
               prev[id] = entities.users[id];
               return prev;
             }, {});
-          const finalSelectedUsersEntities = {
+          let finalSelectedUsersEntities = {
             ...selectedUsersEntities,
             ...selectedUsersEntities2,
             ...selectedUsersEntities3,
           };
+
+          Object.keys(userFollowing).forEach(type => {
+            Object.keys(userFollowing[type]).forEach(userId => {
+              const users = userFollowing[type][userId].items.filter(
+                id => entities.users[id],
+              );
+              const usersIllustsEntities = {};
+              Object.keys(entities.illusts).forEach(illustId => {
+                if (users.indexOf(entities.illusts[illustId].user) !== -1)
+                  usersIllustsEntities[illustId] = entities.illusts[illustId];
+              });
+              const usersEntities = users.reduce((prev, id) => {
+                prev[id] = entities.users[id];
+                return prev;
+              }, {});
+              finalSelectedUsersEntities = {
+                ...finalSelectedUsersEntities,
+                ...usersEntities,
+              };
+              selectedIllustsEntities = {
+                ...selectedIllustsEntities,
+                ...usersIllustsEntities,
+              };
+            });
+          });
           return {
             ...inboundState,
             illusts: selectedIllustsEntities,
@@ -138,6 +165,7 @@ export default function configureStore() {
       'recommendedUsers',
       'browsingHistory',
       'highlightTags',
+      'userFollowing',
       'searchHistory',
       'newIllusts',
       'newMangas',

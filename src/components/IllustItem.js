@@ -26,10 +26,9 @@ class IllustItem extends Component {
       numColumns: prevNumColumns,
     } = this.props;
     const { item, isHighlight, isMute, numColumns } = nextProps;
-    // console.log(item.id, (prevItem.is_bookmarked !== item.is_bookmarked) || (prevItem.user.is_followed !== item.user.is_followed));
     return (
       prevItem.is_bookmarked !== item.is_bookmarked ||
-      prevItem.user.is_followed !== item.user.is_followed ||
+      // prevItem.user.is_followed !== item.user.is_followed ||
       prevIsHighlight !== isHighlight ||
       prevIsMute !== isMute ||
       prevNumColumns !== numColumns
