@@ -8,7 +8,7 @@ import {
   Linking,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { withFormik, Field } from 'formik';
 import { Button } from 'react-native-elements';
 import OverlaySpinner from 'react-native-loading-spinner-overlay';
 
@@ -71,31 +71,16 @@ const validate = (values, props) => {
   return errors;
 };
 
+const handleOnSubmit = (values, { props }) => {
+  const { login } = props;
+  const { email, password } = values;
+  if (email && password) {
+    Keyboard.dismiss();
+    login(email, password);
+  }
+};
+
 class Login extends Component {
-  // componentWillReceiveProps(nextProps) {
-  //   const { auth: { user: prevUser } } = this.props;
-  //   const {
-  //     auth: { user },
-  //     navigation: { goBack },
-  //     onLoginSuccess,
-  //   } = nextProps;
-  //   if (user !== prevUser) {
-  //     goBack();
-  //     if (onLoginSuccess) {
-  //       setTimeout(() => onLoginSuccess(user), 0);
-  //     }
-  //   }
-  // }
-
-  submit = data => {
-    const { login } = this.props;
-    const { email, password } = data;
-    if (email && password) {
-      Keyboard.dismiss();
-      login(email, password);
-    }
-  };
-
   handleOnPressSignUp = () => {
     const { openModal } = this.props;
     openModal(MODAL_TYPES.SIGNUP);
@@ -106,14 +91,17 @@ class Login extends Component {
   };
 
   render() {
-    const { auth: { loading }, modal, i18n, handleSubmit } = this.props;
+    const {
+      auth: { loading },
+      modal,
+      i18n,
+      handleSubmit,
+      setFieldValue,
+      setFieldTouched,
+    } = this.props;
     return (
       <View style={styles.container}>
-        <View
-          ref={ref => (this.list = ref)} // eslint-disable-line no-return-assign
-          style={{ flex: 1 }}
-          onLayout={this.handleOnLayout}
-        >
+        <View style={{ flex: 1 }}>
           <WalkthroughIllustList />
         </View>
         {modal.modalType !== MODAL_TYPES.SIGNUP &&
@@ -137,6 +125,8 @@ class Login extends Component {
                   label={i18n.loginEmailOrPixivId}
                   autoCapitalize="none"
                   testID="LoginPageUsernameField"
+                  onChangeText={setFieldValue}
+                  onBlur={setFieldTouched}
                 />
                 <Field
                   name="password"
@@ -144,14 +134,16 @@ class Login extends Component {
                   label={i18n.password}
                   secureTextEntry
                   testID="LoginPagePasswordField"
+                  onChangeText={setFieldValue}
+                  onBlur={setFieldTouched}
                 />
                 <Button
                   title={i18n.login}
                   containerViewStyle={styles.buttonContainer}
                   backgroundColor={globalStyleVariables.PRIMARY_COLOR}
                   raised
-                  onPress={handleSubmit(this.submit)}
                   testID="LoginPageLoginButton"
+                  onPress={handleSubmit}
                 />
                 <Button
                   title={i18n.loginNoAccount}
@@ -184,10 +176,13 @@ class Login extends Component {
   }
 }
 
-const LoginForm = reduxForm({
-  form: 'login',
-  // destroyOnUnmount: false,
+const LoginForm = withFormik({
+  mapPropsToValues: () => ({
+    email: '',
+    password: '',
+  }),
   validate,
+  handleSubmit: handleOnSubmit,
 })(Login);
 
 export default connectLocalization(

@@ -169,7 +169,6 @@ class AccountSettings extends Component {
         {isOpenChangePasswordModal &&
           <AccountChangePasswordModal
             onClose={this.handleOnCloseChangePasswordModal}
-            user={user}
           />}
       </View>
     );

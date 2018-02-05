@@ -1,5 +1,4 @@
 import { takeEvery, take, apply, put, select, call } from 'redux-saga/effects';
-import { stopSubmit } from 'redux-form';
 import { Answers } from 'react-native-fabric';
 
 import { editAccountSuccess, editAccountFailure } from '../actions/editAccount';
@@ -14,13 +13,7 @@ import {
 import { getAuthUser } from '../selectors';
 
 export function* handleEditAccount(action) {
-  const {
-    formId,
-    pixivId,
-    currentPassword,
-    newPassword,
-    email,
-  } = action.payload;
+  const { pixivId, currentPassword, newPassword, email } = action.payload;
   try {
     yield apply(pixiv, pixiv.editUserAccount, [
       {
@@ -40,10 +33,8 @@ export function* handleEditAccount(action) {
     yield put(fetchMyAccountState());
     yield take(MY_ACCOUNT_STATE.SUCCESS);
     yield put(editAccountSuccess());
-    yield put(stopSubmit(formId));
   } catch (err) {
     const errors = err && err.body && err.body.validation_errors;
-    yield put(editAccountFailure());
     if (errors) {
       const { old_password, password, pixiv_id, mail_address } = errors;
       const validationErrors = {
@@ -52,9 +43,10 @@ export function* handleEditAccount(action) {
         pixivId: pixiv_id,
         email: mail_address,
       };
-      yield put(stopSubmit(formId, validationErrors));
+      yield put(editAccountFailure(validationErrors));
+    } else {
+      yield put(editAccountFailure());
     }
-
     // {
     //   "error": false,
     //   "message": "",
