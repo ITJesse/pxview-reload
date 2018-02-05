@@ -54,7 +54,10 @@ class UgoiraViewTouchable extends Component {
   }
 
   downloadZip = async () => {
-    const { item: { id }, ugoiraMeta } = this.props;
+    const {
+      item: { id },
+      ugoiraMeta,
+    } = this.props;
     const { zipUrl } = ugoiraMeta.item;
     try {
       const ugoiraPath = `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira/${id}`;
@@ -66,10 +69,11 @@ class UgoiraViewTouchable extends Component {
           });
         }
       } else {
-        const downloadPath = `${RNFetchBlob.fs.dirs
-          .CacheDir}/pxview/ugoira_zip/${zipUrl.split('/').pop()}`;
+        const downloadPath = `${
+          RNFetchBlob.fs.dirs.CacheDir
+        }/pxview/ugoira_zip/${zipUrl.split('/').pop()}`;
 
-        if (!await this.checkCache(downloadPath)) {
+        if (!(await this.checkCache(downloadPath))) {
           this.task = RNFetchBlob.config({
             fileCache: true,
             appendExt: 'zip',
@@ -121,7 +125,9 @@ class UgoiraViewTouchable extends Component {
     if (exist) {
       const stat = await RNFetchBlob.fs.stat(filePath);
       if (
-        moment(stat.lastModified).add(CACHE_TIMEOUT, 'days').isBefore(moment())
+        moment(stat.lastModified)
+          .add(CACHE_TIMEOUT, 'days')
+          .isBefore(moment())
       ) {
         return false;
       }
@@ -179,25 +185,28 @@ class UgoiraViewTouchable extends Component {
             },
           ]}
         >
-          {ugoiraPath
-            ? <UgoiraView
-                images={ugoiraMeta.item.frames.map(frame => ({
-                  uri: `${ugoiraPath}/${frame.file}`,
-                  delay: frame.delay,
-                }))}
-                paused={paused}
-                width={width}
-                height={height}
-                resizeMode="contain"
-              />
-            : <PXCacheImage
-                uri={item.image_urls.medium}
-                width={width}
-                height={height}
-                style={styles.image}
-              />}
-          {((ugoiraMeta && ugoiraMeta.loading) || isDownloadingZip) &&
-            <Loader absolutePosition />}
+          {ugoiraPath ? (
+            <UgoiraView
+              images={ugoiraMeta.item.frames.map(frame => ({
+                uri: `${ugoiraPath}/${frame.file}`,
+                delay: frame.delay,
+              }))}
+              paused={paused}
+              width={width}
+              height={height}
+              resizeMode="contain"
+            />
+          ) : (
+            <PXCacheImage
+              uri={item.image_urls.medium}
+              width={width}
+              height={height}
+              style={styles.image}
+            />
+          )}
+          {((ugoiraMeta && ugoiraMeta.loading) || isDownloadingZip) && (
+            <Loader absolutePosition />
+          )}
           {!isStartPlaying && <OverlayPlayIcon />}
         </View>
       </TouchableWithoutFeedback>

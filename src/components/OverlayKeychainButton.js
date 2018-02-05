@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
 
 const color = '#aaa';
 
-const OverlayKeychainButton = () =>
+const OverlayKeychainButton = () => (
   <View style={styles.container}>
     <AnimatableIcon
       name="vpn-key"
@@ -30,6 +30,7 @@ const OverlayKeychainButton = () =>
       }}
       size={24}
     />
-  </View>;
+  </View>
+);
 
 export default OverlayKeychainButton;

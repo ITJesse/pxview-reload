@@ -25,7 +25,9 @@ class UserFollowing extends Component {
       !userFollowing ||
       !userFollowing.timestamp ||
       items.length < 1 ||
-      moment(userFollowing.timestamp).add(1, 'days').isBefore(moment())
+      moment(userFollowing.timestamp)
+        .add(1, 'days')
+        .isBefore(moment())
     ) {
       clearUserFollowing(userId, followingType);
       fetchUserFollowing(userId, followingType);

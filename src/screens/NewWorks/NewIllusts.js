@@ -16,7 +16,9 @@ class NewIllusts extends Component {
     } = this.props;
     if (
       items.length < 1 ||
-      moment(timestamp).add(3, 'hours').isBefore(moment())
+      moment(timestamp)
+        .add(3, 'hours')
+        .isBefore(moment())
     ) {
       clearNewIllusts();
       fetchNewIllusts();
@@ -24,7 +26,10 @@ class NewIllusts extends Component {
   }
 
   loadMoreItems = () => {
-    const { fetchNewIllusts, newIllusts: { nextUrl, loading } } = this.props;
+    const {
+      fetchNewIllusts,
+      newIllusts: { nextUrl, loading },
+    } = this.props;
     if (!loading && nextUrl) {
       fetchNewIllusts(nextUrl);
     }

@@ -68,7 +68,9 @@ const list = [
 
 class About extends Component {
   handleOnPressListItem = item => {
-    const { navigation: { navigate } } = this.props;
+    const {
+      navigation: { navigate },
+    } = this.props;
     switch (item.id) {
       case 'contactUs': {
         this.openUrl('mailto:jesse@itjesse.com?subject=About PxView Reload');
@@ -118,7 +120,7 @@ class About extends Component {
           </View>
         </View>
         <List>
-          {list.map(item =>
+          {list.map(item => (
             <ListItem
               key={item.id}
               title={i18n.formatString(i18n[item.title], 'App Store')}
@@ -131,8 +133,8 @@ class About extends Component {
               subtitle={item.subtitle}
               hideChevron={item.hideChevron}
               containerStyle={styles.listItem}
-            />,
-          )}
+            />
+          ))}
         </List>
       </View>
     );

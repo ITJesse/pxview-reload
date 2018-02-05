@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   },
 });
 class CommentList extends Component {
-  renderRow = ({ item }) =>
+  renderRow = ({ item }) => (
     <View key={item.id} style={styles.commentContainer}>
       <PXThumbnailTouchable
         uri={item.user.profile_image_urls.medium}
@@ -48,29 +48,28 @@ class CommentList extends Component {
       <View style={styles.nameCommentContainer}>
         <View style={styles.nameContainer}>
           <PXTouchable onPress={() => this.handleOnPressUser(item.user.id)}>
-            <Text>
-              {item.user.name}
-            </Text>
+            <Text>{item.user.name}</Text>
           </PXTouchable>
           <Text style={styles.date}>
             {moment(item.date).format('YYYY-MM-DD HH:mm')}
           </Text>
         </View>
         <View style={styles.comment}>
-          <Text>
-            {item.comment}
-          </Text>
+          <Text>{item.comment}</Text>
         </View>
       </View>
-    </View>;
+    </View>
+  );
 
   renderFooter = () => {
-    const { data: { nextUrl, loading } } = this.props;
-    return nextUrl && loading
-      ? <View style={styles.footer}>
-          <Loader />
-        </View>
-      : null;
+    const {
+      data: { nextUrl, loading },
+    } = this.props;
+    return nextUrl && loading ? (
+      <View style={styles.footer}>
+        <Loader />
+      </View>
+    ) : null;
   };
 
   handleOnPressUser = userId => {
@@ -89,23 +88,22 @@ class CommentList extends Component {
     return (
       <View style={globalStyles.container}>
         {!loaded && loading && <Loader />}
-        {loaded
-          ? <FlatList
-              data={maxItems ? items.slice(0, maxItems) : items}
-              keyExtractor={item => item.id}
-              renderItem={this.renderRow}
-              onEndReachedThreshold={0.1}
-              onEndReached={loadMoreItems}
-              removeClippedSubviews={false}
-              ListFooterComponent={this.renderFooter}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
-            />
-          : null}
+        {loaded ? (
+          <FlatList
+            data={maxItems ? items.slice(0, maxItems) : items}
+            keyExtractor={item => item.id}
+            renderItem={this.renderRow}
+            onEndReachedThreshold={0.1}
+            onEndReached={loadMoreItems}
+            removeClippedSubviews={false}
+            ListFooterComponent={this.renderFooter}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+        ) : null}
         {loaded &&
-          (!items || !items.length) &&
-          <NoResult text={i18n.noComments} />}
+          (!items || !items.length) && <NoResult text={i18n.noComments} />}
       </View>
     );
   }

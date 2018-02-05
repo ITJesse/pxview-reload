@@ -31,17 +31,17 @@ class Feedback extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
     return {
-      headerRight:
-        params &&
-        params.submit &&
-        <PXTouchable onPress={params.submit} disabled={!params.feedback}>
-          <Icon
-            name="pencil"
-            style={{ padding: 10 }}
-            size={20}
-            color={params.feedback ? '#fff' : 'gray'}
-          />
-        </PXTouchable>,
+      headerRight: params &&
+        params.submit && (
+          <PXTouchable onPress={params.submit} disabled={!params.feedback}>
+            <Icon
+              name="pencil"
+              style={{ padding: 10 }}
+              size={20}
+              color={params.feedback ? '#fff' : 'gray'}
+            />
+          </PXTouchable>
+        ),
     };
   };
 
@@ -54,7 +54,9 @@ class Feedback extends Component {
   }
 
   componentDidMount() {
-    const { navigation: { setParams } } = this.props;
+    const {
+      navigation: { setParams },
+    } = this.props;
     setParams({
       submit: this.handleOnSubmitFeedback,
       feedback: '',
@@ -77,7 +79,11 @@ class Feedback extends Component {
   };
 
   handleOnSubmitFeedback = () => {
-    const { i18n, addError, navigation: { goBack } } = this.props;
+    const {
+      i18n,
+      addError,
+      navigation: { goBack },
+    } = this.props;
     const { feedback } = this.state;
     Keyboard.dismiss();
     this.setState({ loading: true });

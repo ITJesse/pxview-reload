@@ -14,8 +14,6 @@ BoolCompletionBlock boolCompletionBlock;
 
 static NSString *const kContinuousCrashOnLaunchCounterKey = @"ContinuousCrashOnLaunchCounter";
 static NSString *const kContinuousCrashFixingKey = @"ContinuousCrashFixing"; // 是否正在修复
-static NSInteger const kContinuousCrashOnLaunchNeedToReport = 1;
-static NSInteger const kContinuousCrashOnLaunchNeedToFix = 2;
 static CFTimeInterval const kCrashOnLaunchTimeIntervalThreshold = 10.0;
 static CFTimeInterval g_startTick; // 记录启动时刻
 
@@ -26,11 +24,6 @@ static CFTimeInterval g_startTick; // 记录启动时刻
     if (Logger) Logger(@"Launch continuous crash report");
     
     NSInteger launchCrashes = [self crashCount];
-    // 上报
-    if (launchCrashes >= kContinuousCrashOnLaunchNeedToReport) {
-        if (Logger) Logger([NSString stringWithFormat:@"App has continuously crashed for %@ times. Now synchronize uploading crash report and begin fixing procedure.", @(launchCrashes)]);
-        if (reportBlock) reportBlock(launchCrashes);
-    }
     
     [self setCrashCount:[self crashCount]+1];
 

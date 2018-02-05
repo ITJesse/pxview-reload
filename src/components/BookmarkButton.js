@@ -53,7 +53,12 @@ class BookmarkButton extends Component {
   }
 
   handleOnPress = () => {
-    const { authUser, item, loading, navigation: { navigate } } = this.props;
+    const {
+      authUser,
+      item,
+      loading,
+      navigation: { navigate },
+    } = this.props;
     if (loading) return;
     const { isBookmark } = this.state;
     if (!authUser) {

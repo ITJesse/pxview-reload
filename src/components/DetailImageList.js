@@ -118,7 +118,10 @@ class DetailImageList extends Component {
   }
 
   handleOnPressTag = tag => {
-    const { addSearchHistory, navigation: { navigate } } = this.props;
+    const {
+      addSearchHistory,
+      navigation: { navigate },
+    } = this.props;
     addSearchHistory(tag);
     navigate(SCREENS.SearchResult, {
       word: tag,
@@ -235,8 +238,9 @@ class DetailImageList extends Component {
       viewableItems.length
     ) {
       this.setState({
-        imagePageNumber: `${viewableItems[0].index + 1} / ${item.meta_pages
-          .length}`,
+        imagePageNumber: `${viewableItems[0].index + 1} / ${
+          item.meta_pages.length
+        }`,
       });
     }
   };
@@ -328,35 +332,36 @@ class DetailImageList extends Component {
     const isMute = tags.some(t => t.isMute) || isMuteUser;
     return (
       <View key={item.id} style={containerStyle()}>
-        {!isMute && item.page_count > 1
-          ? <View>
-              <FlatList
-                data={item.meta_pages}
-                keyExtractor={page => page.image_urls.large}
-                renderItem={this.renderItem}
-                removeClippedSubviews={false}
-                ListFooterComponent={this.renderFooter}
-                onScroll={this.handleOnScroll}
-                onViewableItemsChanged={this.handleOnViewableItemsChanged}
-                scrollEventThrottle={16}
-                bounces={false}
-              />
-              {(isInitState || isScrolling) &&
-                imagePageNumber &&
-                <View style={styles.imagePageNumberContainer}>
-                  <Text style={styles.imagePageNumber}>
-                    {imagePageNumber}
-                  </Text>
-                </View>}
-            </View>
-          : <ScrollView
-              onScroll={onScroll}
+        {!isMute && item.page_count > 1 ? (
+          <View>
+            <FlatList
+              data={item.meta_pages}
+              keyExtractor={page => page.image_urls.large}
+              renderItem={this.renderItem}
+              removeClippedSubviews={false}
+              ListFooterComponent={this.renderFooter}
+              onScroll={this.handleOnScroll}
+              onViewableItemsChanged={this.handleOnViewableItemsChanged}
               scrollEventThrottle={16}
               bounces={false}
-            >
-              {this.renderImageOrUgoira(isMute)}
-              {this.renderFooter()}
-            </ScrollView>}
+            />
+            {(isInitState || isScrolling) &&
+              imagePageNumber && (
+                <View style={styles.imagePageNumberContainer}>
+                  <Text style={styles.imagePageNumber}>{imagePageNumber}</Text>
+                </View>
+              )}
+          </View>
+        ) : (
+          <ScrollView
+            onScroll={onScroll}
+            scrollEventThrottle={16}
+            bounces={false}
+          >
+            {this.renderImageOrUgoira(isMute)}
+            {this.renderFooter()}
+          </ScrollView>
+        )}
         <PXBottomSheet
           visible={isOpenTagBottomSheet}
           onCancel={this.handleOnCancelTagBottomSheet}

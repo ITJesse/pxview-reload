@@ -76,8 +76,9 @@ class SearchUsersResult extends Component {
         />
         {searchUsers &&
           searchUsers.loaded &&
-          (!items || !items.length) &&
-          <NoResult text={i18n.noSearchResult} style={styles.nullResult} />}
+          (!items || !items.length) && (
+            <NoResult text={i18n.noSearchResult} style={styles.nullResult} />
+          )}
       </View>
     );
   }

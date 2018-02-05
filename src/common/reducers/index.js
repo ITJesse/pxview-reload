@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
 import entities from './entities';
 import walkthroughIllusts from './walkthroughIllusts';
 import recommendedIllusts from './recommendedIllusts';
@@ -96,7 +95,6 @@ const rootReducer = combineReducers({
   modal,
   // nav,
   i18n,
-  form: formReducer,
 });
 
 export default rootReducer;

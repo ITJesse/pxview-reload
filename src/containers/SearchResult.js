@@ -27,7 +27,11 @@ class SearchResult extends Component {
   }
 
   loadMoreItems = () => {
-    const { search: { nextUrl, loading }, word, options } = this.props;
+    const {
+      search: { nextUrl, loading },
+      word,
+      options,
+    } = this.props;
     if (!loading && nextUrl) {
       this.search(word, options, nextUrl);
     }
@@ -56,8 +60,7 @@ class SearchResult extends Component {
         />
         {search &&
           search.loaded &&
-          (!items || !items.length) &&
-          <NoResult text={i18n.noSearchResult} />}
+          (!items || !items.length) && <NoResult text={i18n.noSearchResult} />}
       </View>
     );
   }

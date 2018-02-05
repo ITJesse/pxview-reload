@@ -9,10 +9,10 @@ class BrowsingHistory extends Component {
   static navigationOptions = ({ navigation }) => {
     const { params } = navigation.state;
     return {
-      headerRight:
-        params &&
-        params.clearBrowsingHistory &&
-        <HeaderClearButton onPress={params.clearBrowsingHistory} />,
+      headerRight: params &&
+        params.clearBrowsingHistory && (
+          <HeaderClearButton onPress={params.clearBrowsingHistory} />
+        ),
     };
   };
 

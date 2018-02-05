@@ -42,7 +42,9 @@ const list = [
 
 const OpenSourceLicenseList = props => {
   const handleOnPressListItem = item => {
-    const { navigation: { navigate } } = props;
+    const {
+      navigation: { navigate },
+    } = props;
     navigate(SCREENS.OpenSourceLicense, item);
   };
 
@@ -50,14 +52,14 @@ const OpenSourceLicenseList = props => {
     <View style={styles.container}>
       <ScrollView style={styles.container}>
         <List>
-          {list.map(item =>
+          {list.map(item => (
             <ListItem
               key={item.id}
               title={item.title}
               onPress={() => handleOnPressListItem(item)}
               containerStyle={styles.listItem}
-            />,
-          )}
+            />
+          ))}
         </List>
       </ScrollView>
     </View>

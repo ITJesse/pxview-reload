@@ -57,7 +57,10 @@ class PXHeader extends Component {
   };
 
   handleOnPressBackButton = () => {
-    const { onPressBackButton, navigation: { goBack } } = this.props;
+    const {
+      onPressBackButton,
+      navigation: { goBack },
+    } = this.props;
     if (onPressBackButton) {
       onPressBackButton();
     } else {
@@ -82,11 +85,12 @@ class PXHeader extends Component {
         ]}
       >
         <View style={styles.subContainer}>
-          {showBackButton &&
+          {showBackButton && (
             <HeaderBackButton
               onPress={this.handleOnPressBackButton}
               tintColor={darkTheme && '#fff'}
-            />}
+            />
+          )}
           {headerTitle}
           {headerRight}
         </View>

@@ -87,7 +87,10 @@ class Settings extends Component {
   };
 
   handleOnPressListItem = async item => {
-    const { navigation: { navigate }, i18n } = this.props;
+    const {
+      navigation: { navigate },
+      i18n,
+    } = this.props;
     switch (item.id) {
       case 'accountSettings': {
         navigate(SCREENS.AccountSettings, {
@@ -216,9 +219,9 @@ class Settings extends Component {
         ...tasks,
         ...list.map(image =>
           RNFetchBlob.fs.stat(
-            `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira/${ugoiraDirs[
-              index
-            ]}/${image}`,
+            `${RNFetchBlob.fs.dirs.CacheDir}/pxview/ugoira/${
+              ugoiraDirs[index]
+            }/${image}`,
           ),
         ),
       };
@@ -260,15 +263,15 @@ class Settings extends Component {
     const { i18n } = this.props;
     return (
       <List>
-        {list.map(item =>
+        {list.map(item => (
           <ListItem
             key={item.id}
             title={i18n[item.title]}
             onPress={() => this.handleOnPressListItem(item)}
             hideChevron={item.hideChevron}
             containerStyle={styles.listItem}
-          />,
-        )}
+          />
+        ))}
       </List>
     );
   };

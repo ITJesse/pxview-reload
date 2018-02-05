@@ -48,18 +48,18 @@ class PXPhotoView extends PureComponent {
   render() {
     const { uri, style, onLoad, ...restProps } = this.props;
     const { loaded, filePath } = this.state;
-    return loaded && filePath
-      ? <PhotoView
-          source={{
-            uri: filePath,
-          }}
-          minimumZoomScale={1}
-          maximumZoomScale={3}
-          style={[photoStyle(), style]}
-          onLoad={this.handleOnLoad}
-          {...restProps}
-        />
-      : null;
+    return loaded && filePath ? (
+      <PhotoView
+        source={{
+          uri: filePath,
+        }}
+        minimumZoomScale={1}
+        maximumZoomScale={3}
+        style={[photoStyle(), style]}
+        onLoad={this.handleOnLoad}
+        {...restProps}
+      />
+    ) : null;
   }
 }
 

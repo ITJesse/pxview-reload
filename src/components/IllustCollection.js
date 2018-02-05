@@ -55,18 +55,11 @@ const IllustCollection = props => {
   return (
     <View style={styles.container}>
       <View style={styles.title}>
-        <Text>
-          {title}
-        </Text>
+        <Text>{title}</Text>
         <PXTouchable onPress={onPressViewMore}>
           <View style={styles.viewAllContainer}>
-            {total &&
-              <Text style={styles.total}>
-                {total}
-              </Text>}
-            <Text>
-              {viewMoreTitle}
-            </Text>
+            {total && <Text style={styles.total}>{total}</Text>}
+            <Text>{viewMoreTitle}</Text>
             <Icon name="chevron-right" style={styles.chevronIcon} />
           </View>
         </PXTouchable>
@@ -74,14 +67,15 @@ const IllustCollection = props => {
       <View style={styles.imagePreviews}>
         {illusts &&
           illusts.length &&
-          illusts.map((item, index) =>
+          illusts.map((item, index) => (
             <IllustItem
               key={item.id}
               item={item}
               index={index}
               numColumns={illustColumns}
               onPressItem={() =>
-                navigate(SCREENS.Detail, { items: illusts, index })}
+                navigate(SCREENS.Detail, { items: illusts, index })
+              }
               containerStyle={{
                 width:
                   (globalStyleVariables.WINDOW_WIDTH() - CONTAINER_MARGIN * 2) /
@@ -102,8 +96,8 @@ const IllustCollection = props => {
                     illustColumns -
                   1,
               }}
-            />,
-          )}
+            />
+          ))}
       </View>
     </View>
   );

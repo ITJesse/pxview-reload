@@ -112,14 +112,20 @@ class SearchResultTabs extends Component {
   };
 
   handleOnPressViewEncyclopedia = () => {
-    const { word, navigation: { navigate } } = this.props;
+    const {
+      word,
+      navigation: { navigate },
+    } = this.props;
     navigate(SCREENS.Encyclopedia, {
       word,
     });
   };
 
   handleOnPressBackButton = () => {
-    const { word, navigation: { goBack } } = this.props;
+    const {
+      word,
+      navigation: { goBack },
+    } = this.props;
     const { isFocusSearchBar } = this.state;
     if (isFocusSearchBar) {
       Keyboard.dismiss();
@@ -238,14 +244,15 @@ class SearchResultTabs extends Component {
             renderScene={this.renderScene}
             onIndexChange={this.handleChangeTab}
           />
-          {isFocusSearchBar &&
+          {isFocusSearchBar && (
             <Search
               word={newWord}
               navigation={navigation}
               searchType={searchType}
               onSubmitSearch={this.handleOnSubmitSearch}
               onChangeTab={this.handleOnChangeSearchTab}
-            />}
+            />
+          )}
         </View>
       </View>
     );

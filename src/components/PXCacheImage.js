@@ -88,34 +88,36 @@ class PXCacheImage extends Component {
         ? globalStyleVariables.WINDOW_WIDTH()
         : width;
     const imageHeight = imageWidth * height / width;
-    return loaded
-      ? <View
-          style={{
-            width: globalStyleVariables.WINDOW_WIDTH(),
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#fff',
+    return loaded ? (
+      <View
+        style={{
+          width: globalStyleVariables.WINDOW_WIDTH(),
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#fff',
+        }}
+      >
+        <CachedImage
+          source={{
+            uri,
+            headers: {
+              referer: 'http://www.pixiv.net',
+            },
           }}
-        >
-          <CachedImage
-            source={{
-              uri,
-              headers: {
-                referer: 'http://www.pixiv.net',
-              },
-            }}
-            style={[
-              {
-                width: imageWidth,
-                height: imageHeight,
-              },
-            ]}
-            cacheLocation={`${RNFetchBlob.fs.dirs.CacheDir}/pxview`}
-            renderImage={this.renderImage}
-          />
-        </View>
-      : <View style={[style[1], style[2]]} />;
+          style={[
+            {
+              width: imageWidth,
+              height: imageHeight,
+            },
+          ]}
+          cacheLocation={`${RNFetchBlob.fs.dirs.CacheDir}/pxview`}
+          renderImage={this.renderImage}
+        />
+      </View>
+    ) : (
+      <View style={[style[1], style[2]]} />
+    );
   };
 
   render() {

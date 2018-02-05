@@ -16,7 +16,9 @@ class NewMangas extends Component {
     } = this.props;
     if (
       items.length < 1 ||
-      moment(timestamp).add(3, 'hours').isBefore(moment())
+      moment(timestamp)
+        .add(3, 'hours')
+        .isBefore(moment())
     ) {
       clearNewMangas();
       fetchNewMangas();
@@ -24,7 +26,10 @@ class NewMangas extends Component {
   }
 
   loadMoreItems = () => {
-    const { fetchNewMangas, newMangas: { loading, nextUrl } } = this.props;
+    const {
+      fetchNewMangas,
+      newMangas: { loading, nextUrl },
+    } = this.props;
     if (!loading && nextUrl) {
       fetchNewMangas(nextUrl);
     }

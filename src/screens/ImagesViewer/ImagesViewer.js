@@ -62,8 +62,9 @@ class ImagesViewer extends Component {
     const image = this.state.images[index];
     return (
       <View key={image.url} style={styles.slide}>
-        {image.loading &&
-          <Loader absolutePosition style={styles.loader} color="#fff" />}
+        {image.loading && (
+          <Loader absolutePosition style={styles.loader} color="#fff" />
+        )}
         <PXPhotoView
           uri={image.url}
           onLoad={this.handleOnImageLoaded}
@@ -85,7 +86,7 @@ class ImagesViewer extends Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={hideHeader} barStyle="light-content" translucent />
-        {!hideHeader &&
+        {!hideHeader && (
           <PXHeader
             darkTheme
             hideStatusBar
@@ -97,7 +98,8 @@ class ImagesViewer extends Component {
               </HeaderTextTitle>
             }
             headerRight={<HeaderSaveImageButton imageUrls={selectedImages} />}
-          />}
+          />
+        )}
         <TabViewAnimated
           style={globalStyles.container}
           navigationState={this.state}

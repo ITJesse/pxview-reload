@@ -16,7 +16,9 @@ class RecommendedMangas extends Component {
     } = this.props;
     if (
       items.length < 1 ||
-      moment(timestamp).add(1, 'days').isBefore(moment())
+      moment(timestamp)
+        .add(1, 'days')
+        .isBefore(moment())
     ) {
       clearRecommendedMangas();
       fetchRecommendedMangas();

@@ -140,32 +140,33 @@ class SearchFilterModal extends Component {
     }
   };
 
-  renderSectionHeader = ({ section }) =>
+  renderSectionHeader = ({ section }) => (
     <View key={section.key} style={styles.sectionHeader}>
       <Text style={styles.sectionHeaderTitle}>
         {this.getSearchTypeName(section.key)}
       </Text>
-    </View>;
+    </View>
+  );
 
   renderItem = ({ item }) => {
     const { target, duration, sort } = this.state;
     return (
       <PXTouchable onPress={() => this.handleOnPressRow(item.type, item.value)}>
         <View style={styles.row}>
-          <Text>
-            {this.getSearchOptionName(item.value)}
-          </Text>
+          <Text>{this.getSearchOptionName(item.value)}</Text>
           {((item.type === 'target' && item.value === target) ||
             (item.type === 'duration' && item.value === duration) ||
-            (item.type === 'sort' && item.value === sort)) &&
-            <Icon name="check" color={globalStyleVariables.PRIMARY_COLOR} />}
+            (item.type === 'sort' && item.value === sort)) && (
+            <Icon name="check" color={globalStyleVariables.PRIMARY_COLOR} />
+          )}
         </View>
       </PXTouchable>
     );
   };
 
-  renderSeparator = (sectionId, rowId) =>
-    <Separator key={`${sectionId}-${rowId}`} />;
+  renderSeparator = (sectionId, rowId) => (
+    <Separator key={`${sectionId}-${rowId}`} />
+  );
 
   handleOnPressRow = (filterType, value) => {
     if (filterType === 'target') {

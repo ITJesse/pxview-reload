@@ -82,12 +82,11 @@ class PXCacheImageTouchable extends Component {
         activeOpacity={1}
       >
         {loading &&
-          pageNumber &&
-          <View style={styles.pageNumberContainer}>
-            <Text style={styles.pageNumberText}>
-              {pageNumber}
-            </Text>
-          </View>}
+          pageNumber && (
+            <View style={styles.pageNumberContainer}>
+              <Text style={styles.pageNumberText}>{pageNumber}</Text>
+            </View>
+          )}
         {loading && !pageNumber && <Loader />}
         <PXCacheImage
           uri={uri}

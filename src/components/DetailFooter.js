@@ -86,39 +86,28 @@ class DetailFooter extends PureComponent {
             >
               <PXThumbnail uri={item.user.profile_image_urls.medium} />
               <View style={styles.nameContainer}>
-                <Text>
-                  {item.user.name}
-                </Text>
-                <Text>
-                  {item.user.account}
-                </Text>
+                <Text>{item.user.name}</Text>
+                <Text>{item.user.account}</Text>
               </View>
             </PXTouchable>
-            {((authUser && authUser.id !== item.user.id) || !authUser) &&
+            {((authUser && authUser.id !== item.user.id) || !authUser) && (
               <FollowButtonContainer
                 workaround
                 user={item.user}
                 navigation={navigation}
-              />}
+              />
+            )}
           </View>
           <View style={styles.captionContainer}>
-            <Text style={styles.title}>
-              {item.title}
-            </Text>
+            <Text style={styles.title}>{item.title}</Text>
             <HtmlView value={item.caption} onLinkPress={onPressLink} />
           </View>
           <View style={styles.statContainer}>
-            <Text>
-              {moment(item.create_date).format('YYYY-MM-DD')}
-            </Text>
+            <Text>{moment(item.create_date).format('YYYY-MM-DD')}</Text>
             <Icon name="eye" style={{ marginLeft: 10 }} />
-            <Text style={{ marginLeft: 5 }}>
-              {item.total_view}
-            </Text>
+            <Text style={{ marginLeft: 5 }}>{item.total_view}</Text>
             <Icon name="heart" style={{ marginLeft: 10 }} />
-            <Text style={{ marginLeft: 5 }}>
-              {item.total_bookmarks}
-            </Text>
+            <Text style={{ marginLeft: 5 }}>{item.total_bookmarks}</Text>
           </View>
           {
             <Tags
@@ -130,9 +119,7 @@ class DetailFooter extends PureComponent {
         </View>
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>
-              {i18n.comments}
-            </Text>
+            <Text style={styles.sectionTitle}>{i18n.comments}</Text>
           </View>
           <IllustComments
             illustId={item.id}
@@ -146,9 +133,7 @@ class DetailFooter extends PureComponent {
           onLayout={this.handleOnLayoutRelatedIllusts}
         >
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>
-              {i18n.relatedWorks}
-            </Text>
+            <Text style={styles.sectionTitle}>{i18n.relatedWorks}</Text>
           </View>
           <RelatedIllusts
             illustId={item.id}

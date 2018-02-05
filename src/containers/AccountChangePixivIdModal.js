@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { View, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { withFormik, Field } from 'formik';
 import { connectLocalization } from '../components/Localization';
 import ModalForm from '../components/ModalForm';
 import PXFormInput from '../components/PXFormInput';
-import * as authActionCreators from '../common/actions/auth';
 import * as modalActionCreators from '../common/actions/modal';
 import * as editAccountActionCreators from '../common/actions/editAccount';
-
-const FORM_ID = 'changePixivId';
 
 const validate = (values, props) => {
   const { currentPassword, newPassword, pixivId } = values;
@@ -28,18 +25,53 @@ const validate = (values, props) => {
   return errors;
 };
 
-class AccountChangePixivId extends Component {
+const handleOnSubmit = (values, { props }) => {
+  const { editAccount, user } = props;
+  const { currentPassword, newPassword, pixivId } = values;
+  let password;
+  if (user.isProvisionalAccount && user.password) {
+    password = user.password;
+  } else {
+    password = currentPassword;
+  }
+  if (
+    password &&
+    (!user.isProvisionalAccount ||
+      (user.isProvisionalAccount && newPassword)) &&
+    pixivId
+  ) {
+    Keyboard.dismiss();
+    editAccount({
+      pixivId,
+      currentPassword: password,
+      newPassword,
+    });
+  }
+};
+
+class AccountChangePixivIdModal extends Component {
   componentWillReceiveProps(nextProps) {
-    const { editAccountState: { prevSuccess } } = this.props;
     const {
-      editAccountState: { success },
+      editAccountState: { prevSuccess },
+    } = this.props;
+    const {
+      editAccountState: { success, validationErrors },
       onClose,
-      editAccountClear,
+      isSubmitting,
+      setErrors,
+      setSubmitting,
     } = nextProps;
     if (success && success !== prevSuccess) {
       onClose();
-      editAccountClear();
+    } else if (validationErrors && isSubmitting) {
+      setSubmitting(false);
+      setErrors(validationErrors);
     }
+  }
+
+  componentWillUnmount() {
+    const { editAccountClear } = this.props;
+    editAccountClear();
   }
 
   submit = data => {
@@ -59,7 +91,6 @@ class AccountChangePixivId extends Component {
     ) {
       Keyboard.dismiss();
       editAccount({
-        formId: FORM_ID,
         pixivId,
         currentPassword: password,
         newPassword,
@@ -74,6 +105,8 @@ class AccountChangePixivId extends Component {
       onClose,
       i18n,
       handleSubmit,
+      setFieldValue,
+      setFieldTouched,
     } = this.props;
     return (
       <ModalForm
@@ -81,30 +114,38 @@ class AccountChangePixivId extends Component {
           i18n.accountSettingsChange,
           i18n.accountSettingsPixivId,
         )}
-        onSubmit={handleSubmit(this.submit)}
+        onSubmit={handleSubmit}
         onClose={onClose}
         loading={loading}
       >
         <View>
-          {(!user.isProvisionalAccount || !user.password) &&
+          {(!user.isProvisionalAccount || !user.password) && (
             <Field
               name="currentPassword"
               component={PXFormInput}
               label={i18n.password}
               secureTextEntry
-            />}
-          {user.isProvisionalAccount &&
+              onChangeText={setFieldValue}
+              onBlur={setFieldTouched}
+            />
+          )}
+          {user.isProvisionalAccount && (
             <Field
               name="newPassword"
               component={PXFormInput}
               label={i18n.accountSettingsPasswordNew}
               secureTextEntry
-            />}
+              onChangeText={setFieldValue}
+              onBlur={setFieldTouched}
+            />
+          )}
           <Field
             name="pixivId"
             component={PXFormInput}
             label={i18n.accountSettingsPixivId}
             autoCapitalize="none"
+            onChangeText={setFieldValue}
+            onBlur={setFieldTouched}
           />
         </View>
       </ModalForm>
@@ -112,21 +153,24 @@ class AccountChangePixivId extends Component {
   }
 }
 
-const AccountChangePixivIdForm = reduxForm({
-  form: FORM_ID,
+const AccountChangePixivIdModalForm = withFormik({
+  mapPropsToValues: () => ({
+    currentPassword: '',
+    newPassword: '',
+    pixivId: '',
+  }),
   validate,
-})(AccountChangePixivId);
+  handleSubmit: handleOnSubmit,
+})(AccountChangePixivIdModal);
 
 export default connectLocalization(
   connect(
     state => ({
-      auth: state.auth,
       editAccountState: state.editAccount,
     }),
     {
-      ...authActionCreators,
       ...modalActionCreators,
       ...editAccountActionCreators,
     },
-  )(AccountChangePixivIdForm),
+  )(AccountChangePixivIdModalForm),
 );

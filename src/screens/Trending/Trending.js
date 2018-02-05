@@ -141,14 +141,15 @@ class Trending extends Component {
             renderScene={this.renderScene}
             onIndexChange={this.handleChangeTab}
           />
-          {isFocusSearchBar &&
+          {isFocusSearchBar && (
             <Search
               word={word}
               navigation={navigation}
               searchType={searchType}
               onSubmitSearch={this.handleOnSubmitSearch}
               onChangeTab={this.handleOnChangeSearchTab}
-            />}
+            />
+          )}
         </View>
       </View>
     );

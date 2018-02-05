@@ -53,14 +53,22 @@ class IllustComments extends Component {
   };
 
   handleOnPressViewMoreComments = () => {
-    const { illustId, navigation: { navigate } } = this.props;
+    const {
+      illustId,
+      navigation: { navigate },
+    } = this.props;
     navigate(SCREENS.IllustComments, {
       illustId,
     });
   };
 
   handleOnPressCommentButton = () => {
-    const { illustId, user, navigation: { navigate }, i18n } = this.props;
+    const {
+      illustId,
+      user,
+      navigation: { navigate },
+      i18n,
+    } = this.props;
     if (!user.mail_address) {
       Alert.alert(
         i18n.commentAdd,
@@ -133,16 +141,18 @@ class IllustComments extends Component {
           navigation={navigation}
           user={user}
         />
-        {isFeatureInDetailPage &&
+        {isFeatureInDetailPage && (
           <View style={styles.viewMoreButtonContainer}>
             <ViewMoreButton onPress={this.handleOnPressViewMoreComments} />
-          </View>}
-        {!isFeatureInDetailPage &&
+          </View>
+        )}
+        {!isFeatureInDetailPage && (
           <ActionButton
             buttonColor="#fff"
-            icon={<Icon name="pencil" size={24} color="#737373" />}
+            renderIcon={() => <Icon name="pencil" size={24} color="#737373" />}
             onPress={this.handleOnPressCommentButton}
-          />}
+          />
+        )}
         <OverlaySpinner visible={verificationEmail.loading} />
       </View>
     );

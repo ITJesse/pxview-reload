@@ -124,8 +124,12 @@ class BookmarkModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { illustBookmarkDetail: { item: prevItem } } = this.props;
-    const { illustBookmarkDetail: { item } } = nextProps;
+    const {
+      illustBookmarkDetail: { item: prevItem },
+    } = this.props;
+    const {
+      illustBookmarkDetail: { item },
+    } = nextProps;
     if (item && item !== prevItem) {
       const selectedTagsCount = this.countSelectedTags(item.tags);
       const tags = item.tags.map(tag => ({
@@ -260,19 +264,18 @@ class BookmarkModal extends Component {
     unbookmarkIllust(id);
   };
 
-  renderItem = ({ item }) =>
+  renderItem = ({ item }) => (
     <PXTouchable onPress={() => this.handleOnCheckTag(item)}>
       <View style={styles.row}>
-        <Text style={styles.tagText}>
-          {item.name}
-        </Text>
+        <Text style={styles.tagText}>{item.name}</Text>
         <MKCheckbox
           checked={item.is_registered}
           onCheckedChange={() => this.handleOnCheckTag(item)}
           editable={item.editable}
         />
       </View>
-    </PXTouchable>;
+    </PXTouchable>
+  );
 
   render() {
     const { isBookmark, i18n } = this.props;
@@ -294,12 +297,8 @@ class BookmarkModal extends Component {
                   </Text>
                 </View>
                 <View style={styles.subTitleContainer}>
-                  <Text>
-                    {i18n.collectionTags}
-                  </Text>
-                  <Text>
-                    {selectedTagsCount} / 10
-                  </Text>
+                  <Text>{i18n.collectionTags}</Text>
+                  <Text>{selectedTagsCount} / 10</Text>
                 </View>
                 <View style={styles.newTagContainer}>
                   <TextInput
@@ -325,9 +324,7 @@ class BookmarkModal extends Component {
                 </View>
                 <Separator />
                 <View style={styles.row}>
-                  <Text>
-                    {i18n.private}
-                  </Text>
+                  <Text>{i18n.private}</Text>
                   <Switch
                     value={isPrivate}
                     onValueChange={this.handleOnChangeIsPrivate}
@@ -340,7 +337,7 @@ class BookmarkModal extends Component {
                     !isBookmark && { justifyContent: 'center' },
                   ]}
                 >
-                  {isBookmark &&
+                  {isBookmark && (
                     <PXTouchable
                       onPress={this.handleOnPressRemoveButton}
                       style={{
@@ -348,10 +345,9 @@ class BookmarkModal extends Component {
                         paddingVertical: 20,
                       }}
                     >
-                      <Text>
-                        {i18n.likeRemove}
-                      </Text>
-                    </PXTouchable>}
+                      <Text>{i18n.likeRemove}</Text>
+                    </PXTouchable>
+                  )}
                   <PXTouchable
                     style={
                       isBookmark
@@ -368,16 +364,15 @@ class BookmarkModal extends Component {
                     }
                     onPress={this.handleOnPressBookmarkButton}
                   >
-                    {!isBookmark &&
+                    {!isBookmark && (
                       <MaterialIcon
                         name="favorite"
                         color="rgb(210, 212, 216)"
                         size={20}
-                      />}
+                      />
+                    )}
 
-                    <Text>
-                      {isBookmark ? i18n.save : i18n.likeAdd}
-                    </Text>
+                    <Text>{isBookmark ? i18n.save : i18n.likeAdd}</Text>
                   </PXTouchable>
                 </View>
               </View>

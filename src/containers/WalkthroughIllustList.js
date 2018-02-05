@@ -20,7 +20,9 @@ class WalkthroughIllustList extends Component {
     InteractionManager.runAfterInteractions(() => {
       if (
         items.length < 1 ||
-        moment(timestamp).add(1, 'days').isBefore(moment())
+        moment(timestamp)
+          .add(1, 'days')
+          .isBefore(moment())
       ) {
         clearWalkthroughIllusts();
         fetchWalkthroughIllusts();

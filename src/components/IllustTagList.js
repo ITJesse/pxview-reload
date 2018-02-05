@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 });
 
 class IllustTagList extends Component {
-  renderItem = (item, itemStyles) =>
+  renderItem = (item, itemStyles) => (
     <PXTouchable
       style={[styles.imageContainer, itemStyles.imageContainerStyle]}
       key={item.tag}
@@ -59,12 +59,11 @@ class IllustTagList extends Component {
           style={[styles.image, itemStyles.imageStyle]}
         />
         <View style={[styles.tagContainer, itemStyles.tagContainerStyle]}>
-          <Text style={styles.tag}>
-            {item.tag}
-          </Text>
+          <Text style={styles.tag}>{item.tag}</Text>
         </View>
       </View>
-    </PXTouchable>;
+    </PXTouchable>
+  );
 
   renderItemPortrait = (item, index) => {
     const { illustColumns } = this.props;
@@ -157,7 +156,10 @@ class IllustTagList extends Component {
   };
 
   handleOnPressItem = item => {
-    const { addSearchHistory, navigation: { navigate } } = this.props;
+    const {
+      addSearchHistory,
+      navigation: { navigate },
+    } = this.props;
     addSearchHistory(item.tag);
     navigate(SCREENS.SearchResult, {
       word: item.tag,
@@ -174,18 +176,18 @@ class IllustTagList extends Component {
     return (
       <View style={globalStyles.container}>
         {(!items || (!loaded && loading)) && <Loader />}
-        {items && items.length
-          ? <ScrollView
-              contentContainerStyle={styles.contentContainer}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
-            >
-              {orientation === 'PORTRAIT'
-                ? items.map(this.renderItemPortrait)
-                : items.map(this.renderItemLandscape)}
-            </ScrollView>
-          : null}
+        {items && items.length ? (
+          <ScrollView
+            contentContainerStyle={styles.contentContainer}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          >
+            {orientation === 'PORTRAIT'
+              ? items.map(this.renderItemPortrait)
+              : items.map(this.renderItemLandscape)}
+          </ScrollView>
+        ) : null}
       </View>
     );
   }

@@ -83,10 +83,11 @@ class TagsFilterModal extends Component {
               </Text>
             </View>
           }
-          {item.count &&
+          {item.count && (
             <Text style={isSelected && styles.selectedTagText}>
               {item.count}
-            </Text>}
+            </Text>
+          )}
         </View>
       </PXTouchable>
     );

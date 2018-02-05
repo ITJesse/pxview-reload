@@ -19,12 +19,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const OverlayMutedIndicator = ({ i18n }) =>
+const OverlayMutedIndicator = ({ i18n }) => (
   <View style={styles.container}>
     <Icon name="ban" size={30} />
-    <Text style={styles.text}>
-      {i18n.tagMuted}
-    </Text>
-  </View>;
+    <Text style={styles.text}>{i18n.tagMuted}</Text>
+  </View>
+);
 
 export default connectLocalization(OverlayMutedIndicator);

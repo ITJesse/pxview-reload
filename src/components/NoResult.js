@@ -8,11 +8,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const NoResult = ({ text, style }) =>
+const NoResult = ({ text, style }) => (
   <View style={[styles.nullResultContainer, style]}>
-    <Text>
-      {text}
-    </Text>
-  </View>;
+    <Text>{text}</Text>
+  </View>
+);
 
 export default NoResult;

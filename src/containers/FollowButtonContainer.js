@@ -36,7 +36,12 @@ class FollowButtonContainer extends Component {
   }
 
   handleOnPress = () => {
-    const { authUser, user, workaround, navigation: { navigate } } = this.props;
+    const {
+      authUser,
+      user,
+      workaround,
+      navigation: { navigate },
+    } = this.props;
     if (!authUser) {
       navigate(SCREENS.Login, {
         onLoginSuccess: () => {
@@ -51,7 +56,12 @@ class FollowButtonContainer extends Component {
   };
 
   handleOnLongPress = () => {
-    const { authUser, user, navigation: { navigate }, openModal } = this.props;
+    const {
+      authUser,
+      user,
+      navigation: { navigate },
+      openModal,
+    } = this.props;
     if (!authUser) {
       navigate(SCREENS.Login, {
         onLoginSuccess: () => {

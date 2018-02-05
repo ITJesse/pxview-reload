@@ -193,7 +193,10 @@ class Detail extends Component {
   };
 
   handleOnMasterListUpdate = ({ listKey, items }) => {
-    const { parentListKey, navigation: { setParams } } = this.props;
+    const {
+      parentListKey,
+      navigation: { setParams },
+    } = this.props;
     if (parentListKey === listKey) {
       setParams({ items });
     }
@@ -253,7 +256,9 @@ class Detail extends Component {
     const { item } = this.props;
     const shareOptions = {
       message: `${item.title} | ${item.user.name} #pxview`,
-      url: `http://www.pixiv.net/member_illust.php?illust_id=${item.id}&mode=medium`,
+      url: `http://www.pixiv.net/member_illust.php?illust_id=${
+        item.id
+      }&mode=medium`,
     };
     Share.open(shareOptions)
       .then(() => {
@@ -284,7 +289,9 @@ class Detail extends Component {
   };
 
   renderHeaderTitle = item => {
-    const { navigation: { navigate } } = this.props;
+    const {
+      navigation: { navigate },
+    } = this.props;
     return (
       <View style={styles.headerTitleContainer}>
         <PXTouchable
@@ -398,30 +405,32 @@ class Detail extends Component {
         {this.renderMainContent()}
         {isActionButtonVisible &&
           item &&
-          !isSelf &&
-          <ActionButton
-            buttonColor="rgba(255,255,255,1)"
-            bgColor="red"
-            icon={<BookmarkButton item={item} />}
-          />}
+          !isSelf && (
+            <ActionButton
+              buttonColor="rgba(255,255,255,1)"
+              bgColor="red"
+              renderIcon={() => <BookmarkButton item={item} />}
+            />
+          )}
         <PXBottomSheet
           visible={isOpenMenuBottomSheet}
           onCancel={this.handleOnCancelMenuBottomSheet}
         >
-          {selectedImageIndex !== null &&
+          {selectedImageIndex !== null && (
             <PXBottomSheetButton
               onPress={this.handleOnPressSaveImage}
               iconName="content-save"
               iconType="material-community"
               text={i18n.saveImage}
-            />}
+            />
+          )}
           <PXBottomSheetButton
             onPress={this.handleOnPressShareIllust}
             iconName="share"
             iconType="entypo"
             text={i18n.share}
           />
-          {!isSelf &&
+          {!isSelf && (
             <PXBottomSheetButton
               onPress={this.handleOnPressToggleMuteUser}
               iconName="user-times"
@@ -430,8 +439,9 @@ class Detail extends Component {
                 marginLeft: 28,
               }}
               text={isMuteUser ? i18n.userMuteRemove : i18n.userMuteAdd}
-            />}
-          {!isSelf &&
+            />
+          )}
+          {!isSelf && (
             <PXBottomSheetButton
               onPress={this.handleOnPressReportUser}
               iconName="ban"
@@ -440,7 +450,8 @@ class Detail extends Component {
                 marginLeft: 34,
               }}
               text={i18n.reportUser}
-            />}
+            />
+          )}
           <PXBottomSheetCancelButton
             onPress={this.handleOnCancelMenuBottomSheet}
             textStyle={{

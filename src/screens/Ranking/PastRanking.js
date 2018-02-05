@@ -75,7 +75,9 @@ class PastRanking extends Component {
     super(props);
     this.state = {
       isOpenRankingModeBottomSheet: false,
-      date: moment().subtract(2, 'days').format('YYYY-MM-DD'),
+      date: moment()
+        .subtract(2, 'days')
+        .format('YYYY-MM-DD'),
       mode: 'day',
     };
   }
@@ -102,14 +104,15 @@ class PastRanking extends Component {
     return i18n[`ranking${ranking.charAt(0).toUpperCase() + ranking.slice(1)}`];
   };
 
-  renderRankingOptions = (ranking, rankingMode) =>
+  renderRankingOptions = (ranking, rankingMode) => (
     <PXBottomSheetButton
       key={ranking}
       onPress={() => this.handleOnPressRankingMode(rankingMode)}
       iconName="md-funnel"
       iconType="ionicon"
       text={this.mapRankingString(ranking)}
-    />;
+    />
+  );
 
   render() {
     const { user, i18n, navigation } = this.props;

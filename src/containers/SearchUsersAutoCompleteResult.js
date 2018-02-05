@@ -75,22 +75,23 @@ class SearchUsersAutoCompleteResult extends Component {
     } = this.props;
     return (
       <View style={styles.container}>
-        {((!loaded && !loading) || !word) &&
+        {((!loaded && !loading) || !word) && (
           <SearchHistory
             items={searchHistory.items}
             onPressItem={onPressSearchHistoryItem}
             onPressRemoveSearchHistoryItem={onPressRemoveSearchHistoryItem}
             onPressClearSearchHistory={onPressClearSearchHistory}
-          />}
-        {word && word.length > 1
-          ? <SearchUsersAutoCompleteList
-              data={{ ...searchUsersAutoComplete, items }}
-              onPressItem={onPressItem}
-              loadMoreItems={this.loadMoreItems}
-              onRefresh={this.handleOnRefresh}
-              navigation={navigation}
-            />
-          : null}
+          />
+        )}
+        {word && word.length > 1 ? (
+          <SearchUsersAutoCompleteList
+            data={{ ...searchUsersAutoComplete, items }}
+            onPressItem={onPressItem}
+            loadMoreItems={this.loadMoreItems}
+            onRefresh={this.handleOnRefresh}
+            navigation={navigation}
+          />
+        ) : null}
       </View>
     );
   }

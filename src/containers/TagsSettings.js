@@ -64,12 +64,13 @@ class TagSettings extends Component {
     DeviceEventEmitter.emit('showToast', message);
   };
 
-  renderItem = ({ item }) =>
+  renderItem = ({ item }) => (
     <ListItem
       title={item}
       rightIcon={{ name: 'times', type: 'font-awesome' }}
       onPressRightIcon={() => this.handleOnPressRemoveTag(item)}
-    />;
+    />
+  );
 
   render() {
     const { items, formInputPlaceholder } = this.props;

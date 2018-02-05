@@ -28,8 +28,14 @@ class IllustList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { data: { items: prevItems } } = prevProps;
-    const { data: { items }, listKey, maxItems } = this.props;
+    const {
+      data: { items: prevItems },
+    } = prevProps;
+    const {
+      data: { items },
+      listKey,
+      maxItems,
+    } = this.props;
     if (listKey && items !== prevItems) {
       DeviceEventEmitter.emit('masterListUpdate', {
         listKey,
@@ -39,7 +45,10 @@ class IllustList extends Component {
   }
 
   renderItem({ item, index }) {
-    const { orientation: { illustColumns }, noBookmark } = this.props;
+    const {
+      orientation: { illustColumns },
+      noBookmark,
+    } = this.props;
     return (
       <IllustItem
         key={item.id}
@@ -53,12 +62,14 @@ class IllustList extends Component {
   }
 
   renderFooter = () => {
-    const { data: { nextUrl, loading } } = this.props;
-    return nextUrl && loading
-      ? <View style={styles.footer}>
-          <Loader />
-        </View>
-      : null;
+    const {
+      data: { nextUrl, loading },
+    } = this.props;
+    return nextUrl && loading ? (
+      <View style={styles.footer}>
+        <Loader />
+      </View>
+    ) : null;
   };
 
   handleOnPressItem = (item, index) => {
@@ -96,41 +107,42 @@ class IllustList extends Component {
     return (
       <View style={globalStyles.container}>
         {(!items || (!loaded && loading)) && <Loader />}
-        {loaded
-          ? <FlatList
-              onLayout={this.handleOnLayout}
-              ref={ref => (this.illustList = ref)} // eslint-disable-line no-return-assign
-              data={
-                maxItems && (items && items.length)
-                  ? items.slice(0, maxItems)
-                  : items
-              }
-              numColumns={illustColumns}
-              keyExtractor={item => item.id}
-              renderItem={this.renderItem}
-              key={illustColumns}
-              getItemLayout={(data, index) => ({
-                length: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
-                offset:
-                  globalStyleVariables.WINDOW_WIDTH() / illustColumns * index,
-                index,
-              })}
-              removeClippedSubviews={false}
-              initialNumToRender={5}
-              onEndReachedThreshold={0.5}
-              onEndReached={loadMoreItems}
-              ListFooterComponent={this.renderFooter}
-              onScroll={onScroll}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
-              showsVerticalScrollIndicator={
-                showsVerticalScrollIndicator !== null
-                  ? showsVerticalScrollIndicator
-                  : true
-              }
-            />
-          : null}
+        {loaded ? (
+          <FlatList
+            onLayout={this.handleOnLayout}
+            ref={ref => (this.illustList = ref)} // eslint-disable-line no-return-assign
+            data={
+              maxItems && (items && items.length)
+                ? items.slice(0, maxItems)
+                : items
+            }
+            numColumns={illustColumns}
+            keyExtractor={item => item.id}
+            renderItem={this.renderItem}
+            key={illustColumns}
+            listKey={illustColumns}
+            getItemLayout={(data, index) => ({
+              length: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
+              offset:
+                globalStyleVariables.WINDOW_WIDTH() / illustColumns * index,
+              index,
+            })}
+            removeClippedSubviews={false}
+            initialNumToRender={5}
+            onEndReachedThreshold={0.5}
+            onEndReached={loadMoreItems}
+            ListFooterComponent={this.renderFooter}
+            onScroll={onScroll}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+            showsVerticalScrollIndicator={
+              showsVerticalScrollIndicator !== null
+                ? showsVerticalScrollIndicator
+                : true
+            }
+          />
+        ) : null}
       </View>
     );
   }
