@@ -48,6 +48,8 @@ export default connect(state => {
   const { trendingIllustTags } = state;
   return {
     trendingIllustTags,
-    items: getTrendingIllustTagsItems(state).filter(item => !!item.illust),
+    items: getTrendingIllustTagsItems(state).filter(
+      item => !!(item && item.illust),
+    ),
   };
 }, trendingIllustTagsActionCreators)(TrendingIllustTags);

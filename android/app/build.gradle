@@ -137,6 +137,9 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-exception-handler')
+    compile project(':react-native-restart')
+    compile project(':react-native-background-timer')
     compile project(':react-native-photo-view')
     compile project(':react-native-zip-archive')
     compile project(':react-native-vector-icons')

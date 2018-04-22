@@ -1,14 +1,18 @@
 /* eslint react/prefer-stateless-function:0 */
 import React, { Component } from 'react';
-import { AppRegistry, StatusBar } from 'react-native';
+import { AppRegistry, StatusBar, NativeModules } from 'react-native';
 import { Provider } from 'react-redux';
+import RNRestart from 'react-native-restart';
+import { setJSExceptionHandler } from 'react-native-exception-handler';
 import App from './App';
 import { LocalizationProvider } from '../../components/Localization';
 import i18n from '../../common/helpers/i18n';
 import configureStore from '../../common/store/configureStore';
+import configureStoreRollback from '../../common/store/configureStoreRollback';
 // GLOBAL.XMLHttpRequest = GLOBAL.originalXMLHttpRequest || GLOBAL.XMLHttpRequest;
 
-const store = configureStore();
+const { GYBootingProtection } = NativeModules;
+let store = configureStore();
 
 if (process.env.NODE_ENV === 'production') {
   // eslint-disable-line no-undef
@@ -58,5 +62,21 @@ class Root extends Component {
     );
   }
 }
+
+GYBootingProtection.crashCount(count => {
+  if (count > 2) {
+    store = configureStoreRollback();
+    GYBootingProtection.resetCrashCount();
+    setTimeout(() => RNRestart.Restart(), 2000);
+  }
+});
+
+setJSExceptionHandler((e, isFatal) => {
+  if (isFatal) {
+    store = configureStoreRollback();
+    GYBootingProtection.resetCrashCount();
+    setTimeout(() => RNRestart.Restart(), 2000);
+  }
+}, true);
 
 AppRegistry.registerComponent('PxView', () => Root);
