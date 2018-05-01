@@ -18,6 +18,7 @@ import { BlurView } from 'react-native-blur';
 import Share from 'react-native-share';
 import FollowButtonContainer from '../../containers/FollowButtonContainer';
 import { connectLocalization } from '../../components/Localization';
+import PremiumBadge from '../../components/PremiumBadge';
 import PXHeader from '../../components/PXHeader';
 import IllustCollection from '../../components/IllustCollection';
 import PXThumbnail from '../../components/PXThumbnail';
@@ -51,8 +52,16 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  userNameContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   userName: {
     fontSize: 20,
+  },
+  premiumBadge: {
+    marginLeft: 5,
   },
   statType: {
     color: '#90949c',
@@ -372,10 +381,14 @@ class UserDetail extends Component {
           </View>
         </View>
         <View style={styles.profileContainer}>
-          <Text style={styles.userName}>
-            {detail.user.name}
-          </Text>
-          <View style={{ flexDirection: 'row' }}>
+          <View style={styles.userNameContainer}>
+            <Text style={styles.userName}>
+              {detail.user.name}
+            </Text>
+            {detail.profile.is_premium &&
+              <PremiumBadge containerStyle={styles.premiumBadge} />}
+          </View>
+          <View style={styles.row}>
             {detail.profile.webpage
               ? <View style={styles.row}>
                   <Icon name="home" style={styles.icon} />
