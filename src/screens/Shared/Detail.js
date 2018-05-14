@@ -402,7 +402,7 @@ class Detail extends Component {
           <ActionButton
             buttonColor="rgba(255,255,255,1)"
             bgColor="red"
-            icon={<BookmarkButton item={item} />}
+            renderIcon={() => <BookmarkButton item={item} />}
           />}
         <PXBottomSheet
           visible={isOpenMenuBottomSheet}

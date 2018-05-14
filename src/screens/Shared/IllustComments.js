@@ -140,7 +140,7 @@ class IllustComments extends Component {
         {!isFeatureInDetailPage &&
           <ActionButton
             buttonColor="#fff"
-            icon={<Icon name="pencil" size={24} color="#737373" />}
+            renderIcon={() => <Icon name="pencil" size={24} color="#737373" />}
             onPress={this.handleOnPressCommentButton}
           />}
         <OverlaySpinner visible={verificationEmail.loading} />
