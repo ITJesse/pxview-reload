@@ -60,7 +60,7 @@ class Settings extends Component {
     const { lang } = this.props;
     return (
       <List>
-        {list.map(item =>
+        {list.map(item => (
           <ListItem
             key={item.id}
             title={item.title}
@@ -76,8 +76,8 @@ class Settings extends Component {
             }
             onPress={() => this.handleOnPressListItem(item.id)}
             containerStyle={styles.listItem}
-          />,
-        )}
+          />
+        ))}
       </List>
     );
   };

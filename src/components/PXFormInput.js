@@ -9,12 +9,18 @@ import OverlayKeychainButton from '../components/OverlayKeychainButton';
 
 class PXFormInput extends Component {
   handleOnChangeText = text => {
-    const { onChangeText, field: { name } } = this.props;
+    const {
+      onChangeText,
+      field: { name },
+    } = this.props;
     onChangeText(name, text);
   };
 
   handleOnBlur = () => {
-    const { onBlur, field: { name } } = this.props;
+    const {
+      onBlur,
+      field: { name },
+    } = this.props;
     onBlur(name);
   };
 
@@ -31,9 +37,7 @@ class PXFormInput extends Component {
     } = this.props;
     return (
       <View>
-        <FormLabel labelStyle={labelStyle}>
-          {label}
-        </FormLabel>
+        <FormLabel labelStyle={labelStyle}>{label}</FormLabel>
         <FormInput
           inputStyle={inputStyle}
           {...restProps}
@@ -42,10 +46,9 @@ class PXFormInput extends Component {
           value={value}
         />
         {touched[name] &&
-          errors[name] &&
-          <FormValidationMessage>
-            {errors[name]}
-          </FormValidationMessage>}
+          errors[name] && (
+            <FormValidationMessage>{errors[name]}</FormValidationMessage>
+          )}
       </View>
     );
   }

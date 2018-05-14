@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const OverlayBookmarkButton = props =>
+const OverlayBookmarkButton = props => (
   <View style={styles.container}>
     <BookmarkButton {...props} />
-  </View>;
+  </View>
+);
 
 export default OverlayBookmarkButton;

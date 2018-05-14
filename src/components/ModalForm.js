@@ -41,16 +41,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const ModalForm = ({ children, title, loading, onSubmit, onClose, i18n }) =>
+const ModalForm = ({ children, title, loading, onSubmit, onClose, i18n }) => (
   <Modal animationType="fade" transparent visible onRequestClose={onClose}>
     <TouchableWithoutFeedback onPress={onClose}>
       <View style={styles.container}>
         <TouchableWithoutFeedback>
           <View style={styles.formContainer}>
             <View style={styles.sectionHeader}>
-              <Text style={styles.sectionHeaderTitle}>
-                {title}
-              </Text>
+              <Text style={styles.sectionHeaderTitle}>{title}</Text>
             </View>
             <KeyboardAvoidingView behavior="padding">
               <View>
@@ -77,6 +75,7 @@ const ModalForm = ({ children, title, loading, onSubmit, onClose, i18n }) =>
         </TouchableWithoutFeedback>
       </View>
     </TouchableWithoutFeedback>
-  </Modal>;
+  </Modal>
+);
 
 export default connectLocalization(ModalForm);

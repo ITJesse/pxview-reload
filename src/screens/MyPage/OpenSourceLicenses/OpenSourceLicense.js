@@ -144,9 +144,7 @@ const OpenSourceLicense = props => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text>
-          {licenses[id]}
-        </Text>
+        <Text>{licenses[id]}</Text>
       </ScrollView>
     </View>
   );

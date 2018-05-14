@@ -94,7 +94,10 @@ class TouchIDLogin extends Component {
   };
 
   handleOnPressLogout = () => {
-    const { auth: { user }, i18n } = this.props;
+    const {
+      auth: { user },
+      i18n,
+    } = this.props;
     if (user.isProvisionalAccount) {
       Alert.alert(
         i18n.logoutConfirmNoRegisterTitle,
@@ -142,7 +145,7 @@ class TouchIDLogin extends Component {
     const { i18n, showTouchIDUI } = this.props;
     return (
       <Modal style={styles.container}>
-        {showTouchIDUI &&
+        {showTouchIDUI && (
           <View style={styles.innerContainer}>
             <View style={styles.logoContainer}>
               <Image
@@ -166,7 +169,8 @@ class TouchIDLogin extends Component {
                 onPress={this.handleOnPressLogout}
               />
             </View>
-          </View>}
+          </View>
+        )}
       </Modal>
     );
   }

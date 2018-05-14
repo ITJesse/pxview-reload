@@ -66,34 +66,34 @@ class IllustItem extends Component {
         disabled={isMute}
         testID={`${item.id}`}
       >
-        {isMute
-          ? <OverlayMutedIndicator />
-          : <View>
-              <PXCacheImage
-                noNeedSize
-                uri={item.image_urls.square_medium}
-                style={{
-                  width:
-                    globalStyleVariables.WINDOW_WIDTH() / numColumns -
-                    imageWidthOffset,
-                  height:
-                    globalStyleVariables.WINDOW_WIDTH() / numColumns -
-                    imageWidthOffset,
-                }}
-                imageStyle={[
-                  {
-                    resizeMode: 'cover',
-                  },
-                  imageStyle,
-                ]}
-              />
-              {auth.user &&
-                !noBookmark &&
-                <OverlayBookmarkButton item={item} />}
-            </View>}
-        {item.meta_pages && item.meta_pages.length
-          ? <OverlayImagePages total={item.meta_pages.length} />
-          : null}
+        {isMute ? (
+          <OverlayMutedIndicator />
+        ) : (
+          <View>
+            <PXCacheImage
+              noNeedSize
+              uri={item.image_urls.square_medium}
+              style={{
+                width:
+                  globalStyleVariables.WINDOW_WIDTH() / numColumns -
+                  imageWidthOffset,
+                height:
+                  globalStyleVariables.WINDOW_WIDTH() / numColumns -
+                  imageWidthOffset,
+              }}
+              imageStyle={[
+                {
+                  resizeMode: 'cover',
+                },
+                imageStyle,
+              ]}
+            />
+            {auth.user && !noBookmark && <OverlayBookmarkButton item={item} />}
+          </View>
+        )}
+        {item.meta_pages && item.meta_pages.length ? (
+          <OverlayImagePages total={item.meta_pages.length} />
+        ) : null}
         {auth.user && item.type === 'ugoira' && <OverlayUgoiraIndicator />}
       </PXTouchable>
     );

@@ -38,13 +38,14 @@ class PXWebView extends Component {
     return (
       <View style={globalStyles.container}>
         {loadedOnce &&
-          loading &&
-          <ProgressBar
-            indeterminate
-            borderRadius={0}
-            width={globalStyleVariables.WINDOW_WIDTH()}
-            height={3}
-          />}
+          loading && (
+            <ProgressBar
+              indeterminate
+              borderRadius={0}
+              width={globalStyleVariables.WINDOW_WIDTH()}
+              height={3}
+            />
+          )}
         <WebView
           source={source}
           renderLoading={this.renderLoader}

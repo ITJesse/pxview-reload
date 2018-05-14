@@ -16,7 +16,9 @@ class MyPixiv extends Component {
     } = this.props;
     if (
       items.length < 1 ||
-      moment(timestamp).add(3, 'hours').isBefore(moment())
+      moment(timestamp)
+        .add(3, 'hours')
+        .isBefore(moment())
     ) {
       clearMyPixiv();
       fetchMyPixiv();
@@ -24,7 +26,10 @@ class MyPixiv extends Component {
   }
 
   loadMoreItems = () => {
-    const { fetchMyPixiv, myPixiv: { nextUrl, loading } } = this.props;
+    const {
+      fetchMyPixiv,
+      myPixiv: { nextUrl, loading },
+    } = this.props;
     if (!loading && nextUrl) {
       fetchMyPixiv(nextUrl);
     }

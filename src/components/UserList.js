@@ -18,12 +18,14 @@ class UserList extends Component {
   renderItem = ({ item }) => <UserPreview item={item} userId={item.user.id} />;
 
   renderFooter = () => {
-    const { userList: { nextUrl } } = this.props;
-    return nextUrl
-      ? <View style={styles.footer}>
-          <Loader />
-        </View>
-      : null;
+    const {
+      userList: { nextUrl },
+    } = this.props;
+    return nextUrl ? (
+      <View style={styles.footer}>
+        <Loader />
+      </View>
+    ) : null;
   };
 
   render() {
@@ -35,19 +37,19 @@ class UserList extends Component {
     return (
       <View style={styles.container}>
         {!loaded && loading && <Loader />}
-        {items && items.length
-          ? <FlatList
-              data={items}
-              keyExtractor={item => item.user.id}
-              renderItem={this.renderItem}
-              onEndReachedThreshold={2}
-              onEndReached={loadMoreItems}
-              ListFooterComponent={this.renderFooter}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
-            />
-          : null}
+        {items && items.length ? (
+          <FlatList
+            data={items}
+            keyExtractor={item => item.user.id}
+            renderItem={this.renderItem}
+            onEndReachedThreshold={2}
+            onEndReached={loadMoreItems}
+            ListFooterComponent={this.renderFooter}
+            refreshControl={
+              <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            }
+          />
+        ) : null}
       </View>
     );
   }

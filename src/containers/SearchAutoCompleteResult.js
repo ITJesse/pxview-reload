@@ -52,19 +52,20 @@ class SearchAutoCompleteResult extends Component {
     } = this.props;
     return (
       <View style={styles.container}>
-        {((!loaded && !loading) || !word) &&
+        {((!loaded && !loading) || !word) && (
           <SearchHistory
             items={searchHistory.items}
             onPressItem={onPressSearchHistoryItem}
             onPressRemoveSearchHistoryItem={onPressRemoveSearchHistoryItem}
             onPressClearSearchHistory={onPressClearSearchHistory}
-          />}
-        {user && word && word.length > 1
-          ? <SearchAutoCompleteList
-              data={searchAutoComplete}
-              onPressItem={onPressItem}
-            />
-          : null}
+          />
+        )}
+        {user && word && word.length > 1 ? (
+          <SearchAutoCompleteList
+            data={searchAutoComplete}
+            onPressItem={onPressItem}
+          />
+        ) : null}
       </View>
     );
   }

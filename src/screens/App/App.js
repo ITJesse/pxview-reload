@@ -135,8 +135,7 @@ class App extends Component {
     return (
       <View style={styles.container}>
         {useTouchID &&
-          shouldCheckTouchID &&
-          <TouchIDNavigator screenProps={{ i18n }} />}
+          shouldCheckTouchID && <TouchIDNavigator screenProps={{ i18n }} />}
         {renderComponent}
         <MessageBar
           ref={ref => (this.messageBarAlert = ref)} // eslint-disable-line no-return-assign

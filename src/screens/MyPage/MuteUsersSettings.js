@@ -31,7 +31,7 @@ class MuteUsersSettings extends Component {
     DeviceEventEmitter.emit('showToast', message);
   };
 
-  renderItem = ({ item }) =>
+  renderItem = ({ item }) => (
     <ListItem
       title={item.name}
       roundAvatar
@@ -44,25 +44,28 @@ class MuteUsersSettings extends Component {
       rightIcon={{ name: 'times', type: 'font-awesome' }}
       onPress={() => this.handleOnPressUser(item.id)}
       onPressRightIcon={() => this.handleOnPressRemoveMuteUser(item.id)}
-    />;
+    />
+  );
 
   render() {
     const { i18n, items } = this.props;
     return (
       <View style={globalStyles.container}>
-        {items.length
-          ? <List>
-              <FlatList
-                data={items}
-                keyExtractor={item => item.id}
-                renderItem={this.renderItem}
-              />
-            </List>
-          : <EmptyStateView
-              iconName="user-times"
-              iconType="font-awesome"
-              title={i18n.noMuteUser}
-            />}
+        {items.length ? (
+          <List>
+            <FlatList
+              data={items}
+              keyExtractor={item => item.id}
+              renderItem={this.renderItem}
+            />
+          </List>
+        ) : (
+          <EmptyStateView
+            iconName="user-times"
+            iconType="font-awesome"
+            title={i18n.noMuteUser}
+          />
+        )}
       </View>
     );
   }

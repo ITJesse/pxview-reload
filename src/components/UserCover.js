@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserCover = ({ user, avatarSize, onPressAvatar }) =>
+const UserCover = ({ user, avatarSize, onPressAvatar }) => (
   <View style={styles.avatarContainer}>
     <PXThumbnailTouchable
       key={user.profile_image_urls.px_170x170}
@@ -43,12 +43,11 @@ const UserCover = ({ user, avatarSize, onPressAvatar }) =>
     />
     <View style={styles.usernameContainer}>
       <PXTouchable onPress={onPressAvatar}>
-        <Text style={styles.username}>
-          {user.name}
-        </Text>
+        <Text style={styles.username}>{user.name}</Text>
       </PXTouchable>
       {user.is_premium && <PremiumBadge containerStyle={styles.premiumBadge} />}
     </View>
-  </View>;
+  </View>
+);
 
 export default UserCover;

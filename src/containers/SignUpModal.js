@@ -60,8 +60,13 @@ const handleOnSubmit = (values, { props }) => {
 
 class SignUpModal extends Component {
   componentWillReceiveProps(nextProps) {
-    const { auth: { user: prevUser }, closeModal } = this.props;
-    const { auth: { user } } = nextProps;
+    const {
+      auth: { user: prevUser },
+      closeModal,
+    } = this.props;
+    const {
+      auth: { user },
+    } = nextProps;
     if (user !== prevUser) {
       closeModal();
     }

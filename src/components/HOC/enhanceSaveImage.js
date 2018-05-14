@@ -48,7 +48,11 @@ const enhanceSaveImage = WrappedComponent => {
       await Promise.map(
         imageUrls,
         async url => {
-          const fileName = url.split('/').pop().split('#')[0].split('?')[0];
+          const fileName = url
+            .split('/')
+            .pop()
+            .split('#')[0]
+            .split('?')[0];
           try {
             const res = await RNFetchBlob.config({
               path: `${imagesDir}/${fileName}`,

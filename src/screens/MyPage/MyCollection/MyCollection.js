@@ -84,14 +84,18 @@ class MyCollection extends Component {
   };
 
   handleOnPressCloseFilterButton = () => {
-    const { navigation: { setParams } } = this.props;
+    const {
+      navigation: { setParams },
+    } = this.props;
     setParams({
       isOpenFilterModal: false,
     });
   };
 
   handleOnSelectTag = tag => {
-    const { navigation: { setParams } } = this.props;
+    const {
+      navigation: { setParams },
+    } = this.props;
     const { index } = this.state;
     const newState = {};
     if (index === 0) {
@@ -115,22 +119,24 @@ class MyCollection extends Component {
           renderScene={this.renderScene}
           onIndexChange={this.handleChangeTab}
         />
-        {index === 0 &&
+        {index === 0 && (
           <TagsFilterModal
             tagType={TAG_TYPES.PUBLIC}
             isOpen={isOpenFilterModal || false}
             onPressCloseButton={this.handleOnPressCloseFilterButton}
             onSelectTag={this.handleOnSelectTag}
             tag={selectedPublicTag}
-          />}
-        {index === 1 &&
+          />
+        )}
+        {index === 1 && (
           <TagsFilterModal
             tagType={TAG_TYPES.PRIVATE}
             isOpen={isOpenFilterModal || false}
             onPressCloseButton={this.handleOnPressCloseFilterButton}
             onSelectTag={this.handleOnSelectTag}
             tag={selectedPrivateTag}
-          />}
+          />
+        )}
       </View>
     );
   }

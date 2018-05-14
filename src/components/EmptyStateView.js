@@ -44,13 +44,8 @@ const EmptyState = props => {
         style={[styles.icon, iconStyle]}
       />
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>
-          {title}
-        </Text>
-        {description &&
-          <Text style={styles.description}>
-            {description}
-          </Text>}
+        <Text style={styles.title}>{title}</Text>
+        {description && <Text style={styles.description}>{description}</Text>}
       </View>
       {actionButton}
     </View>

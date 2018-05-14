@@ -23,7 +23,9 @@ class FollowingUserIllusts extends Component {
     } = this.props;
     if (
       items.length < 1 ||
-      moment(timestamp).add(1, 'hours').isBefore(moment())
+      moment(timestamp)
+        .add(1, 'hours')
+        .isBefore(moment())
     ) {
       clearFollowingUserIllusts();
       if (user) {
@@ -100,7 +102,10 @@ class FollowingUserIllusts extends Component {
 export default connectLocalization(
   withNavigation(
     connect((state, props) => {
-      const { followingUserIllusts, auth: { user } } = state;
+      const {
+        followingUserIllusts,
+        auth: { user },
+      } = state;
       return {
         followingUserIllusts,
         items: getFollowingUserIllustsItems(state).filter(item => !!item),

@@ -48,7 +48,10 @@ class RelatedIllusts extends Component {
   };
 
   handleOnPressViewMoreRelatedIllusts = () => {
-    const { illustId, navigation: { navigate } } = this.props;
+    const {
+      illustId,
+      navigation: { navigate },
+    } = this.props;
     navigate(SCREENS.RelatedIllusts, {
       illustId,
     });
@@ -74,19 +77,18 @@ class RelatedIllusts extends Component {
         />
         {relatedIllusts &&
           relatedIllusts.loaded &&
-          (!items || !items.length) &&
-          <NoResult text={i18n.noRelatedWorks} />}
+          (!items || !items.length) && <NoResult text={i18n.noRelatedWorks} />}
         {isFeatureInDetailPage &&
         relatedIllusts &&
         relatedIllusts.loaded &&
         items &&
-        items.length
-          ? <View style={styles.viewMoreButtonContainer}>
-              <ViewMoreButton
-                onPress={this.handleOnPressViewMoreRelatedIllusts}
-              />
-            </View>
-          : null}
+        items.length ? (
+          <View style={styles.viewMoreButtonContainer}>
+            <ViewMoreButton
+              onPress={this.handleOnPressViewMoreRelatedIllusts}
+            />
+          </View>
+        ) : null}
       </View>
     );
   }

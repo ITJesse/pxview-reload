@@ -73,15 +73,16 @@ class UserPreview extends Component {
             },
           ]}
         >
-          {Device.isIpad() &&
+          {Device.isIpad() && (
             <View
               style={{
                 width: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
                 height: globalStyleVariables.WINDOW_WIDTH() / illustColumns,
               }}
-            />}
+            />
+          )}
           {items &&
-            items.map((illust, index) =>
+            items.map((illust, index) => (
               <IllustItem
                 key={illust.id}
                 item={illust}
@@ -91,17 +92,15 @@ class UserPreview extends Component {
                 style={{
                   backgroundColor: '#fff',
                 }}
-              />,
-            )}
+              />
+            ))}
         </View>
         <View style={styles.userInfoContainer}>
           <PXTouchable
             style={styles.userInfo}
             onPress={() => this.handleOnPressAvatar(user.id)}
           >
-            <Text>
-              {user.name}
-            </Text>
+            <Text>{user.name}</Text>
           </PXTouchable>
           <FollowButtonContainer user={user} navigation={navigation} />
         </View>
@@ -120,7 +119,9 @@ class UserPreview extends Component {
 export default withNavigation(
   connect((state, props) => {
     const { orientation } = state;
-    const { item: { user, illusts } } = props;
+    const {
+      item: { user, illusts },
+    } = props;
     // if (config.device === 'ipad') {
     //   const getUserIllustsItems = makeGetUserIllustsItems();
     //   return {

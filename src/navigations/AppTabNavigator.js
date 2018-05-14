@@ -8,13 +8,14 @@ import NewWorksNavigator from './NewWorksNavigator';
 import MyPageNavigator from './MyPageNavigator';
 import { SCREENS } from '../common/constants';
 
-const renderTabBarIcon = (tintColor, focused, name, iconType) =>
+const renderTabBarIcon = (tintColor, focused, name, iconType) => (
   <Icon
     name={name}
     type={iconType || 'font-awesome'}
     size={24}
     color={tintColor}
-  />;
+  />
+);
 
 const AppTabNavigator = TabNavigator(
   {
@@ -65,13 +66,14 @@ const AppTabNavigator = TabNavigator(
     animationEnabled: false,
     lazy: false,
     tabBarPosition: 'bottom',
-    tabBarComponent: props =>
+    tabBarComponent: props => (
       <TabBarBottom
         {...props}
         getTestIDProps={scene => ({
           testID: scene.route.key,
         })}
-      />,
+      />
+    ),
     tabBarOptions: {
       activeTintColor: 'rgb(59,89,152)',
       inactiveTintColor: 'rgb(204,204,204)',

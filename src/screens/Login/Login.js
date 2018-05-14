@@ -104,7 +104,7 @@ class Login extends Component {
         <View style={{ flex: 1 }}>
           <WalkthroughIllustList />
         </View>
-        {modal.modalType !== MODAL_TYPES.SIGNUP &&
+        {modal.modalType !== MODAL_TYPES.SIGNUP && (
           <View
             style={[
               styles.innerContainer,
@@ -170,7 +170,8 @@ class Login extends Component {
               </View>
             </KeyboardAvoidingView>
             <OverlaySpinner visible={loading} />
-          </View>}
+          </View>
+        )}
       </View>
     );
   }
