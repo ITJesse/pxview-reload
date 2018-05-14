@@ -12,6 +12,4 @@ target 'PxView' do
   pod 'Firebase/Storage'
   pod 'Firebase/Performance'
 
-  pod 'RCTUserDefaults', :path => '../node_modules/react-native-user-defaults'
-
 end
