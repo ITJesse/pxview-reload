@@ -63,20 +63,20 @@ class Root extends Component {
   }
 }
 
-GYBootingProtection.crashCount(count => {
-  if (count > 2) {
-    store = configureStoreRollback();
-    GYBootingProtection.resetCrashCount();
-    setTimeout(() => RNRestart.Restart(), 2000);
-  }
-});
+// GYBootingProtection.crashCount(count => {
+//   if (count > 2) {
+//     store = configureStoreRollback();
+//     GYBootingProtection.resetCrashCount();
+//     setTimeout(() => RNRestart.Restart(), 2000);
+//   }
+// });
 
-setJSExceptionHandler((e, isFatal) => {
-  if (isFatal) {
-    store = configureStoreRollback();
-    GYBootingProtection.resetCrashCount();
-    setTimeout(() => RNRestart.Restart(), 2000);
-  }
-}, true);
+// setJSExceptionHandler((e, isFatal) => {
+//   if (isFatal) {
+//     store = configureStoreRollback();
+//     GYBootingProtection.resetCrashCount();
+//     setTimeout(() => RNRestart.Restart(), 2000);
+//   }
+// }, true);
 
 AppRegistry.registerComponent('PxView', () => Root);

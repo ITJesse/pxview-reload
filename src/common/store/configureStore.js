@@ -76,6 +76,7 @@ export default function configureStore() {
             savedItemList = [...savedItemList, ...ranking[rankingKey].items];
           });
           Object.keys(userBookmarkIllusts).forEach(userId => {
+            if (userId === 'undefined' || !userId) return;
             savedItemList = [
               ...savedItemList,
               ...userBookmarkIllusts[userId].items,

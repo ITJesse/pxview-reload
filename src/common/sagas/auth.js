@@ -9,6 +9,7 @@ import {
   select,
   fork,
   cancel,
+  all,
 } from 'redux-saga/effects';
 import moment from 'moment';
 import { REHYDRATE } from 'redux-persist/constants';
@@ -34,6 +35,14 @@ import { clearRecommendedIllusts } from '../../common/actions/recommendedIllusts
 import { clearRecommendedMangas } from '../../common/actions/recommendedMangas';
 import { clearTrendingIllustTags } from '../../common/actions/trendingIllustTags';
 import { clearRecommendedUsers } from '../../common/actions/recommendedUsers';
+import { clearNewIllusts } from '../../common/actions/newIllusts';
+import { clearNewMangas } from '../../common/actions/newMangas';
+import { clearMuteTags } from '../../common/actions/muteTags';
+import { clearMuteUsers } from '../../common/actions/muteUsers';
+import { clearFollowingUserIllusts } from '../../common/actions/followingUserIllusts';
+import { clearMyPrivateBookmarkIllusts } from '../../common/actions/myPrivateBookmarkIllusts';
+import { clearUserBookmarkIllusts } from '../../common/actions/userBookmarkIllusts';
+import { clearBrowsingHistory } from '../../common/actions/browsingHistory';
 import pixiv from '../helpers/apiClient';
 import { getAuth, getAuthUser, getLang } from '../selectors';
 import {
@@ -286,10 +295,20 @@ export function* watchSignUpFailure() {
 
 export function* watchLogoutSuccess() {
   yield takeEvery(AUTH_LOGOUT.SUCCESS, function*() {
-    yield put(clearTouchIDSettings());
-    yield put(clearRecommendedIllusts());
-    yield put(clearRecommendedMangas());
-    yield put(clearRecommendedUsers());
-    yield put(clearTrendingIllustTags());
+    yield all([
+      put(clearTouchIDSettings()),
+      put(clearRecommendedIllusts()),
+      put(clearRecommendedMangas()),
+      put(clearRecommendedUsers()),
+      put(clearTrendingIllustTags()),
+      put(clearNewIllusts()),
+      put(clearNewMangas()),
+      put(clearMuteUsers()),
+      put(clearMuteTags()),
+      put(clearBrowsingHistory()),
+      put(clearFollowingUserIllusts()),
+      put(clearMyPrivateBookmarkIllusts()),
+      put(clearUserBookmarkIllusts()),
+    ]);
   });
 }

@@ -119,6 +119,7 @@ class IllustList extends Component {
             numColumns={illustColumns}
             keyExtractor={item => item.id}
             renderItem={this.renderItem}
+            key={illustColumns}
             listKey={illustColumns}
             getItemLayout={(data, index) => ({
               length: globalStyleVariables.WINDOW_WIDTH() / illustColumns,

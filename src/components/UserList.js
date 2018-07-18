@@ -40,7 +40,7 @@ class UserList extends Component {
         {items && items.length ? (
           <FlatList
             data={items}
-            keyExtractor={item => item.user.id}
+            keyExtractor={item => `${item.user.id}`}
             renderItem={this.renderItem}
             onEndReachedThreshold={2}
             onEndReached={loadMoreItems}
